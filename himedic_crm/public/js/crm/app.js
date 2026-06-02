@@ -51,8 +51,8 @@ function buildSidebar(){
     nav.appendChild(b);
   });
   document.getElementById('userChip').innerHTML =
-    `<div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white grid place-items-center text-sm font-semibold">${(window.__FULLNAME__||'U')[0]}</div>
-     <div class="text-xs leading-tight"><div class="font-medium">${window.__FULLNAME__||'User'}</div><div class="text-slate-500">${window.__USER__||''}</div></div>`;
+    `<div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white grid place-items-center text-sm font-semibold">${(window.hmFullname||'U')[0]}</div>
+     <div class="text-xs leading-tight"><div class="font-medium">${window.hmFullname||'User'}</div><div class="text-slate-500">${window.hmUser||''}</div></div>`;
 }
 
 export async function select(moduleId, screenId){

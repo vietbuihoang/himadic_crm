@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/assets/himedic_crm/css/crm.css">
 </head>
 <body class="text-slate-800" style="background:#f1f5f9">{% endraw %}
-<script>window.__USER__ = "{{ user }}"; window.__FULLNAME__ = "{{ full_name }}"; window.csrf_token = "{{ csrf_token }}";</script>
+<script>window.hmUser = "{{ user }}"; window.hmFullname = "{{ full_name }}";</script>
 {% raw %}<div class="flex h-screen overflow-hidden">
   <aside class="w-72 bg-brand-900 text-brand-100 flex flex-col flex-shrink-0">
     <div class="px-5 py-5 border-b border-brand-700/60">
