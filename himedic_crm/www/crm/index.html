@@ -1,0 +1,45 @@
+{% raw %}<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hi-Medic CRM</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: {
+      brand: {50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',500:'#0891b2',600:'#0e7490',700:'#155e75',800:'#164e63',900:'#083344'},
+      accent:{500:'#10b981',600:'#059669'} },
+    fontFamily: { sans:['Inter','system-ui','sans-serif'] } } } }
+</script>
+<link rel="stylesheet" href="/assets/himedic_crm/css/crm.css">
+</head>
+<body class="text-slate-800" style="background:#f1f5f9">{% endraw %}
+<script>window.__USER__ = "{{ user }}"; window.__FULLNAME__ = "{{ full_name }}"; window.csrf_token = "{{ csrf_token }}";</script>
+{% raw %}<div class="flex h-screen overflow-hidden">
+  <aside class="w-72 bg-brand-900 text-brand-100 flex flex-col flex-shrink-0">
+    <div class="px-5 py-5 border-b border-brand-700/60">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-300 to-cyan-600 flex items-center justify-center text-brand-900 font-extrabold text-lg">H</div>
+        <div><div class="font-bold text-white text-base leading-none">Hi-Medic CRM</div>
+        <div class="text-xs text-brand-200 mt-1">Workspace</div></div>
+      </div>
+    </div>
+    <nav id="navList" class="flex-1 overflow-y-auto scroll-thin py-3 px-3 space-y-1 text-sm"></nav>
+  </aside>
+  <main class="flex-1 flex flex-col overflow-hidden">
+    <header class="h-14 bg-white border-b border-slate-200 flex items-center px-6 gap-4 flex-shrink-0">
+      <div class="text-sm text-slate-500 flex items-center gap-2">
+        <span>Hi-Medic CRM</span><span class="text-slate-300">/</span>
+        <span id="moduleTitle" class="text-slate-800 font-medium">Tổng quan</span>
+      </div>
+      <div class="ml-auto flex items-center gap-3">
+        <div id="userChip" class="flex items-center gap-2 pl-3 border-l border-slate-200"></div>
+      </div>
+    </header>
+    <section id="mainContent" class="flex-1 overflow-y-auto scroll-thin" style="background:#f1f5f9"></section>
+  </main>
+</div>{% endraw %}
+<script type="module" src="/assets/himedic_crm/js/crm/app.js"></script>
+</body>
+</html>
