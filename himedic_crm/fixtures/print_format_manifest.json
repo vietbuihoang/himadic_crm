@@ -1,0 +1,12 @@
+[
+ {
+  "doctype": "Print Format",
+  "name": "HM Manifest Slip",
+  "doc_type": "HM Sample Manifest",
+  "module": "Logistics",
+  "print_format_type": "Jinja",
+  "standard": "Yes",
+  "disabled": 0,
+  "html": "<!DOCTYPE html>\n<html><head><meta charset=\"utf-8\">\n<style>body{font-family:Inter,system-ui,sans-serif;font-size:11pt;}.h{color:#0E7490;}\ntable{width:100%;border-collapse:collapse;margin-top:8px;}th{background:#E0F2FE;padding:6px;text-align:left;}td{border-bottom:1px solid #E2E8F0;padding:6px;}</style>\n</head><body>\n<h1 class=\"h\">MANIFEST {{ doc.name }}</h1>\n<p>Ngày: {{ doc.manifest_date }} · Seal: <b>{{ doc.seal_no }}</b> · Shipper: {{ doc.shipper }}</p>\n<p>Yêu cầu nhiệt độ: {{ doc.required_min_temp }} - {{ doc.required_max_temp }} °C</p>\n<table><thead><tr><th>#</th><th>Sample Order</th><th>Barcode ống</th><th>Loại mẫu</th></tr></thead>\n<tbody>{% for it in doc.items %}<tr><td>{{ loop.index }}</td><td>{{ it.sample_order }}</td><td>{{ it.tube_barcode }}</td><td>{{ it.sample_type }}</td></tr>{% endfor %}</tbody></table>\n<p style=\"margin-top:24px\"><b>Tổng ống:</b> {{ doc.total_items }}</p>\n<div style=\"margin-top:64px;display:flex;justify-content:space-around;text-align:center\">\n  <div><b>NV bàn giao</b><br><i>{{ doc.created_by }}</i></div>\n  <div><b>Shipper</b><br>{% if doc.shipper_signature %}<img src=\"{{ doc.shipper_signature }}\" style=\"height:90px\">{% endif %}</div>\n  <div><b>Lab nhận</b><br>{% if doc.lab_receiver_signature %}<img src=\"{{ doc.lab_receiver_signature }}\" style=\"height:90px\">{% endif %}</div>\n</div>\n</body></html>"
+ }
+]

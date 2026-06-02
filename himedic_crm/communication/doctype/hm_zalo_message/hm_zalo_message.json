@@ -1,0 +1,157 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "autoincrement",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sent_at",
+  "contact",
+  "phone",
+  "direction",
+  "template_code",
+  "subject",
+  "body",
+  "zalo_message_id",
+  "status",
+  "error_code",
+  "reference_doctype",
+  "reference_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "sent_at",
+   "label": "Gửi lúc",
+   "fieldtype": "Datetime",
+   "default": "now",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "contact",
+   "label": "Khách",
+   "fieldtype": "Link",
+   "options": "HM Contact",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "phone",
+   "label": "SĐT",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "direction",
+   "label": "Hướng",
+   "fieldtype": "Select",
+   "options": "Outbound\nInbound",
+   "default": "Outbound",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "template_code",
+   "label": "Mã template",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "subject",
+   "label": "Tiêu đề",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "body",
+   "label": "Nội dung",
+   "fieldtype": "Text"
+  },
+  {
+   "fieldname": "zalo_message_id",
+   "label": "Zalo Msg ID",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "status",
+   "label": "Trạng thái",
+   "fieldtype": "Select",
+   "options": "Pending\nSent\nDelivered\nRead\nFailed",
+   "default": "Pending",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "error_code",
+   "label": "Mã lỗi",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "label": "DocType",
+   "fieldtype": "Link",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "reference_name",
+   "label": "Record",
+   "fieldtype": "Dynamic Link",
+   "options": "reference_doctype"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Communication",
+ "name": "HM Zalo Message",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

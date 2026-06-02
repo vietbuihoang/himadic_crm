@@ -1,0 +1,25 @@
+[
+ {
+  "doctype": "Dashboard",
+  "name": "HM CRM Overview",
+  "dashboard_name": "HM CRM Overview",
+  "is_default": 0,
+  "is_standard": 1,
+  "module": "Report And Dashboard",
+  "charts": [],
+  "cards": [
+   {
+    "card": "HM Open Leads"
+   },
+   {
+    "card": "HM Deals This Month"
+   },
+   {
+    "card": "HM Won This Month"
+   },
+   {
+    "card": "HM SO Today"
+   }
+  ]
+ }
+]

@@ -1,0 +1,131 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "autoincrement",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "device_id",
+  "queued_at",
+  "synced_at",
+  "status",
+  "action",
+  "reference_doctype",
+  "reference_name",
+  "payload",
+  "error"
+ ],
+ "fields": [
+  {
+   "fieldname": "user",
+   "label": "User",
+   "fieldtype": "Link",
+   "options": "User",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "device_id",
+   "label": "Device ID",
+   "fieldtype": "Data",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "queued_at",
+   "label": "Queued",
+   "fieldtype": "Datetime",
+   "default": "now",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "synced_at",
+   "label": "Synced lúc",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "status",
+   "label": "Trạng thái",
+   "fieldtype": "Select",
+   "options": "Pending\nProcessing\nDone\nFailed",
+   "default": "Pending",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "action",
+   "label": "Hành động",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "label": "DocType",
+   "fieldtype": "Link",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "reference_name",
+   "label": "Record",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "payload",
+   "label": "Payload JSON",
+   "fieldtype": "Long Text"
+  },
+  {
+   "fieldname": "error",
+   "label": "Lỗi",
+   "fieldtype": "Small Text"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Mobile",
+ "name": "HM Offline Sync Queue",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

@@ -1,0 +1,12 @@
+[
+ {
+  "doctype": "Print Format",
+  "name": "HM Sample Order Slip",
+  "doc_type": "HM Sample Order",
+  "module": "Sample",
+  "print_format_type": "Jinja",
+  "standard": "Yes",
+  "disabled": 0,
+  "html": "<!DOCTYPE html>\n<html><head><meta charset=\"utf-8\">\n<style>\nbody{font-family:Inter,system-ui,sans-serif;color:#0F172A;font-size:11pt;}\n.h{color:#0E7490;border-bottom:2px solid #0E7490;padding-bottom:6px;}\ntable{width:100%;border-collapse:collapse;margin-top:8px;}\nth{background:#E0F2FE;color:#0E7490;text-align:left;padding:6px;}\ntd{border-bottom:1px solid #E2E8F0;padding:6px;}\n.warning{background:#FEE2E2;color:#B91C1C;padding:8px;font-weight:700;border-left:4px solid #DC2626;margin:8px 0;}\n</style></head><body>\n<h1 class=\"h\">PHIẾU LẤY MẪU {{ doc.name }}</h1>\n<p>Khách hàng: <b>{{ frappe.db.get_value(\"HM Contact\", doc.contact, \"full_name\") }}</b></p>\n<p>SĐT: {{ frappe.db.get_value(\"HM Contact\", doc.contact, \"phone\") }} · PID: {{ frappe.db.get_value(\"HM Contact\", doc.contact, \"pid\") or \"—\" }}</p>\n<p>Địa điểm: {{ doc.address }}</p>\n<p>Hẹn: <b>{{ doc.appointment_date }} {{ doc.appointment_time }}</b></p>\n\n{% set warn = frappe.db.get_value(\"HM Contact\", doc.contact, \"medical_warning\") %}\n{% if warn %}<div class=\"warning\">⚠ CẢNH BÁO Y TẾ: {{ warn }}</div>{% endif %}\n\n<h3>Dịch vụ chỉ định</h3>\n<table><thead><tr><th>#</th><th>Tên</th><th>SL</th></tr></thead><tbody>\n{% for it in doc.items %}<tr><td>{{ loop.index }}</td><td>{{ it.item_name }}</td><td>{{ it.qty }}</td></tr>{% endfor %}\n</tbody></table>\n\n<h3>Ống mẫu</h3>\n<table><thead><tr><th>#</th><th>Barcode</th><th>Loại</th></tr></thead><tbody>\n{% for t in doc.tubes %}<tr><td>{{ loop.index }}</td><td>{{ t.barcode }}</td><td>{{ t.sample_type }}</td></tr>{% endfor %}\n</tbody></table>\n\n<div style=\"margin-top:64px;display:flex;justify-content:space-around;text-align:center\">\n  <div><b>Chữ ký khách</b><br>{% if doc.signature_image %}<img src=\"{{ doc.signature_image }}\" style=\"height:90px;border:1px solid #E2E8F0;border-radius:6px\">{% endif %}</div>\n  <div><b>NV lấy mẫu</b><br><i>{{ doc.assigned_to }}</i></div>\n</div>\n</body></html>"
+ }
+]

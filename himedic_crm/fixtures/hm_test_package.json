@@ -1,0 +1,61 @@
+[
+ {
+  "doctype": "HM Test Package",
+  "name": "GOI-CB",
+  "package_code": "GOI-CB",
+  "package_name": "Gói khám sức khỏe Cơ bản",
+  "category": "Khám SK định kỳ",
+  "retail_price": 900000,
+  "b2b_price": 700000,
+  "is_active": 1,
+  "items": [
+   {
+    "doctype": "HM Test Package Item",
+    "test": "CBC",
+    "qty": 1
+   },
+   {
+    "doctype": "HM Test Package Item",
+    "test": "GLU",
+    "qty": 1
+   },
+   {
+    "doctype": "HM Test Package Item",
+    "test": "LIPID",
+    "qty": 1
+   },
+   {
+    "doctype": "HM Test Package Item",
+    "test": "URINE",
+    "qty": 1
+   }
+  ]
+ },
+ {
+  "doctype": "HM Test Package",
+  "name": "GOI-TD",
+  "package_code": "GOI-TD",
+  "package_name": "Gói Tiểu đường",
+  "category": "Theo dõi mãn tính",
+  "retail_price": 700000,
+  "b2b_price": 550000,
+  "is_active": 1,
+  "items": [
+   {
+    "doctype": "HM Test Package Item",
+    "test": "GLU",
+    "qty": 1
+   },
+   {
+    "doctype": "HM Test Package Item",
+    "test": "HBA1C",
+    "qty": 1
+   },
+   {
+    "doctype": "HM Test Package Item",
+    "test": "URINE",
+    "qty": 1
+   }
+  ]
+ }
+]

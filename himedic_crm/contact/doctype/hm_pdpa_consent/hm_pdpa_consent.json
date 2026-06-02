@@ -1,0 +1,153 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "contact",
+  "consent_version",
+  "consent_text",
+  "signed_on",
+  "expiry_date",
+  "signed_file",
+  "signed_by_ip",
+  "is_active",
+  "revoked_at"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "PDPA-.YYYY.-",
+   "reqd": 1,
+   "default": "PDPA-.YYYY.-"
+  },
+  {
+   "fieldname": "contact",
+   "label": "Khách hàng",
+   "fieldtype": "Link",
+   "options": "HM Contact",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "consent_version",
+   "label": "Phiên bản",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "default": "v1.0",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "consent_text",
+   "label": "Nội dung",
+   "fieldtype": "Long Text"
+  },
+  {
+   "fieldname": "signed_on",
+   "label": "Ngày ký",
+   "fieldtype": "Datetime",
+   "default": "now",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "expiry_date",
+   "label": "Hiệu lực đến",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldname": "signed_file",
+   "label": "File ký số",
+   "fieldtype": "Attach"
+  },
+  {
+   "fieldname": "signed_by_ip",
+   "label": "IP khi ký",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "is_active",
+   "label": "Đang hiệu lực",
+   "fieldtype": "Check",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "revoked_at",
+   "label": "Thu hồi lúc",
+   "fieldtype": "Datetime"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Contact And Org",
+ "name": "HM PDPA Consent",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Lab Doctor",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "contact",
+ "track_changes": 1
+}

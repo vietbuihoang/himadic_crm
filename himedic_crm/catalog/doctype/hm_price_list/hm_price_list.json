@@ -1,0 +1,152 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:price_list_name",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "price_list_name",
+  "price_tier",
+  "currency",
+  "valid_from",
+  "valid_to",
+  "version",
+  "is_active",
+  "approval_status",
+  "approver",
+  "items"
+ ],
+ "fields": [
+  {
+   "fieldname": "price_list_name",
+   "label": "Bảng giá",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "price_tier",
+   "label": "Cấp giá",
+   "fieldtype": "Select",
+   "options": "Retail\nB2B\nInsurance",
+   "default": "Retail",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "currency",
+   "label": "Tiền tệ",
+   "fieldtype": "Link",
+   "options": "Currency",
+   "default": "VND"
+  },
+  {
+   "fieldname": "valid_from",
+   "label": "Hiệu lực từ",
+   "fieldtype": "Date",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "valid_to",
+   "label": "Đến",
+   "fieldtype": "Date",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "version",
+   "label": "Phiên bản",
+   "fieldtype": "Data",
+   "default": "v1.0"
+  },
+  {
+   "fieldname": "is_active",
+   "label": "Đang dùng",
+   "fieldtype": "Check",
+   "default": "1"
+  },
+  {
+   "fieldname": "approval_status",
+   "label": "Phê duyệt",
+   "fieldtype": "Select",
+   "options": "Nháp\nChờ duyệt\nĐã duyệt\nTừ chối",
+   "default": "Nháp"
+  },
+  {
+   "fieldname": "approver",
+   "label": "Người duyệt",
+   "fieldtype": "Link",
+   "options": "User"
+  },
+  {
+   "fieldname": "items",
+   "label": "Mục giá",
+   "fieldtype": "Table",
+   "options": "HM Price List Item"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Catalog",
+ "name": "HM Price List",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Lab Coordinator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

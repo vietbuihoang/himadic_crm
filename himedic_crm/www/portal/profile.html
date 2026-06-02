@@ -1,0 +1,16 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<div class="hm-portal-shell"><header><h2>Hồ sơ</h2></header>
+<main>
+<div class="hm-card">
+  <p>Để bảo vệ dữ liệu y tế của bạn, hãy đảm bảo đã ký đồng ý PDPA.</p>
+  <button class="hm-btn" onclick="HM.consent()">Tôi đồng ý PDPA v1.0</button>
+</div>
+</main></div>
+<script>
+HM.consent = async function() {
+  const r = await HM.api("himedic_crm.api.portal.consent_pdpa", { consent_version: "v1.0" });
+  if (r && r.ok) alert("Cảm ơn bạn đã đồng ý.");
+};
+</script>
+{% endblock %}

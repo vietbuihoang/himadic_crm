@@ -1,0 +1,22 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<div class="hm-portal-shell">
+  <header><h2>Hi-Medic — Tài khoản của bạn</h2></header>
+  <main>
+    <div class="hm-card"><h3>Lịch hẹn lấy mẫu</h3><div id="hm-appts">Đang tải…</div></div>
+    <div class="hm-card"><h3>Kết quả xét nghiệm</h3><div id="hm-results">Đang tải…</div></div>
+  </main>
+</div>
+<script>
+(async () => {
+  const a = await HM.api("himedic_crm.api.portal.my_appointments", {});
+  document.getElementById("hm-appts").innerHTML = (a||[]).map(o =>
+    `<div>📅 <b>${o.appointment_date} ${o.appointment_time||""}</b> · ${o.address||""} <span class="hm-pill">${o.status}</span></div>`
+  ).join("") || "Chưa có lịch hẹn";
+  const r = await HM.api("himedic_crm.api.portal.my_results", {});
+  document.getElementById("hm-results").innerHTML = (r||[]).map(o =>
+    `<div>📄 <b>${o.result_date}</b> · <a href="${o.file_pdf||"#"}">Xem PDF</a></div>`
+  ).join("") || "Chưa có kết quả";
+})();
+</script>
+{% endblock %}

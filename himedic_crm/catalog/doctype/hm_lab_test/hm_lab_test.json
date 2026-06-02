@@ -1,0 +1,192 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:test_code",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "test_code",
+  "test_name_vi",
+  "test_name_en",
+  "test_group",
+  "sample_type",
+  "sample_volume_ml",
+  "tat_hours",
+  "retail_price",
+  "b2b_price",
+  "insurance_price",
+  "currency",
+  "is_active",
+  "lis_test_code",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "test_code",
+   "label": "Mã test",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "test_name_vi",
+   "label": "Tên VN",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "test_name_en",
+   "label": "Tên EN",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "test_group",
+   "label": "Nhóm chuyên khoa",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "sample_type",
+   "label": "Loại mẫu",
+   "fieldtype": "Link",
+   "options": "HM Sample Type",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "sample_volume_ml",
+   "label": "Thể tích cần (ml)",
+   "fieldtype": "Float"
+  },
+  {
+   "fieldname": "tat_hours",
+   "label": "TAT (h)",
+   "fieldtype": "Float"
+  },
+  {
+   "fieldname": "retail_price",
+   "label": "Giá lẻ",
+   "fieldtype": "Currency",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "b2b_price",
+   "label": "Giá B2B",
+   "fieldtype": "Currency"
+  },
+  {
+   "fieldname": "insurance_price",
+   "label": "Giá BH",
+   "fieldtype": "Currency"
+  },
+  {
+   "fieldname": "currency",
+   "label": "Tiền tệ",
+   "fieldtype": "Link",
+   "options": "Currency",
+   "default": "VND"
+  },
+  {
+   "fieldname": "is_active",
+   "label": "Đang dùng",
+   "fieldtype": "Check",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "lis_test_code",
+   "label": "Mã LIS",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "description",
+   "label": "Mô tả",
+   "fieldtype": "Long Text"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Catalog",
+ "name": "HM Lab Test",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Lab Coordinator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Customer",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "test_code,test_name_vi,test_name_en,test_group",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "test_name_vi",
+ "track_changes": 1
+}

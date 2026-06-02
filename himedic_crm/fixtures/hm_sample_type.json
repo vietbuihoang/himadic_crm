@@ -1,0 +1,66 @@
+[
+ {
+  "doctype": "HM Sample Type",
+  "name": "Máu EDTA",
+  "sample_type_name": "Máu EDTA",
+  "container": "Tube tím",
+  "default_volume_ml": 3.0,
+  "storage_condition": "2-8°C",
+  "max_transport_hours": 4,
+  "min_temperature": 2,
+  "max_temperature": 8
+ },
+ {
+  "doctype": "HM Sample Type",
+  "name": "Máu Heparin",
+  "sample_type_name": "Máu Heparin",
+  "container": "Tube xanh",
+  "default_volume_ml": 3.0,
+  "storage_condition": "2-8°C",
+  "max_transport_hours": 4,
+  "min_temperature": 2,
+  "max_temperature": 8
+ },
+ {
+  "doctype": "HM Sample Type",
+  "name": "Máu sinh hóa",
+  "sample_type_name": "Máu sinh hóa",
+  "container": "Tube vàng",
+  "default_volume_ml": 5.0,
+  "storage_condition": "2-8°C",
+  "max_transport_hours": 6,
+  "min_temperature": 2,
+  "max_temperature": 8
+ },
+ {
+  "doctype": "HM Sample Type",
+  "name": "Nước tiểu",
+  "sample_type_name": "Nước tiểu",
+  "container": "Lọ nhựa",
+  "default_volume_ml": 30,
+  "storage_condition": "2-8°C",
+  "max_transport_hours": 24,
+  "min_temperature": 2,
+  "max_temperature": 8
+ },
+ {
+  "doctype": "HM Sample Type",
+  "name": "Phân",
+  "sample_type_name": "Phân",
+  "container": "Lọ phân",
+  "default_volume_ml": 10,
+  "storage_condition": "2-8°C",
+  "max_transport_hours": 24,
+  "min_temperature": 2,
+  "max_temperature": 8
+ },
+ {
+  "doctype": "HM Sample Type",
+  "name": "Dịch họng",
+  "sample_type_name": "Dịch họng",
+  "container": "Que",
+  "default_volume_ml": 0,
+  "storage_condition": "Phòng",
+  "max_transport_hours": 4
+ }
+]

@@ -1,0 +1,358 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "sb_khách_hàng",
+  "deal_title",
+  "contact",
+  "organization",
+  "lead",
+  "cb",
+  "owner_user",
+  "team",
+  "region",
+  "sb_pipeline",
+  "status",
+  "probability",
+  "deal_type",
+  "expected_close_date",
+  "closed_at",
+  "cb",
+  "win_reason",
+  "lost_reason",
+  "sb_tài_chính",
+  "currency",
+  "items",
+  "subtotal",
+  "discount_amount",
+  "discount_pct",
+  "grand_total",
+  "sb_phê_duyệt_ck",
+  "discount_approval_status",
+  "discount_approver",
+  "sb_báo_giá_&_so",
+  "latest_quotation",
+  "sample_order",
+  "sb_utm",
+  "campaign",
+  "utm_source",
+  "utm_campaign"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "DEAL-.YYYY.-",
+   "reqd": 1,
+   "default": "DEAL-.YYYY.-"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Khách hàng",
+   "fieldname": "sb_khách_hàng"
+  },
+  {
+   "fieldname": "deal_title",
+   "label": "Tiêu đề Cơ hội",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "contact",
+   "label": "Khách hàng",
+   "fieldtype": "Link",
+   "options": "HM Contact",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "organization",
+   "label": "Đơn vị",
+   "fieldtype": "Link",
+   "options": "HM Organization",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "lead",
+   "label": "Lead nguồn",
+   "fieldtype": "Link",
+   "options": "HM Lead",
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "owner_user",
+   "label": "NV phụ trách",
+   "fieldtype": "Link",
+   "options": "User",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "team",
+   "label": "Team",
+   "fieldtype": "Link",
+   "options": "HM Team",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "region",
+   "label": "Khu vực",
+   "fieldtype": "Link",
+   "options": "HM CRM Region"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Pipeline",
+   "fieldname": "sb_pipeline"
+  },
+  {
+   "fieldname": "status",
+   "label": "Stage",
+   "fieldtype": "Link",
+   "options": "HM Deal Stage",
+   "reqd": 1,
+   "default": "Thẩm định",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "probability",
+   "label": "Xác suất chốt (%)",
+   "fieldtype": "Int",
+   "default": "20",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "deal_type",
+   "label": "Loại cơ hội",
+   "fieldtype": "Select",
+   "options": "Đơn lẻ\nGói combo\nHĐ dài hạn B2B",
+   "default": "Đơn lẻ",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "expected_close_date",
+   "label": "Ngày dự kiến đóng",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldname": "closed_at",
+   "label": "Đóng lúc",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "win_reason",
+   "label": "Lý do thắng",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "lost_reason",
+   "label": "Lý do thua",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Tài chính",
+   "fieldname": "sb_tài_chính"
+  },
+  {
+   "fieldname": "currency",
+   "label": "Tiền tệ",
+   "fieldtype": "Link",
+   "options": "Currency",
+   "default": "VND"
+  },
+  {
+   "fieldname": "items",
+   "label": "Dịch vụ",
+   "fieldtype": "Table",
+   "options": "HM Deal Item"
+  },
+  {
+   "fieldname": "subtotal",
+   "label": "Tạm tính",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "discount_amount",
+   "label": "Chiết khấu",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "discount_pct",
+   "label": "% CK trung bình",
+   "fieldtype": "Percent",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grand_total",
+   "label": "Tổng",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Phê duyệt CK",
+   "fieldname": "sb_phê_duyệt_ck"
+  },
+  {
+   "fieldname": "discount_approval_status",
+   "label": "Trạng thái duyệt",
+   "fieldtype": "Select",
+   "options": "\nĐang chờ\nĐã duyệt\nTừ chối",
+   "read_only": 1
+  },
+  {
+   "fieldname": "discount_approver",
+   "label": "Người duyệt cuối",
+   "fieldtype": "Link",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Báo giá & SO",
+   "fieldname": "sb_báo_giá_&_so"
+  },
+  {
+   "fieldname": "latest_quotation",
+   "label": "Báo giá mới nhất",
+   "fieldtype": "Link",
+   "options": "HM Quotation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sample_order",
+   "label": "Sample Order",
+   "fieldtype": "Link",
+   "options": "HM Sample Order",
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "UTM",
+   "fieldname": "sb_utm"
+  },
+  {
+   "fieldname": "campaign",
+   "label": "Campaign",
+   "fieldtype": "Link",
+   "options": "HM Campaign"
+  },
+  {
+   "fieldname": "utm_source",
+   "label": "UTM Source",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "utm_campaign",
+   "label": "UTM Campaign",
+   "fieldtype": "Data"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Deal",
+ "name": "HM Deal",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Accountant",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "deal_title,contact,organization",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "deal_title",
+ "track_changes": 1
+}

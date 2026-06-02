@@ -1,0 +1,185 @@
+[
+ {
+  "doctype": "Workflow",
+  "name": "HM Lead Pipeline",
+  "workflow_name": "HM Lead Pipeline",
+  "document_type": "HM Lead",
+  "is_active": 1,
+  "send_email_alert": 0,
+  "override_status": 0,
+  "workflow_state_field": "status",
+  "states": [
+   {
+    "state": "Mới",
+    "doc_status": "0",
+    "allow_edit": "HM Sales"
+   },
+   {
+    "state": "Đã liên hệ",
+    "doc_status": "0",
+    "allow_edit": "HM Sales"
+   },
+   {
+    "state": "Đủ điều kiện",
+    "doc_status": "0",
+    "allow_edit": "HM Sales"
+   },
+   {
+    "state": "Chăm sóc",
+    "doc_status": "0",
+    "allow_edit": "HM Sales"
+   },
+   {
+    "state": "Đã chuyển đổi",
+    "doc_status": "0",
+    "allow_edit": "HM Sales Manager"
+   },
+   {
+    "state": "Đã hủy",
+    "doc_status": "0",
+    "allow_edit": "HM Sales Manager"
+   }
+  ],
+  "transitions": [
+   {
+    "state": "Mới",
+    "action": "HM Submit",
+    "next_state": "Đã liên hệ",
+    "allowed": "HM Sales"
+   },
+   {
+    "state": "Đã liên hệ",
+    "action": "HM Submit",
+    "next_state": "Đủ điều kiện",
+    "allowed": "HM Sales"
+   },
+   {
+    "state": "Đủ điều kiện",
+    "action": "HM Convert",
+    "next_state": "Đã chuyển đổi",
+    "allowed": "HM Sales"
+   },
+   {
+    "state": "Đã liên hệ",
+    "action": "HM Cancel",
+    "next_state": "Đã hủy",
+    "allowed": "HM Sales"
+   }
+  ]
+ },
+ {
+  "doctype": "Workflow",
+  "name": "HM Deal Pipeline",
+  "workflow_name": "HM Deal Pipeline",
+  "document_type": "HM Deal",
+  "is_active": 1,
+  "send_email_alert": 0,
+  "override_status": 0,
+  "workflow_state_field": "status",
+  "states": [
+   {
+    "state": "Thẩm định",
+    "doc_status": "0",
+    "allow_edit": "HM Sales"
+   },
+   {
+    "state": "Báo giá",
+    "doc_status": "0",
+    "allow_edit": "HM Sales"
+   },
+   {
+    "state": "Đàm phán",
+    "doc_status": "0",
+    "allow_edit": "HM Sales"
+   },
+   {
+    "state": "Đã chốt",
+    "doc_status": "0",
+    "allow_edit": "HM Sales Manager"
+   },
+   {
+    "state": "Thất bại",
+    "doc_status": "0",
+    "allow_edit": "HM Sales Manager"
+   }
+  ],
+  "transitions": [
+   {
+    "state": "Thẩm định",
+    "action": "HM Submit",
+    "next_state": "Báo giá",
+    "allowed": "HM Sales"
+   },
+   {
+    "state": "Báo giá",
+    "action": "HM Submit",
+    "next_state": "Đàm phán",
+    "allowed": "HM Sales"
+   },
+   {
+    "state": "Đàm phán",
+    "action": "HM Close Won",
+    "next_state": "Đã chốt",
+    "allowed": "HM Sales"
+   },
+   {
+    "state": "Đàm phán",
+    "action": "HM Close Lost",
+    "next_state": "Thất bại",
+    "allowed": "HM Sales"
+   }
+  ]
+ },
+ {
+  "doctype": "Workflow",
+  "name": "HM Quotation Approval",
+  "workflow_name": "HM Quotation Approval",
+  "document_type": "HM Quotation",
+  "is_active": 1,
+  "send_email_alert": 0,
+  "override_status": 1,
+  "workflow_state_field": "approval_status",
+  "states": [
+   {
+    "state": "Nháp",
+    "doc_status": "0",
+    "allow_edit": "HM Sales"
+   },
+   {
+    "state": "Đang chờ",
+    "doc_status": "0",
+    "allow_edit": "HM Sales Manager"
+   },
+   {
+    "state": "Đã duyệt",
+    "doc_status": "1",
+    "allow_edit": "HM Sales Manager"
+   },
+   {
+    "state": "Từ chối",
+    "doc_status": "0",
+    "allow_edit": "HM Sales Manager"
+   }
+  ],
+  "transitions": [
+   {
+    "state": "Nháp",
+    "action": "HM Submit",
+    "next_state": "Đang chờ",
+    "allowed": "HM Sales"
+   },
+   {
+    "state": "Đang chờ",
+    "action": "HM Approve",
+    "next_state": "Đã duyệt",
+    "allowed": "HM Sales Manager"
+   },
+   {
+    "state": "Đang chờ",
+    "action": "HM Reject",
+    "next_state": "Từ chối",
+    "allowed": "HM Sales Manager"
+   }
+  ]
+ }
+]

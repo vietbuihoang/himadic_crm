@@ -1,0 +1,42 @@
+[
+ {
+  "doctype": "Number Card",
+  "name": "HM Open Leads",
+  "label": "Lead đang mở",
+  "document_type": "HM Lead",
+  "filters_json": "[[\"HM Lead\", \"status\", \"not in\", [\"\\u0110\\u00e3 chuy\\u1ec3n \\u0111\\u1ed5i\", \"\\u0110\\u00e3 h\\u1ee7y\"]]]",
+  "function": "Count",
+  "is_public": 1,
+  "color": "#3B82F6"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "HM Deals This Month",
+  "label": "Cơ hội tháng này",
+  "document_type": "HM Deal",
+  "filters_json": "[[\"HM Deal\", \"creation\", \">=\", \"2026-06-01\"]]",
+  "function": "Count",
+  "is_public": 1,
+  "color": "#F59E0B"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "HM Won This Month",
+  "label": "Won tháng này",
+  "document_type": "HM Deal",
+  "filters_json": "[[\"HM Deal\", \"status\", \"=\", \"\\u0110\\u00e3 ch\\u1ed1t\"]]",
+  "function": "Count",
+  "is_public": 1,
+  "color": "#10B981"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "HM SO Today",
+  "label": "Đơn lấy mẫu hôm nay",
+  "document_type": "HM Sample Order",
+  "filters_json": "[[\"HM Sample Order\", \"appointment_date\", \"=\", \"Today\"]]",
+  "function": "Count",
+  "is_public": 1,
+  "color": "#06B6D4"
+ }
+]

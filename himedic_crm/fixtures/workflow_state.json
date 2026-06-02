@@ -1,0 +1,107 @@
+[
+ {
+  "doctype": "Workflow State",
+  "name": "HM Lead Mới",
+  "workflow_state_name": "HM Lead Mới",
+  "style": "Blue",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Lead Đã liên hệ",
+  "workflow_state_name": "HM Lead Đã liên hệ",
+  "style": "Yellow",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Lead Đủ ĐK",
+  "workflow_state_name": "HM Lead Đủ ĐK",
+  "style": "Green",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Lead Chăm sóc",
+  "workflow_state_name": "HM Lead Chăm sóc",
+  "style": "Light Blue",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Lead Đã chuyển đổi",
+  "workflow_state_name": "HM Lead Đã chuyển đổi",
+  "style": "Dark Blue",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Lead Đã hủy",
+  "workflow_state_name": "HM Lead Đã hủy",
+  "style": "Red",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Deal Thẩm định",
+  "workflow_state_name": "HM Deal Thẩm định",
+  "style": "Blue",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Deal Báo giá",
+  "workflow_state_name": "HM Deal Báo giá",
+  "style": "Yellow",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Deal Đàm phán",
+  "workflow_state_name": "HM Deal Đàm phán",
+  "style": "Orange",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Deal Đã chốt",
+  "workflow_state_name": "HM Deal Đã chốt",
+  "style": "Green",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Deal Thất bại",
+  "workflow_state_name": "HM Deal Thất bại",
+  "style": "Red",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Quote Nháp",
+  "workflow_state_name": "HM Quote Nháp",
+  "style": "Gray",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Quote Chờ duyệt",
+  "workflow_state_name": "HM Quote Chờ duyệt",
+  "style": "Yellow",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Quote Đã duyệt",
+  "workflow_state_name": "HM Quote Đã duyệt",
+  "style": "Green",
+  "icon": "refresh"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "HM Quote Từ chối",
+  "workflow_state_name": "HM Quote Từ chối",
+  "style": "Red",
+  "icon": "refresh"
+ }
+]

@@ -1,0 +1,227 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "subject",
+  "description",
+  "task_type",
+  "priority",
+  "cb",
+  "assigned_to",
+  "due_date",
+  "status",
+  "completed_at",
+  "sb_tham_chiếu",
+  "reference_doctype",
+  "reference_name",
+  "sb_recurring",
+  "is_recurring",
+  "repeat_every",
+  "repeat_until"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "TASK-.YYYY.-",
+   "reqd": 1,
+   "default": "TASK-.YYYY.-"
+  },
+  {
+   "fieldname": "subject",
+   "label": "Tiêu đề",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "description",
+   "label": "Mô tả",
+   "fieldtype": "Text Editor"
+  },
+  {
+   "fieldname": "task_type",
+   "label": "Loại",
+   "fieldtype": "Select",
+   "options": "Cuộc gọi\nFollow-up\nHọp\nThăm khách\nKhác",
+   "default": "Follow-up",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "priority",
+   "label": "Ưu tiên",
+   "fieldtype": "Select",
+   "options": "Thấp\nTrung bình\nCao\nKhẩn",
+   "default": "Trung bình",
+   "in_list_view": 1
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "assigned_to",
+   "label": "Giao cho",
+   "fieldtype": "Link",
+   "options": "User",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "due_date",
+   "label": "Hạn chót",
+   "fieldtype": "Datetime",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "status",
+   "label": "Trạng thái",
+   "fieldtype": "Select",
+   "options": "Open\nIn Progress\nDone\nCancelled",
+   "default": "Open",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "completed_at",
+   "label": "Hoàn tất lúc",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Tham chiếu",
+   "fieldname": "sb_tham_chiếu"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "label": "DocType liên kết",
+   "fieldtype": "Link",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "reference_name",
+   "label": "Bản ghi",
+   "fieldtype": "Dynamic Link",
+   "options": "reference_doctype"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Recurring",
+   "fieldname": "sb_recurring"
+  },
+  {
+   "fieldname": "is_recurring",
+   "label": "Lặp lại",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "repeat_every",
+   "label": "Mỗi",
+   "fieldtype": "Select",
+   "options": "\nDaily\nWeekly\nMonthly"
+  },
+  {
+   "fieldname": "repeat_until",
+   "label": "Đến",
+   "fieldtype": "Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Task And Activity",
+ "name": "HM Task",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Lab Coordinator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

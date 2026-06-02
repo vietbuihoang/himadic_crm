@@ -1,0 +1,12 @@
+[
+ {
+  "doctype": "Print Format",
+  "name": "HM Quotation Default",
+  "doc_type": "HM Quotation",
+  "module": "Deal",
+  "print_format_type": "Jinja",
+  "standard": "Yes",
+  "disabled": 0,
+  "html": "<!DOCTYPE html>\n<html><head><meta charset=\"utf-8\">\n<style>\nbody{font-family:Inter,system-ui,sans-serif;color:#0F172A;font-size:11pt;}\n.h{color:#0E7490;border-bottom:2px solid #0E7490;padding-bottom:6px;}\ntable{width:100%;border-collapse:collapse;margin-top:8px;}\nth{background:#E0F2FE;color:#0E7490;text-align:left;padding:6px;}\ntd{border-bottom:1px solid #E2E8F0;padding:6px;}\n.total{font-weight:700;font-size:13pt;color:#0E7490;text-align:right;margin-top:8px;}\n</style></head>\n<body>\n<h1 class=\"h\">BÁO GIÁ {{ doc.name }}</h1>\n<p>Khách hàng: <b>{{ frappe.db.get_value(\"HM Contact\", doc.contact, \"full_name\") or doc.contact }}</b></p>\n<p>Đơn vị: {{ frappe.db.get_value(\"HM Organization\", doc.organization, \"organization_name\") or \"\" }}</p>\n<p>Ngày phát hành: {{ doc.issued_on }} · Hiệu lực đến: {{ doc.valid_until or \"—\" }}</p>\n\n<table>\n  <thead><tr><th>#</th><th>Dịch vụ</th><th>SL</th><th>Đơn giá</th><th>CK %</th><th>Thành tiền</th></tr></thead>\n  <tbody>\n    {% for it in doc.items %}\n    <tr><td>{{ loop.index }}</td><td>{{ it.item_name }}</td><td>{{ it.qty }}</td>\n        <td>{{ \"{:,.0f}\".format(it.price or 0) }}</td><td>{{ it.discount_pct or 0 }}</td>\n        <td>{{ \"{:,.0f}\".format(it.amount or 0) }}</td></tr>\n    {% endfor %}\n  </tbody>\n</table>\n<p class=\"total\">TỔNG CỘNG: {{ \"{:,.0f}\".format(doc.grand_total or 0) }} {{ doc.currency }}</p>\n<p style=\"margin-top:24px\">Báo giá có hiệu lực 30 ngày kể từ ngày phát hành.</p>\n<p style=\"margin-top:48px\"><i>Hi-Medic — info@miyano.com.vn</i></p>\n</body></html>"
+ }
+]

@@ -1,0 +1,101 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:template_name",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "template_name",
+  "purpose",
+  "subject",
+  "body",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "template_name",
+   "label": "Tên template",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "purpose",
+   "label": "Mục đích",
+   "fieldtype": "Select",
+   "options": "Lead\nDeal\nBáo giá\nLịch hẹn\nKết quả\nNPS\nChăm sóc",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "subject",
+   "label": "Tiêu đề",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "body",
+   "label": "Nội dung HTML",
+   "fieldtype": "Text Editor"
+  },
+  {
+   "fieldname": "is_active",
+   "label": "Đang dùng",
+   "fieldtype": "Check",
+   "default": "1"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Communication",
+ "name": "HM Email Template",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

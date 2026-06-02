@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "autoincrement",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "received_at",
+  "provider",
+  "status",
+  "error",
+  "payload",
+  "created_lead"
+ ],
+ "fields": [
+  {
+   "fieldname": "received_at",
+   "label": "Nhận lúc",
+   "fieldtype": "Datetime",
+   "default": "now",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "provider",
+   "label": "Provider",
+   "fieldtype": "Select",
+   "options": "Facebook\nGoogle\nZalo\nLanding\nOther",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "status",
+   "label": "Trạng thái",
+   "fieldtype": "Select",
+   "options": "OK\nFailed\nDuplicate",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "error",
+   "label": "Lỗi",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "payload",
+   "label": "Payload JSON",
+   "fieldtype": "Long Text"
+  },
+  {
+   "fieldname": "created_lead",
+   "label": "Lead đã tạo",
+   "fieldtype": "Link",
+   "options": "HM Lead"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Marketing",
+ "name": "HM Marketing Webhook Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

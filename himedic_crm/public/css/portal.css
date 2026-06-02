@@ -1,0 +1,7 @@
+
+.hm-portal-shell { font-family: Inter, system-ui, sans-serif; color:#0F172A; }
+.hm-portal-shell header { background:#0E7490; color:white; padding:1rem 1.25rem; }
+.hm-portal-shell main { max-width: 980px; margin: 1.25rem auto; padding: 0 1rem; }
+.hm-card { background:white; border:1px solid #E2E8F0; border-radius:12px; padding:1rem; margin-bottom:1rem; }
+.hm-btn  { background:#0E7490; color:white; border:none; padding:.625rem 1.125rem; border-radius:8px; cursor:pointer; }
+.hm-btn-outline { background:white; color:#0E7490; border:1px solid #0E7490; padding:.5rem 1rem; border-radius:8px; }

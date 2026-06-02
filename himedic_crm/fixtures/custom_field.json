@@ -1,0 +1,13 @@
+[
+ {
+  "doctype": "Custom Field",
+  "name": "User-team",
+  "dt": "User",
+  "fieldname": "team",
+  "label": "HM Team",
+  "fieldtype": "Link",
+  "options": "HM Team",
+  "insert_after": "role_profile_name",
+  "module": "Hi-Medic CRM"
+ }
+]

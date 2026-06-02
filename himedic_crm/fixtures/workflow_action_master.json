@@ -1,0 +1,42 @@
+[
+ {
+  "doctype": "Workflow Action Master",
+  "name": "HM Convert",
+  "workflow_action_name": "HM Convert"
+ },
+ {
+  "doctype": "Workflow Action Master",
+  "name": "HM Approve",
+  "workflow_action_name": "HM Approve"
+ },
+ {
+  "doctype": "Workflow Action Master",
+  "name": "HM Reject",
+  "workflow_action_name": "HM Reject"
+ },
+ {
+  "doctype": "Workflow Action Master",
+  "name": "HM Submit",
+  "workflow_action_name": "HM Submit"
+ },
+ {
+  "doctype": "Workflow Action Master",
+  "name": "HM Cancel",
+  "workflow_action_name": "HM Cancel"
+ },
+ {
+  "doctype": "Workflow Action Master",
+  "name": "HM Close Won",
+  "workflow_action_name": "HM Close Won"
+ },
+ {
+  "doctype": "Workflow Action Master",
+  "name": "HM Close Lost",
+  "workflow_action_name": "HM Close Lost"
+ },
+ {
+  "doctype": "Workflow Action Master",
+  "name": "HM Send",
+  "workflow_action_name": "HM Send"
+ }
+]

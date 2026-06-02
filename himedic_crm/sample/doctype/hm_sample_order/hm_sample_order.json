@@ -1,0 +1,463 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "sb_tham_chiếu",
+  "deal",
+  "contract",
+  "contact",
+  "organization",
+  "cb",
+  "order_type",
+  "parent_so",
+  "assigned_to",
+  "team",
+  "sb_lịch_and_địa_điểm",
+  "appointment_date",
+  "appointment_time",
+  "address",
+  "region",
+  "geo_lat",
+  "geo_lng",
+  "cb",
+  "checkin_at",
+  "checkin_lat",
+  "checkin_lng",
+  "checkin_distance_m",
+  "checkin_reason",
+  "sb_pipeline",
+  "status",
+  "cancel_reason",
+  "incident",
+  "sb_dịch_vụ_đã_chọn",
+  "items",
+  "subtotal",
+  "discount_amount",
+  "grand_total",
+  "sb_đối_chiếu_cccd",
+  "national_id_scanned",
+  "ocr_match_score",
+  "national_id_photo",
+  "sb_tiền_xn_—_checklist",
+  "pre_collection_checklist",
+  "sb_ống_mẫu",
+  "tubes",
+  "total_tubes",
+  "collected_tubes",
+  "sb_ký_số",
+  "signature_image",
+  "signed_at",
+  "locked",
+  "sb_bàn_giao_lab",
+  "manifest",
+  "lab_received_at",
+  "sb_tài_liệu_khác",
+  "attached_documents"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "SO-.YYYY.-",
+   "reqd": 1,
+   "default": "SO-.YYYY.-"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Tham chiếu",
+   "fieldname": "sb_tham_chiếu"
+  },
+  {
+   "fieldname": "deal",
+   "label": "Cơ hội",
+   "fieldtype": "Link",
+   "options": "HM Deal",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "contract",
+   "label": "HĐ B2B",
+   "fieldtype": "Link",
+   "options": "HM B2B Contract"
+  },
+  {
+   "fieldname": "contact",
+   "label": "Khách hàng",
+   "fieldtype": "Link",
+   "options": "HM Contact",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "organization",
+   "label": "Đơn vị",
+   "fieldtype": "Link",
+   "options": "HM Organization"
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "order_type",
+   "label": "Loại đơn",
+   "fieldtype": "Select",
+   "options": "Tại nhà\nTại điểm Hi-Medic\nLưu động\nHợp đồng\nRe-collection",
+   "default": "Tại nhà",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "parent_so",
+   "label": "Đơn cha (nếu re-collection)",
+   "fieldtype": "Link",
+   "options": "HM Sample Order"
+  },
+  {
+   "fieldname": "assigned_to",
+   "label": "NV phụ trách",
+   "fieldtype": "Link",
+   "options": "User",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "team",
+   "label": "Team",
+   "fieldtype": "Link",
+   "options": "HM Team",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Lịch & Địa điểm",
+   "fieldname": "sb_lịch_and_địa_điểm"
+  },
+  {
+   "fieldname": "appointment_date",
+   "label": "Ngày hẹn",
+   "fieldtype": "Date",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "appointment_time",
+   "label": "Giờ hẹn",
+   "fieldtype": "Time",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "address",
+   "label": "Địa chỉ lấy mẫu",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "region",
+   "label": "Khu vực",
+   "fieldtype": "Link",
+   "options": "HM CRM Region",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "geo_lat",
+   "label": "Latitude",
+   "fieldtype": "Float"
+  },
+  {
+   "fieldname": "geo_lng",
+   "label": "Longitude",
+   "fieldtype": "Float"
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "checkin_at",
+   "label": "Check-in lúc",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checkin_lat",
+   "label": "Lat check-in",
+   "fieldtype": "Float",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checkin_lng",
+   "label": "Lng check-in",
+   "fieldtype": "Float",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checkin_distance_m",
+   "label": "Sai lệch (m)",
+   "fieldtype": "Float",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checkin_reason",
+   "label": "Lý do sai lệch GPS",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Pipeline",
+   "fieldname": "sb_pipeline"
+  },
+  {
+   "fieldname": "status",
+   "label": "Trạng thái",
+   "fieldtype": "Select",
+   "options": "Đã phân công\nĐã xác nhận\nĐang lấy mẫu\nĐã lấy mẫu\nĐang vận chuyển\nĐã nhập Lab\nHoàn tất\nHủy bởi khách\nLỗi mẫu",
+   "default": "Đã phân công",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "cancel_reason",
+   "label": "Lý do hủy",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "incident",
+   "label": "Sự cố",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Dịch vụ đã chọn",
+   "fieldname": "sb_dịch_vụ_đã_chọn"
+  },
+  {
+   "fieldname": "items",
+   "label": "Dịch vụ",
+   "fieldtype": "Table",
+   "options": "HM Sample Order Item"
+  },
+  {
+   "fieldname": "subtotal",
+   "label": "Tạm tính",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "discount_amount",
+   "label": "CK",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grand_total",
+   "label": "Tổng",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Đối chiếu CCCD",
+   "fieldname": "sb_đối_chiếu_cccd"
+  },
+  {
+   "fieldname": "national_id_scanned",
+   "label": "Đã quét CCCD",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "ocr_match_score",
+   "label": "% khớp OCR",
+   "fieldtype": "Percent"
+  },
+  {
+   "fieldname": "national_id_photo",
+   "label": "Ảnh CCCD",
+   "fieldtype": "Attach Image"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Tiền XN — Checklist",
+   "fieldname": "sb_tiền_xn_—_checklist"
+  },
+  {
+   "fieldname": "pre_collection_checklist",
+   "label": "Checklist",
+   "fieldtype": "Table",
+   "options": "HM Pre Collection Checklist"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Ống mẫu",
+   "fieldname": "sb_ống_mẫu"
+  },
+  {
+   "fieldname": "tubes",
+   "label": "Ống mẫu",
+   "fieldtype": "Table",
+   "options": "HM Sample Tube"
+  },
+  {
+   "fieldname": "total_tubes",
+   "label": "Tổng ống",
+   "fieldtype": "Int",
+   "read_only": 1
+  },
+  {
+   "fieldname": "collected_tubes",
+   "label": "Ống đã lấy",
+   "fieldtype": "Int",
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Ký số",
+   "fieldname": "sb_ký_số"
+  },
+  {
+   "fieldname": "signature_image",
+   "label": "Chữ ký khách",
+   "fieldtype": "Attach Image"
+  },
+  {
+   "fieldname": "signed_at",
+   "label": "Ký lúc",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "locked",
+   "label": "Đã lock đơn",
+   "fieldtype": "Check",
+   "default": "0",
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Bàn giao Lab",
+   "fieldname": "sb_bàn_giao_lab"
+  },
+  {
+   "fieldname": "manifest",
+   "label": "Manifest",
+   "fieldtype": "Link",
+   "options": "HM Sample Manifest",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lab_received_at",
+   "label": "Lab nhận lúc",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Tài liệu khác",
+   "fieldname": "sb_tài_liệu_khác"
+  },
+  {
+   "fieldname": "attached_documents",
+   "label": "File phiếu chỉ định / BB",
+   "fieldtype": "Attach"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sample",
+ "name": "HM Sample Order",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Lab Coordinator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Accountant",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "contact,deal,assigned_to,appointment_date",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "contact",
+ "track_changes": 1
+}

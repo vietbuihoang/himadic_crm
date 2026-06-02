@@ -1,0 +1,56 @@
+[
+ {
+  "doctype": "Role",
+  "name": "HM Admin",
+  "role_name": "HM Admin",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "HM Sales Manager",
+  "role_name": "HM Sales Manager",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "HM Sales",
+  "role_name": "HM Sales",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "HM Marketing",
+  "role_name": "HM Marketing",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "HM Lab Coordinator",
+  "role_name": "HM Lab Coordinator",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "HM Lab Doctor",
+  "role_name": "HM Lab Doctor",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "HM Accountant",
+  "role_name": "HM Accountant",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "HM BOD",
+  "role_name": "HM BOD",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "HM Customer",
+  "role_name": "HM Customer",
+  "desk_access": 0
+ }
+]

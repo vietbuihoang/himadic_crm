@@ -1,0 +1,11 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<div class="hm-portal-shell"><header><h2>Lịch hẹn</h2></header>
+<main><div class="hm-card" id="root">Đang tải…</div></main></div>
+<script>(async ()=>{
+  const list = await HM.api("himedic_crm.api.portal.my_appointments", {});
+  document.getElementById("root").innerHTML = (list||[]).map(a =>
+    `<div style="padding:8px 0;border-bottom:1px solid #e5e7eb">📅 <b>${a.appointment_date}</b> ${a.appointment_time||""} — ${a.address||""} <span class="hm-pill">${a.status}</span></div>`
+  ).join("") || "Chưa có lịch hẹn.";
+})();</script>
+{% endblock %}

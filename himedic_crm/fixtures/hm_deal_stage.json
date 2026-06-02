@@ -1,0 +1,52 @@
+[
+ {
+  "doctype": "HM Deal Stage",
+  "name": "Thẩm định",
+  "stage_name": "Thẩm định",
+  "order_no": 1,
+  "default_probability": 20,
+  "is_won": 0,
+  "is_lost": 0,
+  "color": "#3B82F6"
+ },
+ {
+  "doctype": "HM Deal Stage",
+  "name": "Báo giá",
+  "stage_name": "Báo giá",
+  "order_no": 2,
+  "default_probability": 40,
+  "is_won": 0,
+  "is_lost": 0,
+  "color": "#EAB308"
+ },
+ {
+  "doctype": "HM Deal Stage",
+  "name": "Đàm phán",
+  "stage_name": "Đàm phán",
+  "order_no": 3,
+  "default_probability": 60,
+  "is_won": 0,
+  "is_lost": 0,
+  "color": "#F97316"
+ },
+ {
+  "doctype": "HM Deal Stage",
+  "name": "Đã chốt",
+  "stage_name": "Đã chốt",
+  "order_no": 4,
+  "default_probability": 100,
+  "is_won": 1,
+  "is_lost": 0,
+  "color": "#10B981"
+ },
+ {
+  "doctype": "HM Deal Stage",
+  "name": "Thất bại",
+  "stage_name": "Thất bại",
+  "order_no": 5,
+  "default_probability": 0,
+  "is_won": 0,
+  "is_lost": 1,
+  "color": "#F43F5E"
+ }
+]

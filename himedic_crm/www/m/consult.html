@@ -1,0 +1,24 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<style>body{background:#F8FAFC;font-family:Inter,system-ui}.m-shell{max-width:480px;margin:0 auto;padding:1rem}.m-card{background:white;border-radius:14px;padding:1rem;margin:.75rem 0}</style>
+<div class="m-shell">
+  <a href="javascript:history.back()">← Quay lại</a>
+  <div class="m-card"><h3>Tư vấn & Chọn XN</h3>
+    <p>Khách có thể thêm/bớt XN tại chỗ. Tổng tiền sẽ tự cập nhật.</p>
+    <div id="catalog">Đang tải danh mục…</div>
+  </div>
+</div>
+<script>
+const url = new URL(location.href); const name = url.searchParams.get("name");
+(async () => {
+  const r = await fetch("/api/method/frappe.client.get_list?doctype=HM Lab Test&fields=["name","test_name_vi","retail_price"]&limit_page_length=20").then(r => r.json());
+  const html = (r.message||[]).map(t => `<label style="display:block;padding:6px 0;"><input type="checkbox" data-test="${t.name}" data-price="${t.retail_price||0}"> ${t.test_name_vi} — ${(t.retail_price||0).toLocaleString()}đ</label>`).join("");
+  document.getElementById("catalog").innerHTML = html + "<div style='margin-top:1rem;font-weight:700;'>Tổng: <span id='sum'>0</span>đ</div>";
+  document.getElementById("catalog").addEventListener("change", () => {
+    let s = 0;
+    document.querySelectorAll("#catalog input:checked").forEach(i => s += +i.dataset.price);
+    document.getElementById("sum").textContent = s.toLocaleString();
+  });
+})();
+</script>
+{% endblock %}

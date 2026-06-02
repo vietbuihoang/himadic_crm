@@ -1,0 +1,208 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "organization_name",
+  "tax_id",
+  "industry",
+  "organization_size",
+  "region",
+  "cb",
+  "phone",
+  "email",
+  "website",
+  "address",
+  "owner_user",
+  "sb_cờ",
+  "vip",
+  "is_b2b",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "ORG-.YYYY.-",
+   "reqd": 1,
+   "default": "ORG-.YYYY.-"
+  },
+  {
+   "fieldname": "organization_name",
+   "label": "Tên tổ chức",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "tax_id",
+   "label": "MST",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "industry",
+   "label": "Lĩnh vực",
+   "fieldtype": "Data",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "organization_size",
+   "label": "Quy mô",
+   "fieldtype": "Select",
+   "options": "\n<50\n50-200\n200-1000\n>1000"
+  },
+  {
+   "fieldname": "region",
+   "label": "Khu vực",
+   "fieldtype": "Link",
+   "options": "HM CRM Region",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "phone",
+   "label": "SĐT chính",
+   "fieldtype": "Data",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "email",
+   "label": "Email",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "website",
+   "label": "Website",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "address",
+   "label": "Địa chỉ",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "owner_user",
+   "label": "NV phụ trách",
+   "fieldtype": "Link",
+   "options": "User",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Cờ",
+   "fieldname": "sb_cờ"
+  },
+  {
+   "fieldname": "vip",
+   "label": "VIP",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "is_b2b",
+   "label": "Khách B2B",
+   "fieldtype": "Check",
+   "default": "1"
+  },
+  {
+   "fieldname": "notes",
+   "label": "Ghi chú",
+   "fieldtype": "Text"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Contact And Org",
+ "name": "HM Organization",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Accountant",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "organization_name,tax_id,phone",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "organization_name",
+ "track_changes": 1
+}

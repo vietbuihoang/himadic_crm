@@ -1,0 +1,156 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "contact",
+  "sample_order",
+  "result_date",
+  "file_pdf",
+  "released_to_portal",
+  "released_at",
+  "viewed_by_customer",
+  "viewed_at",
+  "doctor"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "RES-.YYYY.-",
+   "reqd": 1,
+   "default": "RES-.YYYY.-"
+  },
+  {
+   "fieldname": "contact",
+   "label": "Khách",
+   "fieldtype": "Link",
+   "options": "HM Contact",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "sample_order",
+   "label": "SO",
+   "fieldtype": "Link",
+   "options": "HM Sample Order",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "result_date",
+   "label": "Ngày trả KQ",
+   "fieldtype": "Datetime",
+   "default": "now",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "file_pdf",
+   "label": "File PDF KQ",
+   "fieldtype": "Attach"
+  },
+  {
+   "fieldname": "released_to_portal",
+   "label": "Đã đăng portal",
+   "fieldtype": "Check",
+   "default": "0",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "released_at",
+   "label": "Đăng portal lúc",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "viewed_by_customer",
+   "label": "Khách đã xem",
+   "fieldtype": "Check",
+   "default": "0"
+  },
+  {
+   "fieldname": "viewed_at",
+   "label": "Khách xem lúc",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "doctor",
+   "label": "BS ký",
+   "fieldtype": "Link",
+   "options": "User"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Communication",
+ "name": "HM Test Result",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Lab Doctor",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Customer",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

@@ -1,0 +1,71 @@
+[
+ {
+  "doctype": "Role Profile",
+  "name": "HM Sales Profile",
+  "role_profile": "HM Sales Profile",
+  "roles": [
+   {
+    "role": "HM Sales"
+   }
+  ]
+ },
+ {
+  "doctype": "Role Profile",
+  "name": "HM Sales Manager Profile",
+  "role_profile": "HM Sales Manager Profile",
+  "roles": [
+   {
+    "role": "HM Sales"
+   },
+   {
+    "role": "HM Sales Manager"
+   }
+  ]
+ },
+ {
+  "doctype": "Role Profile",
+  "name": "HM Marketing Profile",
+  "role_profile": "HM Marketing Profile",
+  "roles": [
+   {
+    "role": "HM Marketing"
+   }
+  ]
+ },
+ {
+  "doctype": "Role Profile",
+  "name": "HM Lab Profile",
+  "role_profile": "HM Lab Profile",
+  "roles": [
+   {
+    "role": "HM Lab Coordinator"
+   },
+   {
+    "role": "HM Lab Doctor"
+   }
+  ]
+ },
+ {
+  "doctype": "Role Profile",
+  "name": "HM Accountant Profile",
+  "role_profile": "HM Accountant Profile",
+  "roles": [
+   {
+    "role": "HM Accountant"
+   }
+  ]
+ },
+ {
+  "doctype": "Role Profile",
+  "name": "HM Admin Profile",
+  "role_profile": "HM Admin Profile",
+  "roles": [
+   {
+    "role": "HM Admin"
+   },
+   {
+    "role": "System Manager"
+   }
+  ]
+ }
+]

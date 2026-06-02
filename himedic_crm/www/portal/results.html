@@ -1,0 +1,11 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<div class="hm-portal-shell"><header><h2>Kết quả XN</h2></header>
+<main><div class="hm-card" id="root">Đang tải…</div></main></div>
+<script>(async ()=>{
+  const list = await HM.api("himedic_crm.api.portal.my_results", {});
+  document.getElementById("root").innerHTML = (list||[]).map(r =>
+    `<div style="padding:8px 0;border-bottom:1px solid #e5e7eb">📄 ${r.result_date} · <a href="${r.file_pdf||'#'}">Tải PDF</a> · <i>${r.viewed_at?"Đã xem":"Mới"}</i></div>`
+  ).join("") || "Chưa có kết quả.";
+})();</script>
+{% endblock %}

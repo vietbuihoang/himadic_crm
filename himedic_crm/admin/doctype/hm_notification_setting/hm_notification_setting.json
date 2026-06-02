@@ -1,0 +1,87 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:event_code",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "event_code",
+  "event_label",
+  "channels",
+  "template_subject",
+  "template_body",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "event_code",
+   "label": "Mã sự kiện",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "event_label",
+   "label": "Tên sự kiện",
+   "fieldtype": "Data",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "channels",
+   "label": "Kênh (Email,Zalo,Push,SMS)",
+   "fieldtype": "Small Text",
+   "default": "Push"
+  },
+  {
+   "fieldname": "template_subject",
+   "label": "Subject",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "template_body",
+   "label": "Body",
+   "fieldtype": "Text"
+  },
+  {
+   "fieldname": "is_active",
+   "label": "Đang dùng",
+   "fieldtype": "Check",
+   "default": "1"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Admin",
+ "name": "HM Notification Setting",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

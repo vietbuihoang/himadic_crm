@@ -1,0 +1,138 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "autoincrement",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "snapshot_date",
+  "channel",
+  "campaign",
+  "leads_count",
+  "converted_count",
+  "won_count",
+  "revenue",
+  "spent",
+  "cpl",
+  "cac",
+  "roas"
+ ],
+ "fields": [
+  {
+   "fieldname": "snapshot_date",
+   "label": "Ngày",
+   "fieldtype": "Date",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "channel",
+   "label": "Kênh",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "campaign",
+   "label": "Campaign",
+   "fieldtype": "Link",
+   "options": "HM Campaign",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "leads_count",
+   "label": "Lead",
+   "fieldtype": "Int"
+  },
+  {
+   "fieldname": "converted_count",
+   "label": "Converted",
+   "fieldtype": "Int"
+  },
+  {
+   "fieldname": "won_count",
+   "label": "Won",
+   "fieldtype": "Int",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "revenue",
+   "label": "Doanh thu",
+   "fieldtype": "Currency",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "spent",
+   "label": "Chi phí",
+   "fieldtype": "Currency"
+  },
+  {
+   "fieldname": "cpl",
+   "label": "CPL",
+   "fieldtype": "Currency"
+  },
+  {
+   "fieldname": "cac",
+   "label": "CAC",
+   "fieldtype": "Currency"
+  },
+  {
+   "fieldname": "roas",
+   "label": "ROAS",
+   "fieldtype": "Float",
+   "in_list_view": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Marketing",
+ "name": "HM ROI Snapshot",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

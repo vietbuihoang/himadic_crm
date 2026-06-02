@@ -1,0 +1,17 @@
+
+:root {
+  --hm-primary: #0E7490;
+  --hm-cyan:    #06B6D4;
+  --hm-green:   #10B981;
+  --hm-rose:    #F43F5E;
+  --hm-amber:   #F59E0B;
+  --hm-slate:   #475569;
+}
+.hm-pill { display:inline-block; padding:2px 10px; border-radius:9999px; font-size:.75rem; font-weight:600; }
+.hm-stage-Mới             { background:#DBEAFE; color:#1D4ED8; }
+.hm-stage-Đã.liên.hệ      { background:#FEF3C7; color:#B45309; }
+.hm-stage-Đủ.điều.kiện    { background:#D1FAE5; color:#047857; }
+.hm-stage-Chăm.sóc        { background:#CFFAFE; color:#0E7490; }
+.hm-stage-Đã.chuyển.đổi   { background:#CFFAEB; color:#0F766E; }
+.hm-stage-Đã.hủy          { background:#FEE2E2; color:#B91C1C; }
+.hm-medical-alert { background:#FEE2E2; border-left:4px solid #DC2626; padding:8px 12px; font-weight:600; }

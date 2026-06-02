@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "barcode",
+  "sample_type",
+  "collected",
+  "collected_at",
+  "printed_label",
+  "status",
+  "rejection_reason"
+ ],
+ "fields": [
+  {
+   "fieldname": "barcode",
+   "label": "Barcode",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "sample_type",
+   "label": "Loại mẫu",
+   "fieldtype": "Link",
+   "options": "HM Sample Type",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "collected",
+   "label": "Đã lấy",
+   "fieldtype": "Check",
+   "default": "0",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "collected_at",
+   "label": "Lấy lúc",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "printed_label",
+   "label": "Đã in tem",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "status",
+   "label": "Trạng thái",
+   "fieldtype": "Select",
+   "options": "Chờ\nĐã lấy\nĐã bàn giao\nĐến Lab\nĐã nhập LIS\nLỗi",
+   "default": "Chờ",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "rejection_reason",
+   "label": "Lý do lỗi",
+   "fieldtype": "Data"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sample",
+ "name": "HM Sample Tube",
+ "owner": "Administrator",
+ "permissions": [],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

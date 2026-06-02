@@ -1,0 +1,137 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:sample_type_name",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sample_type_name",
+  "container",
+  "color_code",
+  "default_volume_ml",
+  "storage_condition",
+  "max_transport_hours",
+  "min_temperature",
+  "max_temperature",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "sample_type_name",
+   "label": "Loại mẫu",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "container",
+   "label": "Ống chứa",
+   "fieldtype": "Data",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "color_code",
+   "label": "Màu nắp",
+   "fieldtype": "Color"
+  },
+  {
+   "fieldname": "default_volume_ml",
+   "label": "Thể tích (ml)",
+   "fieldtype": "Float",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "storage_condition",
+   "label": "Bảo quản",
+   "fieldtype": "Data",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "max_transport_hours",
+   "label": "TAT vận chuyển (h)",
+   "fieldtype": "Float",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "min_temperature",
+   "label": "Nhiệt độ min (°C)",
+   "fieldtype": "Float"
+  },
+  {
+   "fieldname": "max_temperature",
+   "label": "Nhiệt độ max (°C)",
+   "fieldtype": "Float"
+  },
+  {
+   "fieldname": "notes",
+   "label": "Lưu ý",
+   "fieldtype": "Small Text"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Catalog",
+ "name": "HM Sample Type",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Lab Coordinator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

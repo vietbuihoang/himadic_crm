@@ -1,0 +1,151 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "autoincrement",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "rule_name",
+  "priority",
+  "is_active",
+  "sb_điều_kiện",
+  "source",
+  "region",
+  "min_score",
+  "sb_phân_công",
+  "assignment_type",
+  "team",
+  "fixed_user"
+ ],
+ "fields": [
+  {
+   "fieldname": "rule_name",
+   "label": "Tên rule",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "priority",
+   "label": "Ưu tiên",
+   "fieldtype": "Int",
+   "default": "100",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "is_active",
+   "label": "Đang dùng",
+   "fieldtype": "Check",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Điều kiện",
+   "fieldname": "sb_điều_kiện"
+  },
+  {
+   "fieldname": "source",
+   "label": "Nguồn",
+   "fieldtype": "Link",
+   "options": "HM Lead Source"
+  },
+  {
+   "fieldname": "region",
+   "label": "Khu vực",
+   "fieldtype": "Link",
+   "options": "HM CRM Region"
+  },
+  {
+   "fieldname": "min_score",
+   "label": "Điểm tối thiểu",
+   "fieldtype": "Int",
+   "default": "0"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Phân công",
+   "fieldname": "sb_phân_công"
+  },
+  {
+   "fieldname": "assignment_type",
+   "label": "Kiểu",
+   "fieldtype": "Select",
+   "options": "Round-robin\nLoad-balanced\nSkill-based\nFixed user",
+   "default": "Round-robin"
+  },
+  {
+   "fieldname": "team",
+   "label": "Team",
+   "fieldtype": "Link",
+   "options": "HM Team"
+  },
+  {
+   "fieldname": "fixed_user",
+   "label": "User cố định",
+   "fieldtype": "Link",
+   "options": "User"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lead",
+ "name": "HM Lead Assignment Rule",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

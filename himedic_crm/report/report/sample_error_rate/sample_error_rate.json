@@ -1,0 +1,9 @@
+{
+ "name": "Sample Error Rate",
+ "report_name": "Sample Error Rate",
+ "report_type": "Script Report",
+ "ref_doctype": "HM Sample Order",
+ "module": "Report And Dashboard",
+ "is_standard": "Yes",
+ "doctype": "Report"
+}

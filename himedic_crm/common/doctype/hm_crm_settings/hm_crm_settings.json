@@ -1,0 +1,206 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "HM CRM Settings",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_sla_lead",
+  "lead_sla_warn_minutes",
+  "lead_sla_escalate_minutes",
+  "lead_sla_reassign_minutes",
+  "cb",
+  "default_currency",
+  "default_timezone",
+  "sb_workflow_duyệt",
+  "discount_approve_threshold_low",
+  "discount_approve_threshold_high",
+  "cb",
+  "b2b_renewal_notice_days",
+  "sb_tích_hợp",
+  "lis_endpoint",
+  "lis_api_key",
+  "zalo_oa_token",
+  "zalo_oa_id",
+  "voip_webhook",
+  "voip_api_token",
+  "maps_api_key",
+  "sms_endpoint",
+  "sms_api_key",
+  "ca_signature_endpoint",
+  "ca_signature_token"
+ ],
+ "fields": [
+  {
+   "fieldtype": "Section Break",
+   "label": "SLA Lead",
+   "fieldname": "sb_sla_lead"
+  },
+  {
+   "fieldname": "lead_sla_warn_minutes",
+   "label": "Cảnh báo SLA (phút)",
+   "fieldtype": "Int",
+   "default": "30"
+  },
+  {
+   "fieldname": "lead_sla_escalate_minutes",
+   "label": "Leo cấp SLA (phút)",
+   "fieldtype": "Int",
+   "default": "45"
+  },
+  {
+   "fieldname": "lead_sla_reassign_minutes",
+   "label": "Tự gán lại SLA (phút)",
+   "fieldtype": "Int",
+   "default": "60"
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "default_currency",
+   "label": "Tiền tệ",
+   "fieldtype": "Data",
+   "default": "VND"
+  },
+  {
+   "fieldname": "default_timezone",
+   "label": "Timezone",
+   "fieldtype": "Data",
+   "default": "Asia/Ho_Chi_Minh"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Workflow Duyệt",
+   "fieldname": "sb_workflow_duyệt"
+  },
+  {
+   "fieldname": "discount_approve_threshold_low",
+   "label": "Ngưỡng duyệt thấp (%)",
+   "fieldtype": "Float",
+   "default": "5"
+  },
+  {
+   "fieldname": "discount_approve_threshold_high",
+   "label": "Ngưỡng duyệt cao (%)",
+   "fieldtype": "Float",
+   "default": "10"
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "b2b_renewal_notice_days",
+   "label": "Nhắc gia hạn HĐ B2B (ngày)",
+   "fieldtype": "Int",
+   "default": "60"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Tích hợp",
+   "fieldname": "sb_tích_hợp"
+  },
+  {
+   "fieldname": "lis_endpoint",
+   "label": "LIS API Endpoint",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "lis_api_key",
+   "label": "LIS API Key",
+   "fieldtype": "Password"
+  },
+  {
+   "fieldname": "zalo_oa_token",
+   "label": "Zalo OA Token",
+   "fieldtype": "Password"
+  },
+  {
+   "fieldname": "zalo_oa_id",
+   "label": "Zalo OA ID",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "voip_webhook",
+   "label": "VoIP Webhook",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "voip_api_token",
+   "label": "VoIP API Token",
+   "fieldtype": "Password"
+  },
+  {
+   "fieldname": "maps_api_key",
+   "label": "Maps API Key",
+   "fieldtype": "Password"
+  },
+  {
+   "fieldname": "sms_endpoint",
+   "label": "SMS Gateway",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "sms_api_key",
+   "label": "SMS Key",
+   "fieldtype": "Password"
+  },
+  {
+   "fieldname": "ca_signature_endpoint",
+   "label": "CA Endpoint (VNPT/FPT)",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "ca_signature_token",
+   "label": "CA Token",
+   "fieldtype": "Password"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 1,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Hi-Medic CRM",
+ "name": "HM CRM Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

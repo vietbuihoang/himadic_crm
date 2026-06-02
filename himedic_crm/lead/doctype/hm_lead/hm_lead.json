@@ -1,0 +1,382 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "sb_thông_tin_liên_hệ",
+  "lead_name",
+  "phone",
+  "email",
+  "gender",
+  "dob",
+  "cb",
+  "customer_type",
+  "organization_name",
+  "tax_id",
+  "region",
+  "address",
+  "sb_nguồn_&_phân_công",
+  "source",
+  "campaign",
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "ad_id",
+  "cb",
+  "owner_user",
+  "team",
+  "priority",
+  "score",
+  "sb_pipeline",
+  "status",
+  "qualified_at",
+  "converted_at",
+  "converted_deal",
+  "first_response_at",
+  "sla_breached",
+  "lost_reason",
+  "sb_y_khoa_quan_tâm",
+  "interest_group",
+  "purpose",
+  "estimated_frequency",
+  "sb_hoạt_động",
+  "activities",
+  "sb_ghi_chú",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "LEAD-.YYYY.-",
+   "reqd": 1,
+   "default": "LEAD-.YYYY.-"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Thông tin liên hệ",
+   "fieldname": "sb_thông_tin_liên_hệ"
+  },
+  {
+   "fieldname": "lead_name",
+   "label": "Họ tên",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "phone",
+   "label": "SĐT",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "email",
+   "label": "Email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "gender",
+   "label": "Giới tính",
+   "fieldtype": "Select",
+   "options": "\nNam\nNữ\nKhác"
+  },
+  {
+   "fieldname": "dob",
+   "label": "Ngày sinh",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "customer_type",
+   "label": "Loại khách",
+   "fieldtype": "Select",
+   "options": "Cá nhân\nPhòng khám\nBệnh viện\nDoanh nghiệp\nBảo hiểm",
+   "default": "Cá nhân",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "organization_name",
+   "label": "Tên tổ chức",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "tax_id",
+   "label": "MST",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "region",
+   "label": "Khu vực",
+   "fieldtype": "Link",
+   "options": "HM CRM Region",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "address",
+   "label": "Địa chỉ",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Nguồn & Phân công",
+   "fieldname": "sb_nguồn_&_phân_công"
+  },
+  {
+   "fieldname": "source",
+   "label": "Nguồn",
+   "fieldtype": "Link",
+   "options": "HM Lead Source",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "campaign",
+   "label": "Campaign",
+   "fieldtype": "Link",
+   "options": "HM Campaign"
+  },
+  {
+   "fieldname": "utm_source",
+   "label": "UTM Source",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "utm_medium",
+   "label": "UTM Medium",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "utm_campaign",
+   "label": "UTM Campaign",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "ad_id",
+   "label": "Ad ID",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "owner_user",
+   "label": "NV phụ trách",
+   "fieldtype": "Link",
+   "options": "User",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "team",
+   "label": "Team",
+   "fieldtype": "Link",
+   "options": "HM Team",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "priority",
+   "label": "Ưu tiên",
+   "fieldtype": "Select",
+   "options": "Normal\nHigh\nVIP",
+   "default": "Normal",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "score",
+   "label": "Lead Score",
+   "fieldtype": "Int",
+   "default": "0",
+   "in_list_view": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Pipeline",
+   "fieldname": "sb_pipeline"
+  },
+  {
+   "fieldname": "status",
+   "label": "Stage",
+   "fieldtype": "Link",
+   "options": "HM Lead Stage",
+   "reqd": 1,
+   "default": "Mới",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "qualified_at",
+   "label": "Đủ ĐK lúc",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "converted_at",
+   "label": "Chuyển đổi lúc",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "converted_deal",
+   "label": "Cơ hội đã tạo",
+   "fieldtype": "Link",
+   "options": "HM Deal",
+   "read_only": 1
+  },
+  {
+   "fieldname": "first_response_at",
+   "label": "Lần phản hồi đầu",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sla_breached",
+   "label": "SLA bị phá vỡ",
+   "fieldtype": "Check",
+   "default": "0",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lost_reason",
+   "label": "Lý do mất",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Y khoa quan tâm",
+   "fieldname": "sb_y_khoa_quan_tâm"
+  },
+  {
+   "fieldname": "interest_group",
+   "label": "Nhóm XN quan tâm",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "purpose",
+   "label": "Mục đích",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "estimated_frequency",
+   "label": "Tần suất dự kiến",
+   "fieldtype": "Select",
+   "options": "\nMột lần\n3 tháng/lần\n6 tháng/lần\nNăm/lần"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Hoạt động",
+   "fieldname": "sb_hoạt_động"
+  },
+  {
+   "fieldname": "activities",
+   "label": "Hoạt động",
+   "fieldtype": "Table",
+   "options": "HM Lead Activity"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Ghi chú",
+   "fieldname": "sb_ghi_chú"
+  },
+  {
+   "fieldname": "notes",
+   "label": "Ghi chú",
+   "fieldtype": "Text Editor"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lead",
+ "name": "HM Lead",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "lead_name,phone,email,organization_name",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "lead_name",
+ "track_changes": 1
+}

@@ -1,0 +1,9 @@
+{
+ "name": "TAT Sample to Lab",
+ "report_name": "TAT Sample to Lab",
+ "report_type": "Script Report",
+ "ref_doctype": "HM Sample Order",
+ "module": "Report And Dashboard",
+ "is_standard": "Yes",
+ "doctype": "Report"
+}

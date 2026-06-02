@@ -1,0 +1,136 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "contact",
+  "record_date",
+  "doctor",
+  "diagnosis",
+  "test_results_file",
+  "source_system",
+  "data_class"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "HR-.YYYY.-",
+   "reqd": 1,
+   "default": "HR-.YYYY.-"
+  },
+  {
+   "fieldname": "contact",
+   "label": "Khách hàng",
+   "fieldtype": "Link",
+   "options": "HM Contact",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "record_date",
+   "label": "Ngày",
+   "fieldtype": "Date",
+   "default": "Today",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "doctor",
+   "label": "Bác sĩ Lab",
+   "fieldtype": "Link",
+   "options": "User"
+  },
+  {
+   "fieldname": "diagnosis",
+   "label": "Chẩn đoán",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "test_results_file",
+   "label": "File kết quả XN",
+   "fieldtype": "Attach"
+  },
+  {
+   "fieldname": "source_system",
+   "label": "Hệ thống nguồn",
+   "fieldtype": "Data",
+   "default": "LIS"
+  },
+  {
+   "fieldname": "data_class",
+   "label": "Phân loại DL",
+   "fieldtype": "Select",
+   "options": "HIGH\nMEDIUM\nLOW",
+   "default": "HIGH"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Contact And Org",
+ "name": "HM Health Record",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Lab Doctor",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

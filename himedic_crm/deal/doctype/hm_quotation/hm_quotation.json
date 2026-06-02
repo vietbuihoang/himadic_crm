@@ -1,0 +1,268 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "sb_tham_chiếu",
+  "deal",
+  "contact",
+  "organization",
+  "issued_on",
+  "valid_until",
+  "cb",
+  "currency",
+  "status",
+  "delivery_method",
+  "sb_chiết_khấu_&_duyệt",
+  "requested_discount_pct",
+  "approval_status",
+  "approver",
+  "approval_remark",
+  "sb_dịch_vụ",
+  "items",
+  "subtotal",
+  "discount_amount",
+  "grand_total",
+  "sb_theo_dõi_gửi",
+  "sent_at",
+  "opened_at",
+  "accepted_at"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "QUO-.YYYY.-",
+   "reqd": 1,
+   "default": "QUO-.YYYY.-"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Tham chiếu",
+   "fieldname": "sb_tham_chiếu"
+  },
+  {
+   "fieldname": "deal",
+   "label": "Cơ hội",
+   "fieldtype": "Link",
+   "options": "HM Deal",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "contact",
+   "label": "Khách",
+   "fieldtype": "Link",
+   "options": "HM Contact",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "organization",
+   "label": "Đơn vị",
+   "fieldtype": "Link",
+   "options": "HM Organization"
+  },
+  {
+   "fieldname": "issued_on",
+   "label": "Ngày phát hành",
+   "fieldtype": "Date",
+   "default": "Today",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "valid_until",
+   "label": "Có hiệu lực đến",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "currency",
+   "label": "Tiền tệ",
+   "fieldtype": "Link",
+   "options": "Currency",
+   "default": "VND"
+  },
+  {
+   "fieldname": "status",
+   "label": "Trạng thái",
+   "fieldtype": "Select",
+   "options": "Nháp\nĐã gửi\nĐã mở\nĐã chấp nhận\nTừ chối\nHết hạn",
+   "default": "Nháp",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "delivery_method",
+   "label": "Kênh gửi",
+   "fieldtype": "Select",
+   "options": "Email\nZalo\nIn giấy"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Chiết khấu & Duyệt",
+   "fieldname": "sb_chiết_khấu_&_duyệt"
+  },
+  {
+   "fieldname": "requested_discount_pct",
+   "label": "CK đề nghị (%)",
+   "fieldtype": "Percent",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "approval_status",
+   "label": "Duyệt",
+   "fieldtype": "Select",
+   "options": "\nĐang chờ\nĐã duyệt\nTừ chối",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approver",
+   "label": "Người duyệt",
+   "fieldtype": "Link",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approval_remark",
+   "label": "Ghi chú duyệt",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Dịch vụ",
+   "fieldname": "sb_dịch_vụ"
+  },
+  {
+   "fieldname": "items",
+   "label": "Dịch vụ",
+   "fieldtype": "Table",
+   "options": "HM Quotation Item"
+  },
+  {
+   "fieldname": "subtotal",
+   "label": "Tạm tính",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "discount_amount",
+   "label": "CK",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grand_total",
+   "label": "Tổng",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Theo dõi gửi",
+   "fieldname": "sb_theo_dõi_gửi"
+  },
+  {
+   "fieldname": "sent_at",
+   "label": "Gửi lúc",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "opened_at",
+   "label": "Khách mở lúc",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "accepted_at",
+   "label": "Chấp nhận lúc",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Deal",
+ "name": "HM Quotation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Accountant",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "deal,contact,organization",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "deal",
+ "track_changes": 1
+}

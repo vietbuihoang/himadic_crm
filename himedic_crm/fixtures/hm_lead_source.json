@@ -1,0 +1,66 @@
+[
+ {
+  "doctype": "HM Lead Source",
+  "name": "FB Ads",
+  "source_name": "FB Ads",
+  "channel": "Facebook",
+  "base_score": 80,
+  "is_active": 1
+ },
+ {
+  "doctype": "HM Lead Source",
+  "name": "Google Ads",
+  "source_name": "Google Ads",
+  "channel": "Google",
+  "base_score": 75,
+  "is_active": 1
+ },
+ {
+  "doctype": "HM Lead Source",
+  "name": "Zalo OA",
+  "source_name": "Zalo OA",
+  "channel": "Zalo",
+  "base_score": 70,
+  "is_active": 1
+ },
+ {
+  "doctype": "HM Lead Source",
+  "name": "Landing Page",
+  "source_name": "Landing Page",
+  "channel": "Web",
+  "base_score": 65,
+  "is_active": 1
+ },
+ {
+  "doctype": "HM Lead Source",
+  "name": "Walk-in",
+  "source_name": "Walk-in",
+  "channel": "Office",
+  "base_score": 60,
+  "is_active": 1
+ },
+ {
+  "doctype": "HM Lead Source",
+  "name": "Hotline",
+  "source_name": "Hotline",
+  "channel": "Phone",
+  "base_score": 85,
+  "is_active": 1
+ },
+ {
+  "doctype": "HM Lead Source",
+  "name": "Referral",
+  "source_name": "Referral",
+  "channel": "Referral",
+  "base_score": 90,
+  "is_active": 1
+ },
+ {
+  "doctype": "HM Lead Source",
+  "name": "KOL/PR",
+  "source_name": "KOL/PR",
+  "channel": "Marketing",
+  "base_score": 70,
+  "is_active": 1
+ }
+]

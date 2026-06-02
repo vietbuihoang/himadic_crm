@@ -1,0 +1,182 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:campaign_code",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "campaign_code",
+  "campaign_name",
+  "channel",
+  "start_date",
+  "end_date",
+  "budget",
+  "spent",
+  "leads_count",
+  "won_count",
+  "revenue",
+  "cpl",
+  "roas",
+  "status",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "campaign_code",
+   "label": "Mã campaign",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "campaign_name",
+   "label": "Tên",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "channel",
+   "label": "Kênh",
+   "fieldtype": "Select",
+   "options": "FB\nGoogle\nZalo\nLanding\nSEO\nEmail\nOffline",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "start_date",
+   "label": "Từ",
+   "fieldtype": "Date",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "end_date",
+   "label": "Đến",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldname": "budget",
+   "label": "Ngân sách",
+   "fieldtype": "Currency",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "spent",
+   "label": "Đã chi",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "leads_count",
+   "label": "Số lead",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "won_count",
+   "label": "Số Won",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "revenue",
+   "label": "Doanh thu",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "cpl",
+   "label": "CPL",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "roas",
+   "label": "ROAS",
+   "fieldtype": "Float",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "label": "Trạng thái",
+   "fieldtype": "Select",
+   "options": "Mở\nĐang chạy\nTạm dừng\nKết thúc",
+   "default": "Mở",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "notes",
+   "label": "Ghi chú",
+   "fieldtype": "Text"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Marketing",
+ "name": "HM Campaign",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "campaign_name",
+ "track_changes": 1
+}

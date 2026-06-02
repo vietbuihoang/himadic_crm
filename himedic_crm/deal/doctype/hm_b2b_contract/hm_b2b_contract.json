@@ -1,0 +1,196 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "contract_title",
+  "organization",
+  "deal",
+  "start_date",
+  "end_date",
+  "total_value",
+  "currency",
+  "total_slots",
+  "used_slots",
+  "remaining_slots",
+  "signed_file",
+  "status",
+  "renewal_notice_sent"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "HMCT-.YYYY.-",
+   "reqd": 1,
+   "default": "HMCT-.YYYY.-"
+  },
+  {
+   "fieldname": "contract_title",
+   "label": "Tiêu đề",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "organization",
+   "label": "Doanh nghiệp",
+   "fieldtype": "Link",
+   "options": "HM Organization",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "deal",
+   "label": "Cơ hội gốc",
+   "fieldtype": "Link",
+   "options": "HM Deal"
+  },
+  {
+   "fieldname": "start_date",
+   "label": "Hiệu lực từ",
+   "fieldtype": "Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "end_date",
+   "label": "Đến",
+   "fieldtype": "Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "total_value",
+   "label": "Giá trị HĐ",
+   "fieldtype": "Currency"
+  },
+  {
+   "fieldname": "currency",
+   "label": "Tiền tệ",
+   "fieldtype": "Link",
+   "options": "Currency",
+   "default": "VND"
+  },
+  {
+   "fieldname": "total_slots",
+   "label": "Số lượt tối đa",
+   "fieldtype": "Int"
+  },
+  {
+   "fieldname": "used_slots",
+   "label": "Đã dùng",
+   "fieldtype": "Int",
+   "default": "0",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remaining_slots",
+   "label": "Còn lại",
+   "fieldtype": "Int",
+   "read_only": 1
+  },
+  {
+   "fieldname": "signed_file",
+   "label": "File HĐ đã ký",
+   "fieldtype": "Attach"
+  },
+  {
+   "fieldname": "status",
+   "label": "Trạng thái",
+   "fieldtype": "Select",
+   "options": "Đang hiệu lực\nSắp hết hạn\nĐã hết hạn\nĐã hủy",
+   "default": "Đang hiệu lực",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "renewal_notice_sent",
+   "label": "Đã gửi nhắc gia hạn",
+   "fieldtype": "Check",
+   "default": "0",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Deal",
+ "name": "HM B2B Contract",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Accountant",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "contract_title",
+ "track_changes": 1
+}

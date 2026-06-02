@@ -1,0 +1,56 @@
+[
+ {
+  "doctype": "HM Lead Stage",
+  "name": "Mới",
+  "stage_name": "Mới",
+  "order_no": 1,
+  "is_qualified": 0,
+  "is_closed": 0,
+  "color": "#3B82F6"
+ },
+ {
+  "doctype": "HM Lead Stage",
+  "name": "Đã liên hệ",
+  "stage_name": "Đã liên hệ",
+  "order_no": 2,
+  "is_qualified": 0,
+  "is_closed": 0,
+  "color": "#EAB308"
+ },
+ {
+  "doctype": "HM Lead Stage",
+  "name": "Đủ điều kiện",
+  "stage_name": "Đủ điều kiện",
+  "order_no": 3,
+  "is_qualified": 1,
+  "is_closed": 0,
+  "color": "#10B981"
+ },
+ {
+  "doctype": "HM Lead Stage",
+  "name": "Chăm sóc",
+  "stage_name": "Chăm sóc",
+  "order_no": 4,
+  "is_qualified": 0,
+  "is_closed": 0,
+  "color": "#06B6D4"
+ },
+ {
+  "doctype": "HM Lead Stage",
+  "name": "Đã chuyển đổi",
+  "stage_name": "Đã chuyển đổi",
+  "order_no": 5,
+  "is_qualified": 0,
+  "is_closed": 1,
+  "color": "#0E7490"
+ },
+ {
+  "doctype": "HM Lead Stage",
+  "name": "Đã hủy",
+  "stage_name": "Đã hủy",
+  "order_no": 6,
+  "is_qualified": 0,
+  "is_closed": 1,
+  "color": "#F43F5E"
+ }
+]

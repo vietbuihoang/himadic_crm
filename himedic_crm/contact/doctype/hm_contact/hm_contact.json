@@ -1,0 +1,345 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "sb_cá_nhân",
+  "full_name",
+  "gender",
+  "dob",
+  "national_id",
+  "national_id_issued",
+  "national_id_place",
+  "cb",
+  "phone",
+  "email",
+  "address",
+  "region",
+  "avatar",
+  "sb_tổ_chức",
+  "organization",
+  "position",
+  "is_decision_maker",
+  "sb_y_tế",
+  "pid",
+  "blood_type",
+  "allergies",
+  "chronic_diseases",
+  "medical_warning",
+  "sb_phân_loại",
+  "customer_type",
+  "vip",
+  "tags",
+  "owner_user",
+  "sb_pdpa",
+  "pdpa_consent_given",
+  "pdpa_consent_date",
+  "pdpa_consent_version",
+  "pdpa_consent_file"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "CON-.YYYY.-",
+   "reqd": 1,
+   "default": "CON-.YYYY.-"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Cá nhân",
+   "fieldname": "sb_cá_nhân"
+  },
+  {
+   "fieldname": "full_name",
+   "label": "Họ tên",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "gender",
+   "label": "Giới tính",
+   "fieldtype": "Select",
+   "options": "\nNam\nNữ\nKhác"
+  },
+  {
+   "fieldname": "dob",
+   "label": "Ngày sinh",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldname": "national_id",
+   "label": "CCCD",
+   "fieldtype": "Data",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "national_id_issued",
+   "label": "CCCD cấp ngày",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldname": "national_id_place",
+   "label": "Nơi cấp",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "phone",
+   "label": "SĐT",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "email",
+   "label": "Email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "address",
+   "label": "Địa chỉ",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "region",
+   "label": "Khu vực",
+   "fieldtype": "Link",
+   "options": "HM CRM Region",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "avatar",
+   "label": "Ảnh",
+   "fieldtype": "Attach Image"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Tổ chức",
+   "fieldname": "sb_tổ_chức"
+  },
+  {
+   "fieldname": "organization",
+   "label": "Tổ chức",
+   "fieldtype": "Link",
+   "options": "HM Organization",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "position",
+   "label": "Chức vụ",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "is_decision_maker",
+   "label": "Người quyết định",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Y tế",
+   "fieldname": "sb_y_tế"
+  },
+  {
+   "fieldname": "pid",
+   "label": "PID Lab",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "blood_type",
+   "label": "Nhóm máu",
+   "fieldtype": "Select",
+   "options": "\nA\nB\nAB\nO"
+  },
+  {
+   "fieldname": "allergies",
+   "label": "Dị ứng",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "chronic_diseases",
+   "label": "Bệnh nền",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "medical_warning",
+   "label": "Cảnh báo y tế (hiện đậm)",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Phân loại",
+   "fieldname": "sb_phân_loại"
+  },
+  {
+   "fieldname": "customer_type",
+   "label": "Loại",
+   "fieldtype": "Select",
+   "options": "Cá nhân\nDoanh nghiệp NLĐ\nKhách bảo hiểm",
+   "default": "Cá nhân"
+  },
+  {
+   "fieldname": "vip",
+   "label": "VIP",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "tags",
+   "label": "Tags",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "owner_user",
+   "label": "NV phụ trách",
+   "fieldtype": "Link",
+   "options": "User",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "PDPA",
+   "fieldname": "sb_pdpa"
+  },
+  {
+   "fieldname": "pdpa_consent_given",
+   "label": "Đã đồng ý PDPA",
+   "fieldtype": "Check",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pdpa_consent_date",
+   "label": "Ngày đồng ý",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pdpa_consent_version",
+   "label": "Phiên bản consent",
+   "fieldtype": "Data",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pdpa_consent_file",
+   "label": "File consent ký số",
+   "fieldtype": "Attach",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Contact And Org",
+ "name": "HM Contact",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Marketing",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Lab Coordinator",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Lab Doctor",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Accountant",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "full_name,phone,email,pid,national_id",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "full_name",
+ "track_changes": 1
+}

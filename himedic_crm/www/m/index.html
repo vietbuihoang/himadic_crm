@@ -1,0 +1,42 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<style>
+  body { background:#0F172A; color:white; }
+  .m-shell{ max-width:480px;margin:0 auto;padding:1rem;font-family:Inter,system-ui; }
+  .m-card{ background:white;color:#0F172A;border-radius:14px;padding:.875rem 1rem;margin:.75rem 0;box-shadow:0 1px 2px rgba(0,0,0,.2); }
+  .m-kpi{display:flex;gap:.5rem;}
+  .m-kpi > div{flex:1;background:white;color:#0F172A;border-radius:12px;padding:.625rem;}
+  .m-pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.7rem;background:#0E7490;color:white;}
+  h1{font-size:1rem;}
+</style>
+<div class="m-shell">
+  <header style="display:flex;justify-content:space-between;align-items:center;">
+    <h1>📱 Hi-Medic Field</h1>
+    <small id="m-user"></small>
+  </header>
+  <div class="m-kpi">
+    <div><b id="m-leads">0</b><br/>Lead mở</div>
+    <div><b id="m-orders">0</b><br/>Đơn hôm nay</div>
+  </div>
+  <h3>Lịch tuyến hôm nay</h3>
+  <div id="m-list"></div>
+</div>
+<script>
+(async () => {
+  const d = await HM.api("himedic_crm.api.mobile.my_day", {});
+  document.getElementById("m-user").textContent = d?.user || "";
+  document.getElementById("m-leads").textContent = d?.kpis?.open_leads || 0;
+  document.getElementById("m-orders").textContent = d?.kpis?.today_orders || 0;
+  const root = document.getElementById("m-list");
+  (d?.orders || []).forEach(o => {
+    root.insertAdjacentHTML("beforeend", `
+      <div class="m-card" onclick="location.href='/m/order?name=${o.name}'">
+        <div style="display:flex;justify-content:space-between"><b>${o.appointment_time||""}</b>
+          <span class="m-pill">${o.status}</span></div>
+        <div>📌 ${o.address || ""}</div>
+        <div>👤 ${o.contact}</div>
+      </div>`);
+  });
+})();
+</script>
+{% endblock %}

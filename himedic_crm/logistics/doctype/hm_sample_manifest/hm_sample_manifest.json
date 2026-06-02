@@ -1,0 +1,272 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "manifest_date",
+  "created_by",
+  "shipper",
+  "vehicle",
+  "seal_no",
+  "from_region",
+  "to_lab",
+  "cb",
+  "status",
+  "departed_at",
+  "arrived_at",
+  "closed_at",
+  "sb_mẫu_trong_lô",
+  "items",
+  "total_items",
+  "rejected_items",
+  "sb_nhiệt_độ",
+  "required_min_temp",
+  "required_max_temp",
+  "temperature_logs",
+  "temperature_breached",
+  "sb_ký_giao",
+  "shipper_signature",
+  "lab_receiver",
+  "lab_receiver_signature"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "MAN-.YYYY.-",
+   "reqd": 1,
+   "default": "MAN-.YYYY.-"
+  },
+  {
+   "fieldname": "manifest_date",
+   "label": "Ngày",
+   "fieldtype": "Date",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "created_by",
+   "label": "NV tạo",
+   "fieldtype": "Link",
+   "options": "User",
+   "default": "$user",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "shipper",
+   "label": "Shipper",
+   "fieldtype": "Link",
+   "options": "User",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "vehicle",
+   "label": "Phương tiện",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "seal_no",
+   "label": "Số seal",
+   "fieldtype": "Data",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "from_region",
+   "label": "Từ khu vực",
+   "fieldtype": "Link",
+   "options": "HM CRM Region"
+  },
+  {
+   "fieldname": "to_lab",
+   "label": "Đến Lab",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldtype": "Column Break",
+   "fieldname": "cb"
+  },
+  {
+   "fieldname": "status",
+   "label": "Trạng thái",
+   "fieldtype": "Select",
+   "options": "Đang đóng gói\nĐã giao shipper\nĐang vận chuyển\nĐã đến Lab\nĐã đối soát\nĐã đóng",
+   "default": "Đang đóng gói",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "departed_at",
+   "label": "Khởi hành",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "arrived_at",
+   "label": "Đến Lab",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "closed_at",
+   "label": "Đóng lúc",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Mẫu trong lô",
+   "fieldname": "sb_mẫu_trong_lô"
+  },
+  {
+   "fieldname": "items",
+   "label": "Ống mẫu",
+   "fieldtype": "Table",
+   "options": "HM Manifest Item"
+  },
+  {
+   "fieldname": "total_items",
+   "label": "Tổng ống",
+   "fieldtype": "Int",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rejected_items",
+   "label": "Số ống lỗi",
+   "fieldtype": "Int",
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Nhiệt độ",
+   "fieldname": "sb_nhiệt_độ"
+  },
+  {
+   "fieldname": "required_min_temp",
+   "label": "Min (°C)",
+   "fieldtype": "Float"
+  },
+  {
+   "fieldname": "required_max_temp",
+   "label": "Max (°C)",
+   "fieldtype": "Float"
+  },
+  {
+   "fieldname": "temperature_logs",
+   "label": "Log nhiệt độ",
+   "fieldtype": "Table",
+   "options": "HM Temperature Log"
+  },
+  {
+   "fieldname": "temperature_breached",
+   "label": "Đã vượt ngưỡng",
+   "fieldtype": "Check",
+   "read_only": 1
+  },
+  {
+   "fieldtype": "Section Break",
+   "label": "Ký giao",
+   "fieldname": "sb_ký_giao"
+  },
+  {
+   "fieldname": "shipper_signature",
+   "label": "Chữ ký shipper",
+   "fieldtype": "Attach Image"
+  },
+  {
+   "fieldname": "lab_receiver",
+   "label": "Lab nhận",
+   "fieldtype": "Link",
+   "options": "User"
+  },
+  {
+   "fieldname": "lab_receiver_signature",
+   "label": "Chữ ký Lab",
+   "fieldtype": "Attach Image"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Logistics",
+ "name": "HM Sample Manifest",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "HM Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1,
+   "import": 1
+  },
+  {
+   "role": "HM Sales Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Sales",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM Lab Coordinator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "print": 1,
+   "export": 1,
+   "email": 1,
+   "report": 1,
+   "share": 1
+  },
+  {
+   "role": "HM BOD",
+   "read": 1,
+   "print": 1,
+   "export": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

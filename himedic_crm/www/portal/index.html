@@ -1,0 +1,32 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<div class="hm-portal-shell">
+  <header><h2>Hi-Medic — Cổng khách hàng</h2></header>
+  <main>
+    <div class="hm-card">
+      <h3>Đăng nhập bằng SĐT + OTP</h3>
+      <input id="hm-phone" type="tel" placeholder="SĐT (vd 0901xxxxxx)" style="padding:.5rem;border:1px solid #cbd5e1;border-radius:6px;width:240px;">
+      <button class="hm-btn" onclick="HM.requestOtp()">Gửi OTP</button>
+      <div id="hm-otp-block" style="display:none;margin-top:1rem;">
+        <input id="hm-otp" type="text" placeholder="OTP" style="padding:.5rem;border:1px solid #cbd5e1;border-radius:6px;width:160px;">
+        <button class="hm-btn" onclick="HM.verifyOtp()">Xác nhận</button>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+HM.requestOtp = async function() {
+  const phone = document.getElementById("hm-phone").value.trim();
+  if (!phone) return;
+  await HM.api("himedic_crm.api.portal.request_otp", { phone });
+  document.getElementById("hm-otp-block").style.display="block";
+  alert("Đã gửi OTP qua Zalo/SMS");
+};
+HM.verifyOtp = async function() {
+  const phone = document.getElementById("hm-phone").value.trim();
+  const code = document.getElementById("hm-otp").value.trim();
+  const r = await HM.api("himedic_crm.api.portal.verify_otp", { phone, code });
+  if (r && r.ok) location.href = "/portal/dashboard";
+};
+</script>
+{% endblock %}

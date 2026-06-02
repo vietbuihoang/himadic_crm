@@ -1,0 +1,62 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-06-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "item_type",
+  "test",
+  "package",
+  "price"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_type",
+   "label": "Loại",
+   "fieldtype": "Select",
+   "options": "Test\nPackage",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "test",
+   "label": "Test",
+   "fieldtype": "Link",
+   "options": "HM Lab Test"
+  },
+  {
+   "fieldname": "package",
+   "label": "Package",
+   "fieldtype": "Link",
+   "options": "HM Test Package"
+  },
+  {
+   "fieldname": "price",
+   "label": "Giá",
+   "fieldtype": "Currency",
+   "reqd": 1,
+   "in_list_view": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "is_tree": 0,
+ "is_virtual": 0,
+ "issingle": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-06-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Catalog",
+ "name": "HM Price List Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "search_fields": "",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": null,
+ "track_changes": 1
+}

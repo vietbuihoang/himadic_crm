@@ -1,0 +1,26 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<style>body{background:#F8FAFC;font-family:Inter,system-ui}.m-shell{max-width:480px;margin:0 auto;padding:1rem}.m-card{background:white;border-radius:14px;padding:1rem;margin:.75rem 0}</style>
+<div class="m-shell">
+  <a href="javascript:history.back()">← Quay lại</a>
+  <div class="m-card">
+    <h3>Khách ký xác nhận</h3>
+    <canvas id="sig" width="380" height="180" style="border:1px solid #cbd5e1;background:white"></canvas><br>
+    <button class="hm-btn-outline" onclick="HM.clear()">Xóa</button>
+    <button class="hm-btn" onclick="HM.finalize()">✅ Hoàn tất</button>
+  </div>
+</div>
+<script>
+const url = new URL(location.href); const name = url.searchParams.get("name");
+const c = document.getElementById("sig"); const ctx = c.getContext("2d"); let drawing=false;
+c.addEventListener("pointerdown", e=>{ drawing=true; ctx.beginPath(); ctx.moveTo(e.offsetX,e.offsetY); });
+c.addEventListener("pointermove", e=>{ if(!drawing) return; ctx.lineTo(e.offsetX,e.offsetY); ctx.stroke(); });
+c.addEventListener("pointerup",   ()=>{ drawing=false; });
+HM.clear = () => ctx.clearRect(0,0,c.width,c.height);
+HM.finalize = async () => {
+  const dataURL = c.toDataURL("image/png");
+  const r = await HM.api("himedic_crm.sample.flows.finalize_collection", { sample_order: name, signature: dataURL });
+  alert(r?.ok ? "✅ Đã lock đơn" : "❌");
+};
+</script>
+{% endblock %}
