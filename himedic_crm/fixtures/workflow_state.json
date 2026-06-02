@@ -1,106 +1,106 @@
 [
  {
   "doctype": "Workflow State",
-  "name": "HM Lead Mới",
-  "workflow_state_name": "HM Lead Mới",
+  "name": "Mới",
+  "workflow_state_name": "Mới",
   "style": "Blue",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Lead Đã liên hệ",
-  "workflow_state_name": "HM Lead Đã liên hệ",
+  "name": "Đã liên hệ",
+  "workflow_state_name": "Đã liên hệ",
   "style": "Yellow",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Lead Đủ ĐK",
-  "workflow_state_name": "HM Lead Đủ ĐK",
+  "name": "Đủ điều kiện",
+  "workflow_state_name": "Đủ điều kiện",
   "style": "Green",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Lead Chăm sóc",
-  "workflow_state_name": "HM Lead Chăm sóc",
+  "name": "Chăm sóc",
+  "workflow_state_name": "Chăm sóc",
   "style": "Light Blue",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Lead Đã chuyển đổi",
-  "workflow_state_name": "HM Lead Đã chuyển đổi",
+  "name": "Đã chuyển đổi",
+  "workflow_state_name": "Đã chuyển đổi",
   "style": "Dark Blue",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Lead Đã hủy",
-  "workflow_state_name": "HM Lead Đã hủy",
+  "name": "Đã hủy",
+  "workflow_state_name": "Đã hủy",
   "style": "Red",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Deal Thẩm định",
-  "workflow_state_name": "HM Deal Thẩm định",
+  "name": "Thẩm định",
+  "workflow_state_name": "Thẩm định",
   "style": "Blue",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Deal Báo giá",
-  "workflow_state_name": "HM Deal Báo giá",
+  "name": "Báo giá",
+  "workflow_state_name": "Báo giá",
   "style": "Yellow",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Deal Đàm phán",
-  "workflow_state_name": "HM Deal Đàm phán",
+  "name": "Đàm phán",
+  "workflow_state_name": "Đàm phán",
   "style": "Orange",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Deal Đã chốt",
-  "workflow_state_name": "HM Deal Đã chốt",
+  "name": "Đã chốt",
+  "workflow_state_name": "Đã chốt",
   "style": "Green",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Deal Thất bại",
-  "workflow_state_name": "HM Deal Thất bại",
+  "name": "Thất bại",
+  "workflow_state_name": "Thất bại",
   "style": "Red",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Quote Nháp",
-  "workflow_state_name": "HM Quote Nháp",
+  "name": "Nháp",
+  "workflow_state_name": "Nháp",
   "style": "Gray",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Quote Chờ duyệt",
-  "workflow_state_name": "HM Quote Chờ duyệt",
+  "name": "Đang chờ",
+  "workflow_state_name": "Đang chờ",
   "style": "Yellow",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Quote Đã duyệt",
-  "workflow_state_name": "HM Quote Đã duyệt",
+  "name": "Đã duyệt",
+  "workflow_state_name": "Đã duyệt",
   "style": "Green",
   "icon": "refresh"
  },
  {
   "doctype": "Workflow State",
-  "name": "HM Quote Từ chối",
-  "workflow_state_name": "HM Quote Từ chối",
+  "name": "Từ chối",
+  "workflow_state_name": "Từ chối",
   "style": "Red",
   "icon": "refresh"
  }

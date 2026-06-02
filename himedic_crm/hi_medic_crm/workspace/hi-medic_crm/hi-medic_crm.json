@@ -1,0 +1,242 @@
+{
+ "category": "Modules",
+ "content": "[{\"id\": \"hmHdrSc\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Truy cập nhanh</b></span>\", \"col\": 12}}, {\"id\": \"hmSc0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Lead\", \"col\": 3}}, {\"id\": \"hmSc1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Deal\", \"col\": 3}}, {\"id\": \"hmSc2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Sample Order\", \"col\": 3}}, {\"id\": \"hmSc3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Manifest\", \"col\": 3}}, {\"id\": \"hmSc4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Contact\", \"col\": 3}}, {\"id\": \"hmSc5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Lab Test\", \"col\": 3}}, {\"id\": \"hmSc6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Campaign\", \"col\": 3}}, {\"id\": \"hmHdrCard\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Nghiệp vụ</b></span>\", \"col\": 12}}, {\"id\": \"hmCard0\", \"type\": \"card\", \"data\": {\"card_name\": \"Khách hàng & Cơ hội\", \"col\": 4}}, {\"id\": \"hmCard1\", \"type\": \"card\", \"data\": {\"card_name\": \"Vận hành lấy mẫu\", \"col\": 4}}, {\"id\": \"hmCard2\", \"type\": \"card\", \"data\": {\"card_name\": \"Danh mục\", \"col\": 4}}, {\"id\": \"hmCard3\", \"type\": \"card\", \"data\": {\"card_name\": \"Marketing\", \"col\": 4}}, {\"id\": \"hmCard4\", \"type\": \"card\", \"data\": {\"card_name\": \"Quản trị\", \"col\": 4}}]",
+ "doctype": "Workspace",
+ "icon": "users",
+ "is_hidden": 0,
+ "label": "Hi-Medic CRM",
+ "links": [
+  {
+   "label": "Khách hàng & Cơ hội",
+   "type": "Card Break"
+  },
+  {
+   "label": "Lead",
+   "link_to": "HM Lead",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Cơ hội",
+   "link_to": "HM Deal",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Báo giá",
+   "link_to": "HM Quotation",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Contact",
+   "link_to": "HM Contact",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Organization",
+   "link_to": "HM Organization",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "HĐ B2B",
+   "link_to": "HM B2B Contract",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Vận hành lấy mẫu",
+   "type": "Card Break"
+  },
+  {
+   "label": "Sample Order",
+   "link_to": "HM Sample Order",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Field Visit",
+   "link_to": "HM Field Visit",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Manifest",
+   "link_to": "HM Sample Manifest",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Kết quả XN",
+   "link_to": "HM Test Result",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Danh mục",
+   "type": "Card Break"
+  },
+  {
+   "label": "Lab Test",
+   "link_to": "HM Lab Test",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Test Package",
+   "link_to": "HM Test Package",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Sample Type",
+   "link_to": "HM Sample Type",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Price List",
+   "link_to": "HM Price List",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Marketing",
+   "type": "Card Break"
+  },
+  {
+   "label": "Campaign",
+   "link_to": "HM Campaign",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "ROI Snapshot",
+   "link_to": "HM ROI Snapshot",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Webhook Log",
+   "link_to": "HM Marketing Webhook Log",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Quản trị",
+   "type": "Card Break"
+  },
+  {
+   "label": "CRM Settings",
+   "link_to": "HM CRM Settings",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Region",
+   "link_to": "HM CRM Region",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Team",
+   "link_to": "HM Team",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Audit Log",
+   "link_to": "HM Audit Log",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Lead Source",
+   "link_to": "HM Lead Source",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Lead Stage",
+   "link_to": "HM Lead Stage",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Deal Stage",
+   "link_to": "HM Deal Stage",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Lead Assignment Rule",
+   "link_to": "HM Lead Assignment Rule",
+   "link_type": "DocType",
+   "type": "Link"
+  },
+  {
+   "label": "Lead Scoring Rule",
+   "link_to": "HM Lead Scoring Rule",
+   "link_type": "DocType",
+   "type": "Link"
+  }
+ ],
+ "module": "Hi-Medic CRM",
+ "name": "Hi-Medic CRM",
+ "public": 1,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "icon": "contact",
+   "label": "Lead",
+   "link_to": "HM Lead",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "icon": "share",
+   "label": "Deal",
+   "link_to": "HM Deal",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "icon": "check",
+   "label": "Sample Order",
+   "link_to": "HM Sample Order",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "icon": "box",
+   "label": "Manifest",
+   "link_to": "HM Sample Manifest",
+   "type": "DocType"
+  },
+  {
+   "color": "Yellow",
+   "icon": "users",
+   "label": "Contact",
+   "link_to": "HM Contact",
+   "type": "DocType"
+  },
+  {
+   "color": "Pink",
+   "icon": "file",
+   "label": "Lab Test",
+   "link_to": "HM Lab Test",
+   "type": "DocType"
+  },
+  {
+   "color": "Red",
+   "icon": "globe",
+   "label": "Campaign",
+   "link_to": "HM Campaign",
+   "type": "DocType"
+  }
+ ],
+ "title": "Hi-Medic CRM",
+ "type": "Workspace"
+}

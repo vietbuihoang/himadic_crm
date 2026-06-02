@@ -55,7 +55,7 @@ doc_events = {
         "on_submit":    "himedic_crm.logistics.events.on_submit_manifest",
     },
     "HM Contact": {
-        "validate":     "himedic_crm.contact.events.validate_contact",
+        "validate":     "himedic_crm.contact_and_org.events.validate_contact",
     },
     "HM Quotation": {
         "validate":     "himedic_crm.deal.events.validate_quotation",
@@ -77,7 +77,7 @@ scheduler_events = {
     },
     "daily": [
         "himedic_crm.marketing.scheduled.compute_daily_roi",
-        "himedic_crm.report.scheduled.snapshot_kpi",
+        "himedic_crm.report_and_dashboard.scheduled.snapshot_kpi",
     ],
     "weekly": [
         "himedic_crm.communication.scheduled.send_nps_surveys",
