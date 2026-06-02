@@ -29,12 +29,12 @@ def after_insert_lead(doc, method=None):
             f"SĐT: {doc.phone} · Nguồn: {doc.source or ''} · Score: {doc.score}",
             ref_dt="HM Lead", ref_name=doc.name,
         )
-    log_activity(doc, "Tạo lead", f"Lead {doc.name} được tạo từ {doc.source or 'thủ công'}")
+    log_activity(doc, "Ghi chú", f"Lead {doc.name} được tạo từ {doc.source or 'thủ công'}")
 
 
 def on_update_lead(doc, method=None):
     if doc.has_value_changed("status"):
-        log_activity(doc, "Thay đổi stage", f"{doc.get_db_value('status')} → {doc.status}")
+        log_activity(doc, "Thay đổi", f"{doc.get_db_value('status')} → {doc.status}")
         if doc.status == "Đã liên hệ" and not doc.first_response_at:
             doc.db_set("first_response_at", now_datetime(), update_modified=False)
 
