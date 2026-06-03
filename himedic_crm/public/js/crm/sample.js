@@ -46,11 +46,15 @@ window.__sampleUI = {
         toast(`Đã hủy ${name}`); refresh();
       }});
   },
-  createManifest(){
+  async createManifest(){
     const names = Object.values(rowsByName).filter(r=>r.status==='Đã lấy mẫu').map(r=>r.name);
     if(!names.length){ toast('Không có đơn Đã lấy mẫu để gom','err'); return; }
+    // shipper is a Link to User on the backend — pick a user, not free text
+    let users = [];
+    try { const u = await api('admin','users'); users = (u.rows||[]).map(r=>r.name); }
+    catch(e){ toast(e.message||String(e), 'err'); return; }
     openModal({ title:`Gom mẫu → Tạo manifest (${names.length} đơn)`, submitLabel:'Tạo manifest',
-      bodyHtml: field('Shipper','shipper') + field('Số seal','seal_no',{required:true}) + field('Lab nhận','to_lab'),
+      bodyHtml: selectField('Shipper','shipper', [''].concat(users)) + field('Số seal','seal_no',{required:true}) + field('Lab nhận','to_lab'),
       onSubmit: async (v)=>{
         const r = await apiPost(`${LF}.create_manifest`, {
           sample_orders: JSON.stringify(names), shipper: v.shipper, seal_no: v.seal_no, to_lab: v.to_lab });
