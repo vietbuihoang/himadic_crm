@@ -30,7 +30,10 @@ export const MODULES = [
 ];
 
 export async function api(module, method, params={}){
-  const qs = new URLSearchParams(params).toString();
+  // drop null/undefined so they don't serialize as the strings "null"/"undefined"
+  // (e.g. a detail screen opened directly before a record is selected)
+  const clean = {}; for(const k in params){ if(params[k]!=null) clean[k]=params[k]; }
+  const qs = new URLSearchParams(clean).toString();
   const url = `/api/method/himedic_crm.api.desk.${module}.${method}` + (qs?`?${qs}`:'');
   const res = await fetch(url, { headers:{ 'Accept':'application/json', 'X-Frappe-CSRF-Token': window.csrf_token||'' }, credentials:'same-origin' });
   if(!res.ok) throw new Error('HTTP '+res.status);

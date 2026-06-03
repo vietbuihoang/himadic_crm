@@ -16,5 +16,7 @@ def users(limit=100):
 
 @frappe.whitelist()
 def workflow(limit=100):
-    rows = frappe.get_list("HM Workflow Definition", fields=["name"], limit_page_length=int(limit))
-    return {"rows": [frappe.get_doc("HM Workflow Definition", r["name"]).as_dict() for r in rows]}
+    # Read-only admin display. get_all avoids per-doc permission checks that 403'd
+    # for users without explicit HM Workflow Definition read perms (e.g. System Manager).
+    rows = frappe.get_all("HM Workflow Definition", fields=["*"], limit_page_length=int(limit))
+    return {"rows": rows}
