@@ -1,5 +1,6 @@
-import { api } from './app.js';
+import { api, apiPost, refresh } from './app.js';
 import { tag, avatar, initials, dfmt, screenHeader, emptyState, errorCard, disabledBtn, demoMark } from './lib.js';
+import { toast, openModal, textareaField, field } from './ui.js';
 
 const kindMeta = k => k === 'call'
   ? { label: 'Call', color: 'emerald', icon: '📞' }
@@ -13,12 +14,66 @@ const feedPreview = f => f.kind === 'call'
   ? `Cuộc gọi ${f.direction || ''}`.trim()
   : 'Tin nhắn Zalo OA';
 
+const CF = 'himedic_crm.communication.flows';
+async function run(fn){ try { await fn(); } catch(e){ toast(e.message||String(e), 'err'); } }
+
+async function contactSelect(name='contact'){
+  const { rows } = await api('contact','list');
+  return `<label class="block"><span class="text-slate-600">Khách hàng</span>
+    <select name="${name}" class="mt-1 w-full px-3 py-2 border border-slate-300 rounded-lg bg-white outline-none focus:border-brand-500">
+      ${(rows||[]).map(r=>`<option value="${r.name}">${r.full_name} · ${r.phone||''}</option>`).join('')}
+    </select></label>`;
+}
+
+window.__commUI = {
+  async zalo(){
+    const sel = await contactSelect();
+    openModal({ title:'Gửi tin nhắn Zalo', submitLabel:'Gửi',
+      bodyHtml: sel + textareaField('Nội dung','body','Xin chào, Hi-Medic …'),
+      onSubmit: async (v)=>{
+        const r = await apiPost(`${CF}.send_zalo`, { contact:v.contact, body:v.body,
+          reference_doctype:'HM Contact', reference_name:v.contact });
+        toast(`Đã gửi Zalo (${r.status})`); refresh(); }});
+  },
+  async email(){
+    const sel = await contactSelect();
+    const tpls = await apiPost(`${CF}.email_templates`, {});
+    const tplOpts = `<label class="block"><span class="text-slate-600">Mẫu email</span>
+      <select name="template" class="mt-1 w-full px-3 py-2 border border-slate-300 rounded-lg bg-white">
+        <option value="">— Không dùng mẫu —</option>
+        ${(tpls||[]).map(t=>`<option value="${t.name}">${t.template_name}</option>`).join('')}
+      </select></label>`;
+    openModal({ title:'Gửi Email', submitLabel:'Gửi',
+      bodyHtml: sel + tplOpts + field('Tiêu đề','subject') + textareaField('Nội dung','body'),
+      onSubmit: async (v)=>{
+        const r = await apiPost(`${CF}.send_email`, { contact:v.contact, template:v.template||null,
+          subject:v.subject||null, body:v.body||null, reference_doctype:'HM Contact', reference_name:v.contact });
+        toast(r.sent ? `Đã gửi email tới ${r.to}` : `Đã ghi nhận (SMTP chưa cấu hình) · ${r.to}`); refresh(); }});
+  },
+  async call(){
+    const sel = await contactSelect();
+    openModal({ title:'Ghi nhận cuộc gọi', submitLabel:'Lưu',
+      bodyHtml: sel + field('Kết quả','call_outcome',{placeholder:'VD: Đã kết nối, hẹn gọi lại'})
+        + field('Thời lượng (giây)','duration_sec',{type:'number',value:'0'}),
+      onSubmit: async (v)=>{
+        await apiPost(`${CF}.log_call`, { contact:v.contact, call_outcome:v.call_outcome,
+          duration_sec:v.duration_sec||0, reference_doctype:'HM Contact', reference_name:v.contact });
+        toast('Đã ghi nhận cuộc gọi'); refresh(); }});
+  },
+};
+
+const composeBar = `<div class="flex items-center gap-2">
+  <button onclick="window.__commUI.zalo()" class="px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg">💬 Zalo</button>
+  <button onclick="window.__commUI.email()" class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">✉ Email</button>
+  <button onclick="window.__commUI.call()" class="px-3 py-1.5 text-sm bg-emerald-600 text-white rounded-lg">📞 Cuộc gọi</button>
+</div>`;
+
 export const inbox = async () => {
   let data;
   try { data = await api('comm', 'inbox'); } catch(e){ return errorCard(e); }
   const feed = data.feed || [];
-  const head = screenHeader('Hộp thư hợp nhất', 'Email + Zalo + Cuộc gọi · Hợp nhất theo khách hàng');
-  if(!feed.length) return head + emptyState('Chưa có cuộc trao đổi nào');
+  const head = screenHeader('Hộp thư hợp nhất', 'Email + Zalo + Cuộc gọi · Hợp nhất theo khách hàng', composeBar);
+  if(!feed.length) return head + emptyState('Chưa có cuộc trao đổi nào — dùng nút soạn ở trên để bắt đầu');
   return head + `
     <div class="p-6 grid grid-cols-12 gap-4">
       <div class="col-span-4 bg-white rounded-xl border border-slate-200 overflow-hidden">
