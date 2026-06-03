@@ -39,6 +39,31 @@ export async function api(module, method, params={}){
 }
 window.__api = api;
 
+// POST to any whitelisted dotted method path (write operations).
+export async function apiPost(method, args={}){
+  const res = await fetch(`/api/method/${method}`, {
+    method:'POST', credentials:'same-origin',
+    headers:{ 'Accept':'application/json', 'Content-Type':'application/json', 'X-Frappe-CSRF-Token': window.csrf_token||'' },
+    body: JSON.stringify(args),
+  });
+  let data = {};
+  try { data = await res.json(); } catch(e){ /* non-JSON */ }
+  if(!res.ok){
+    let msg = data.exception || '';
+    try {
+      const sm = JSON.parse(data._server_messages || '[]');
+      if(sm.length) msg = JSON.parse(sm[0]).message || msg;
+    } catch(e){ /* ignore */ }
+    throw new Error(msg || ('HTTP '+res.status));
+  }
+  return data.message;
+}
+window.__apiPost = apiPost;
+
+// Re-render the currently routed screen (after a mutating action).
+export function refresh(){ const [m,s]=fromHash(); select(m,s); }
+window.hmRefresh = refresh;
+
 function buildSidebar(){
   const nav = document.getElementById('navList');
   nav.innerHTML = '';
