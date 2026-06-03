@@ -1,5 +1,26 @@
-import { api } from './app.js';
+import { api, apiPost, refresh } from './app.js';
 import { tag, dfmt, screenHeader, emptyState, errorCard, disabledBtn, demoMark } from './lib.js';
+import { toast, openModal, textareaField } from './ui.js';
+
+const LF = 'himedic_crm.logistics.flows';
+async function run(fn){ try { await fn(); } catch(e){ toast(e.message||String(e), 'err'); } }
+
+window.__logiUI = {
+  depart(manifest){ run(async ()=>{
+    const r = await apiPost(`${LF}.depart`, { manifest });
+    toast(`Đã khởi hành · ${r.status||''}`); refresh(); }); },
+  labReceive(manifest){ run(async ()=>{
+    const r = await apiPost(`${LF}.lab_receive`, { manifest });
+    toast(`Lab đã nhận ${r.received||0} ống · ${r.orders||0} đơn`); refresh(); }); },
+  reject(manifest, sample_order){
+    openModal({ title:`Từ chối mẫu · ${sample_order}`, submitLabel:'Từ chối',
+      bodyHtml: textareaField('Lý do từ chối','reason','VD: vỡ ống, thiếu thể tích, tan máu'),
+      onSubmit: async (v)=>{
+        if(!v.reason) throw new Error('Phải nhập lý do từ chối');
+        const r = await apiPost(`${LF}.reject_item`, { manifest, sample_order, reason: v.reason });
+        toast(`Đã tạo đơn lấy lại ${r.recollection||''}`); refresh(); }});
+  },
+};
 
 const M_STATUS_COLOR = {'Đang đóng gói':'amber','Đã giao shipper':'sky','Đang vận chuyển':'blue','Đã đến Lab':'violet','Đã đối soát':'emerald','Đã đóng':'slate'};
 // Chain-of-custody order, left → right; timeline steps derive from row.status position here.
@@ -16,10 +37,15 @@ export const manifest = async () => {
   let data;
   try { data = await api('logistics', 'manifest', { limit: 1 }); } catch(e){ return errorCard(e); }
   const rows = data.rows || [];
+  const m0 = rows[0];
+  const canDepart = m0 && ['Đang đóng gói','Đã giao shipper'].includes(m0.status);
+  const canReceive = m0 && ['Đang vận chuyển','Đã đến Lab'].includes(m0.status);
+  const actions = `${disabledBtn('In manifest','px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg')}
+     ${canDepart?`<button onclick="window.__logiUI.depart('${m0.name}')" class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">Khởi hành</button>`:''}
+     ${canReceive?`<button onclick="window.__logiUI.labReceive('${m0.name}')" class="px-3 py-1.5 text-sm bg-emerald-600 text-white rounded-lg">Lab nhận</button>`:''}`;
   const head = screenHeader('Vận chuyển mẫu · Phiếu giao & Theo dõi',
     `Theo dõi lô vận chuyển realtime · Chuỗi hành trình mẫu (chain of custody) · Lạnh 2-8°C ${demoMark}`,
-    `${disabledBtn('In manifest','px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg')}
-     ${disabledBtn('Bàn giao Lab','px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg')}`);
+    actions);
   if(!rows.length) return head + emptyState('Chưa có lô vận chuyển');
   const m = rows[0];
   const curIdx = Math.max(0, TRACK_ORDER.indexOf(m.status));
@@ -87,26 +113,18 @@ export const manifest = async () => {
     </div>`;
 };
 
-// Demo per-tube rows — no child data backs this in the API (Recipe rule 6).
-const TUBE_ROWS = [
-  ['1','HM-08712-EDTA-01','Chị Hương Trần (PID-008712)','EDTA tím','CBC, HbA1c','OK','emerald'],
-  ['2','HM-08712-SER-01','Chị Hương Trần','Serum vàng','Sinh hóa 14, TSH','OK','emerald'],
-  ['3','HM-08712-CIT-01','Chị Hương Trần','Citrate xanh','PT, APTT','OK','emerald'],
-  ['4','HM-07884-EDTA-01','Anh Phạm Q.Hùng','EDTA tím','CBC','Vỡ ống','rose'],
-  ['5','HM-07884-SER-01','Anh Phạm Q.Hùng','Serum vàng','Sinh hóa','OK','emerald'],
-];
-
 export const reception = async () => {
-  let data;
+  let data, det;
   try { data = await api('logistics', 'reception'); } catch(e){ return errorCard(e); }
   const rows = data.rows || [];
   const head = screenHeader('Tiếp nhận tại Lab · Nhận mẫu',
     `${rows.length} lô đang chờ tại Lab · Quét barcode để nhập LIS ${demoMark}`,
-    `${disabledBtn('Từ chối lô','px-3 py-1.5 text-sm bg-rose-50 text-rose-700 rounded-lg')}
-     ${disabledBtn('Xác nhận nhận','px-3 py-1.5 text-sm bg-emerald-600 text-white rounded-lg')}`);
+    disabledBtn('In phiếu','px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg'));
   if(!rows.length) return head + emptyState('Chưa có lô chờ tiếp nhận');
   const m = rows[0];
   const next = rows.slice(1);
+  try { det = await api('logistics', 'detail', { name: m.name }); } catch(e){ return head + errorCard(e); }
+  const items = (det && det.items) || [];
   return head + `
     <div class="p-6 grid grid-cols-3 gap-6">
       <div class="col-span-2">
@@ -116,28 +134,30 @@ export const reception = async () => {
               <div class="font-semibold">Lô ${m.name||'—'} · ${tag(m.status||'—', M_STATUS_COLOR[m.status]||'slate')}</div>
               <div class="text-xs text-slate-500">Shipper: ${m.shipper||'—'} · Đến lúc ${dfmt(m.arrived_at)} · ${m.total_items??'—'} ống · ${m.rejected_items??0} lỗi</div>
             </div>
+            <button onclick="window.__logiUI.labReceive('${m.name}')" class="px-3 py-1.5 text-sm bg-emerald-600 text-white rounded-lg">Xác nhận nhận đủ</button>
             <input type="text" placeholder="Scan barcode ống mẫu..." disabled title="Chỉ đọc trong bản này"
-              class="px-3 py-2 text-sm bg-slate-100 border border-transparent rounded-lg outline-none w-72 opacity-60 cursor-not-allowed">
+              class="px-3 py-2 text-sm bg-slate-100 border border-transparent rounded-lg outline-none w-56 opacity-60 cursor-not-allowed">
           </div>
           <table class="w-full text-sm">
             <thead class="bg-slate-50 text-xs text-slate-500 uppercase"><tr>
-              <th class="text-left p-3 w-10">#</th><th class="text-left p-3">Barcode</th><th class="text-left p-3">Khách hàng</th><th class="text-left p-3">Loại ống</th><th class="text-left p-3">Test</th><th class="text-left p-3">Tình trạng</th>
+              <th class="text-left p-3 w-10">#</th><th class="text-left p-3">Barcode</th><th class="text-left p-3">Đơn lấy mẫu</th><th class="text-left p-3">Tình trạng</th><th class="text-right p-3">Thao tác</th>
             </tr></thead>
             <tbody class="divide-y divide-slate-100">
-              ${TUBE_ROWS.map(r=>`
+              ${items.length ? items.map((it,i)=>{
+                const rejected = !!it.reject_reason;
+                const received = !rejected && it.received_at_lab;
+                const st = rejected ? tag('Từ chối','rose') : received ? tag('Đã nhận','emerald') : tag('Chờ nhận','slate');
+                return `
                 <tr>
-                  <td class="p-3 text-slate-500">${r[0]}</td>
-                  <td class="p-3"><code class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">${r[1]}</code></td>
-                  <td class="p-3">${r[2]}</td>
-                  <td class="p-3">${r[3]}</td>
-                  <td class="p-3 text-slate-600">${r[4]}</td>
-                  <td class="p-3">${tag(r[5],r[6])}</td>
-                </tr>`).join('')}
+                  <td class="p-3 text-slate-500">${i+1}</td>
+                  <td class="p-3"><code class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">${it.tube_barcode||'—'}</code></td>
+                  <td class="p-3">${it.sample_order||'—'}</td>
+                  <td class="p-3">${st}${rejected?`<div class="text-xs text-rose-500 mt-0.5">${it.reject_reason}</div>`:''}</td>
+                  <td class="p-3 text-right">${rejected?'':`<button onclick="window.__logiUI.reject('${m.name}','${it.sample_order}')" class="px-2.5 py-1 text-xs bg-rose-50 text-rose-700 border border-rose-200 rounded-lg">Từ chối</button>`}</td>
+                </tr>`;
+              }).join('') : `<tr><td colspan="5" class="p-6 text-center text-slate-400 text-xs">Lô chưa có ống mẫu</td></tr>`}
             </tbody>
           </table>
-          <div class="p-3 border-t border-slate-100 bg-rose-50 text-xs text-rose-700 flex items-center gap-2">
-            ⚠ Có 1 ống vỡ – đã tự sinh yêu cầu lấy lại SO-RR-26052901 cho Sales Nguyễn Lan. ${demoMark}
-          </div>
         </div>
       </div>
       <div class="space-y-4">
@@ -154,6 +174,7 @@ export const reception = async () => {
                 <span class="font-mono">${n.name}</span>
                 <span class="ml-auto text-slate-500">${dfmt(n.manifest_date)}</span>
                 <div class="w-full text-slate-500">${n.shipper||'—'} · ${n.total_items??'—'} ống · ${tag(n.status||'—', M_STATUS_COLOR[n.status]||'slate')}</div>
+                <button onclick="window.__logiUI.labReceive('${n.name}')" class="w-full mt-1 px-2.5 py-1 text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg">Xác nhận nhận đủ</button>
               </div>`).join('') : `<div class="text-xs text-slate-400">Không còn lô nào trong hàng chờ</div>`}
           </div>
         </div>
