@@ -70,6 +70,58 @@ def report_incident(sample_order, reason, photo=None):
     return {"ok": True, "recollection": create_recollection(so, reason)}  # BR-S-008
 
 
+# ---- Mobile field-collection ops ----
+
+@frappe.whitelist()
+def verify_identity(sample_order, national_id, match_score=None):
+    """BR-S-003: match CCCD against the record before collecting."""
+    if not national_id:
+        frappe.throw("Phải nhập/quét CCCD trước khi lấy mẫu (BR-S-003)")
+    so = frappe.get_doc("HM Sample Order", sample_order)
+    so.national_id_scanned = 1
+    if match_score is not None:
+        so.ocr_match_score = float(match_score)
+    if so.contact and not frappe.db.get_value("HM Contact", so.contact, "national_id"):
+        frappe.db.set_value("HM Contact", so.contact, "national_id", national_id)
+    so.save(ignore_permissions=True)
+    return {"ok": True, "match_score": so.ocr_match_score}
+
+
+@frappe.whitelist()
+def add_tube(sample_order, barcode, sample_type=None):
+    """BR-S-005: each tube needs a unique barcode."""
+    if not barcode:
+        frappe.throw("Thiếu mã barcode ống mẫu")
+    if frappe.db.exists("HM Sample Tube", {"barcode": barcode}):
+        frappe.throw(f"Barcode {barcode} đã tồn tại (BR-S-005)")
+    so = frappe.get_doc("HM Sample Order", sample_order)
+    if not so.national_id_scanned:
+        frappe.throw("Phải đối chiếu CCCD trước khi lấy mẫu (BR-S-003)")
+    if not sample_type:
+        sample_type = frappe.db.get_value("HM Sample Type", {}, "name")  # tube sample_type is mandatory
+    so.append("tubes", {"barcode": barcode, "sample_type": sample_type,
+                        "collected": 1, "collected_at": now_datetime(), "status": "Đã lấy"})
+    so.collected_tubes = len([t for t in so.tubes if t.collected])
+    if so.status in ("Đã phân công", "Đã xác nhận", "Đang lấy mẫu"):
+        so.status = "Đang lấy mẫu"
+    so.save(ignore_permissions=True)
+    return {"ok": True, "tubes": so.collected_tubes}
+
+
+@frappe.whitelist()
+def save_checklist(sample_order, answers):
+    """Store pre-collection checklist answers (BR-S — screening)."""
+    import json as _json
+    rows = _json.loads(answers) if isinstance(answers, str) else (answers or [])
+    so = frappe.get_doc("HM Sample Order", sample_order)
+    so.set("pre_collection_checklist", [])
+    for r in rows:
+        so.append("pre_collection_checklist", {"question": r.get("question"),
+                  "answer": r.get("answer"), "note": r.get("note")})
+    so.save(ignore_permissions=True)
+    return {"ok": True, "count": len(rows)}
+
+
 # ---- Desktop coordination ops ----
 
 @frappe.whitelist()
