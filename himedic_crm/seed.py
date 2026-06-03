@@ -165,6 +165,14 @@ def demo(clear=False):
             "assigned_to": OWNER,
             "due_date": frappe.utils.add_days(frappe.utils.nowdate(), 2)}).insert(ignore_permissions=True)
 
+    # Customer-portal results (released) for the first two demo contacts
+    for cname in [c[0] for c in CONTACT_NAMES[:2]]:
+        contact = frappe.db.get_value("HM Contact", {"full_name": cname}, "name")
+        if contact and not frappe.db.exists("HM Test Result", {"contact": contact}):
+            frappe.get_doc({"doctype": "HM Test Result", "contact": contact,
+                "result_date": frappe.utils.nowdate(), "file_pdf": "/files/demo-ket-qua.pdf",
+                "released_to_portal": 1, "released_at": frappe.utils.now_datetime()}).insert(ignore_permissions=True)
+
     frappe.db.commit()
     counts = {dt: frappe.db.count(dt) for dt in
               ["HM Lead", "HM Deal", "HM Contact", "HM Organization", "HM Sample Order",
