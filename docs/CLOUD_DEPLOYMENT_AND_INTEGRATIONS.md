@@ -176,8 +176,9 @@ Code: `himedic_crm/api/zalo.py::send_template()` POST `https://openapi.zalo.me/v
 1. Tạo **Zalo Official Account** (oa.zalo.me) → xác thực doanh nghiệp.
 2. Vào **Zalo for Developers** (developers.zalo.me) → tạo App → liên kết OA → bật **ZNS**.
 3. **Đăng ký template ZNS** (mỗi loại tin: OTP, nhắc lịch, trả kết quả) → được **template_id**. Map các `template_code` đang dùng trong code: `OTP_PORTAL`, `RESULT_READY`, `APPOINTMENT_REMINDER` → điền template_id thật (đặt ở `HM CRM Settings` hoặc bảng map).
-4. Lấy **OA Access Token** (OAuth) → `HM CRM Settings.zalo_oa_token`, `zalo_oa_id` = OA ID.
-   > ⚠️ Access token Zalo **hết hạn** (cần refresh token định kỳ). Khuyến nghị: lưu `refresh_token` và thêm cron làm mới token (chưa có sẵn — xem "Việc nên bổ sung" §18).
+4. Lấy **OA Access Token** + **Refresh Token** (OAuth) và điền vào `HM CRM Settings`:
+   `zalo_oa_id` (OA ID), `zalo_oa_token` (access token), **`zalo_app_id`**, **`zalo_app_secret`**, **`zalo_refresh_token`**.
+   > ✅ **Đã có sẵn tự động làm mới token**: hàm `himedic_crm.api.zalo.refresh_oa_token` chạy **cron mỗi 12 giờ** (đã khai báo trong `hooks.py`) — đọc `app_id/app_secret/refresh_token`, gọi `oauth.zaloapp.com/v4/oa/access_token`, lưu access_token mới + **xoay vòng refresh_token** (single-use). Có thể chạy tay: `bench --site … execute himedic_crm.api.zalo.refresh_oa_token` hoặc từ `/app` (whitelisted). Chỉ cần điền `zalo_app_id/secret/refresh_token` lần đầu.
 5. Webhook chiều vào (khách nhắn lại) → §13.
 6. Test: gửi nhắc lịch từ CRM → kiểm tra `/app/hm-zalo-message`.
 
@@ -292,11 +293,11 @@ Vai trò: `HM Sales`, `HM Sales Manager`, `HM Marketing`, `HM Lab Coordinator`, 
 
 | Hạng mục | Vì sao | Mức |
 |---|---|---|
-| **Refresh token Zalo OA** | access_token Zalo hết hạn ~ngày → thêm cron làm mới bằng refresh_token | Cao |
+| ✅ ~~Refresh token Zalo OA~~ | **ĐÃ LÀM**: `api.zalo.refresh_oa_token` + cron 12h (§8) | — |
+| ✅ ~~Rate-limit OTP portal~~ | **ĐÃ LÀM**: cooldown 60s + 5 lần/giờ/SĐT + 20/giờ/IP + khóa sau 5 lần nhập sai (`api/portal.py`) | — |
 | Nút **SMS** trên màn Giao tiếp | endpoint `communication.flows.send_sms` đã có, cần thêm nút UI (song song Zalo/Email) | Trung |
 | **Safelist Tailwind** + `bench build` | nếu cần CSP/offline | Trung |
 | **PWA service worker** cho `/m` | lấy mẫu offline-first thật (hiện online); đã có `submit_offline_batch` ở backend | Trung |
-| **Rate-limit OTP** portal | chống spam `request_otp` | Cao |
 | **Map template_code → template_id ZNS** | tránh hard-code | Trung |
 | Đồng bộ ERP (Kế toán/Kho) | xuất hóa đơn từ Deal Won | Theo lộ trình |
 

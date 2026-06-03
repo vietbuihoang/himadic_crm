@@ -23,11 +23,15 @@
   "lis_api_key",
   "zalo_oa_token",
   "zalo_oa_id",
+  "zalo_app_id",
+  "zalo_app_secret",
+  "zalo_refresh_token",
   "voip_webhook",
   "voip_api_token",
   "maps_api_key",
   "sms_endpoint",
   "sms_api_key",
+  "sms_brandname",
   "ca_signature_endpoint",
   "ca_signature_token"
  ],
@@ -157,6 +161,26 @@
    "fieldname": "ca_signature_token",
    "label": "CA Token",
    "fieldtype": "Password"
+  },
+  {
+   "fieldname": "zalo_app_id",
+   "label": "Zalo App ID",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "zalo_app_secret",
+   "label": "Zalo App Secret",
+   "fieldtype": "Password"
+  },
+  {
+   "fieldname": "zalo_refresh_token",
+   "label": "Zalo Refresh Token",
+   "fieldtype": "Password"
+  },
+  {
+   "fieldname": "sms_brandname",
+   "label": "SMS Brandname",
+   "fieldtype": "Data"
   }
  ],
  "index_web_pages_for_search": 1,
