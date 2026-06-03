@@ -38,12 +38,10 @@ def finalize_collection(sample_order, signature=None):
     return {"ok": True}
 
 
-@frappe.whitelist()
-def report_incident(sample_order, reason, photo=None):
-    so = frappe.get_doc("HM Sample Order", sample_order)
-    so.incident = reason
-    so.save(ignore_permissions=True)
-    # BR-S-008 — auto-create re-collection SO
+def create_recollection(so, reason=None):
+    """Auto-create a Re-collection Sample Order from a failed one (BR-S-008 / BR-L-108)."""
+    if isinstance(so, str):
+        so = frappe.get_doc("HM Sample Order", so)
     rc = frappe.get_doc({
         "doctype": "HM Sample Order",
         "deal": so.deal,
@@ -57,6 +55,50 @@ def report_incident(sample_order, reason, photo=None):
         "address": so.address,
         "region": so.region,
         "status": "Đã phân công",
-        "items": [{"item_type": i.item_type, "test": i.test, "package": i.package, "item_name": i.item_name, "qty": i.qty, "price": i.price} for i in so.items or []],
+        "incident": reason,
+        "items": [{"item_type": i.item_type, "test": i.test, "package": i.package,
+                   "item_name": i.item_name, "qty": i.qty, "price": i.price} for i in so.items or []],
     }).insert(ignore_permissions=True)
-    return {"ok": True, "recollection": rc.name}
+    return rc.name
+
+
+@frappe.whitelist()
+def report_incident(sample_order, reason, photo=None):
+    so = frappe.get_doc("HM Sample Order", sample_order)
+    so.incident = reason
+    so.save(ignore_permissions=True)
+    return {"ok": True, "recollection": create_recollection(so, reason)}  # BR-S-008
+
+
+# ---- Desktop coordination ops ----
+
+@frappe.whitelist()
+def assign(sample_order, user):
+    so = frappe.get_doc("HM Sample Order", sample_order)
+    so.check_permission("write")
+    so.assigned_to = user
+    so.save()
+    return {"ok": True, "assigned_to": user}
+
+
+@frappe.whitelist()
+def confirm(sample_order):
+    so = frappe.get_doc("HM Sample Order", sample_order)
+    so.check_permission("write")
+    if so.status != "Đã phân công":
+        frappe.throw("Chỉ xác nhận được đơn ở trạng thái 'Đã phân công'")
+    so.status = "Đã xác nhận"
+    so.save()
+    return {"ok": True, "status": so.status}
+
+
+@frappe.whitelist()
+def cancel(sample_order, reason):
+    so = frappe.get_doc("HM Sample Order", sample_order)
+    so.check_permission("write")
+    if not reason:
+        frappe.throw("Phải nhập lý do hủy")
+    so.status = "Hủy bởi khách"
+    so.cancel_reason = reason
+    so.save()
+    return {"ok": True, "status": so.status}
