@@ -54,6 +54,14 @@ class TestDealFlows(FrappeTestCase):
         with self.assertRaises(frappe.ValidationError):
             deal_flows.close_lost(name)
 
+    def test_close_lost_with_reason_actually_closes(self):
+        # regression: apply_workflow saves before lost_reason was persisted → 417
+        name = self._deal_in("Đàm phán")
+        out = deal_flows.close_lost(name, lost_reason="Khách chọn đối thủ")
+        self.assertTrue(out["ok"])
+        self.assertEqual(frappe.db.get_value("HM Deal", name, "status"), "Thất bại")
+        self.assertEqual(frappe.db.get_value("HM Deal", name, "lost_reason"), "Khách chọn đối thủ")
+
     def test_set_items_recomputes_total(self):
         name = self._deal_in("Báo giá") or self._deal_in("Thẩm định")
         items = [{"test_or_package": "Test", "test": "LIPID", "item_name": "Mỡ máu",

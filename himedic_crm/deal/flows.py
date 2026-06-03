@@ -134,7 +134,10 @@ def close_lost(deal_name, lost_reason=None):
     deal.check_permission("write")
     if not lost_reason:
         frappe.throw("Phải có lý do thua (BR-D-015)")
+    # apply_workflow saves (status→Thất bại) and validate_deal checks lost_reason during
+    # that save → persist the reason first, then transition.
+    frappe.db.set_value("HM Deal", deal_name, {"lost_reason": lost_reason, "probability": 0})
+    deal.reload()
     if deal.status != "Thất bại":
         apply_workflow(deal, "HM Close Lost")
-    frappe.db.set_value("HM Deal", deal.name, {"lost_reason": lost_reason, "probability": 0})
     return {"ok": True}
