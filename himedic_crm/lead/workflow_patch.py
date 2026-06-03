@@ -34,10 +34,27 @@ def ensure_nurturing_transitions():
         changed = True
     for state, action, nxt in NURTURE_TRANSITIONS:
         if (state, action, nxt) not in trans:
-            wf.append("transitions", {"state": state, "action": action,
-                                      "next_state": nxt, "allowed": "HM Sales"})
+            wf.append("transitions", {"state": state, "action": action, "next_state": nxt,
+                                      "allowed": "HM Sales", "allow_self_approval": 1})
             changed = True
+    # A sales pipeline is not an approval flow: a rep must advance their own lead/deal.
+    # Enable self-approval on every transition (else "Self approval is not allowed").
+    if _enable_self_approval(wf):
+        changed = True
     if changed:
         wf.save(ignore_permissions=True)
-        frappe.db.commit()
+    # The Deal pipeline needs the same fix (no nurturing states to add there).
+    dwf = frappe.get_doc("Workflow", "HM Deal Pipeline")
+    if _enable_self_approval(dwf):
+        dwf.save(ignore_permissions=True)
+    frappe.db.commit()
     return {"ok": True, "changed": changed}
+
+
+def _enable_self_approval(wf):
+    changed = False
+    for t in wf.transitions:
+        if not t.allow_self_approval:
+            t.allow_self_approval = 1
+            changed = True
+    return changed

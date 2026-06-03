@@ -21,6 +21,8 @@ def create_lead(payload):
                "source", "region", "campaign", "interest_group", "gender", "dob", "address"}
     doc = frappe.get_doc({"doctype": "HM Lead", "status": "Mới",
                           **{k: v for k, v in data.items() if k in allowed and v not in (None, "")}})
+    # the rep owns leads they create (auto_assign may reassign); never leave it empty
+    doc.owner_user = doc.owner_user or frappe.session.user
     doc.insert()  # respects create permission
     return {"name": doc.name, "lead_name": doc.lead_name}
 

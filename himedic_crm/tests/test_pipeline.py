@@ -78,3 +78,38 @@ class TestDealFlows(FrappeTestCase):
         out = deal_flows.close_won(name, win_reason="giá tốt")
         self.assertTrue(out.get("sample_order"))
         self.assertEqual(frappe.db.get_value("HM Sample Order", out["sample_order"], "deal"), name)
+
+
+class TestPipelineAsSalesRep(FrappeTestCase):
+    """The whole flow must work for a real HM Sales user, not just Administrator:
+    guards self-approval on the pipeline workflows + non-empty owner_user on convert."""
+
+    @classmethod
+    def setUpClass(cls):
+        demo()  # applies the workflow self-approval patch
+        cls.rep = "qa.rep@hi-medic.local"
+        if not frappe.db.exists("User", cls.rep):
+            frappe.get_doc({"doctype": "User", "email": cls.rep, "first_name": "QA Rep",
+                            "send_welcome_email": 0, "user_type": "System User",
+                            "roles": [{"role": "HM Sales"}]}).insert(ignore_permissions=True)
+        frappe.db.commit()
+
+    def test_rep_can_run_lead_to_won(self):
+        frappe.set_user(self.rep)
+        try:
+            n = lead_flows.create_lead(json.dumps(
+                {"lead_name": "Rep Lead", "phone": "0904440001", "customer_type": "Cá nhân"}))["name"]
+            lead_flows.apply_action(n, "HM Submit")      # self-approval allowed
+            lead_flows.apply_action(n, "HM Submit")
+            self.assertEqual(frappe.db.get_value("HM Lead", n, "status"), "Đủ điều kiện")
+            deal = conversion.convert_lead(n, deal_value=5000000)["deal"]
+            self.assertTrue(frappe.db.get_value("HM Deal", deal, "owner_user"))  # not empty
+            deal_flows.set_items(deal, json.dumps(
+                [{"test_or_package": "Package", "package": "GOI-CB", "item_name": "Gói CB",
+                  "qty": 1, "price": 5000000, "amount": 5000000}]))
+            deal_flows.apply_action(deal, "HM Submit")
+            deal_flows.apply_action(deal, "HM Submit")
+            out = deal_flows.close_won(deal, win_reason="rep test")
+            self.assertTrue(out.get("sample_order"))
+        finally:
+            frappe.set_user("Administrator")
