@@ -1,9 +1,39 @@
-import { api } from './app.js';
+import { api, apiPost, refresh } from './app.js';
 import { tag, avatar, initials, dfmt, screenHeader, emptyState, errorCard, disabledBtn, demoMark } from './lib.js';
+import { toast, openModal, field, selectField } from './ui.js';
 
 const STATUS_COLOR = {'Open':'sky','In Progress':'violet','Done':'emerald','Cancelled':'rose'};
 const STATUS_LABEL = {'Open':'Cần làm','In Progress':'Đang làm','Done':'Hoàn thành','Cancelled':'Đã hủy'};
 const typeColor = t => ({'Cuộc gọi':'sky','Follow-up':'amber','Họp':'violet','Thăm khách':'emerald','Khác':'slate'}[t]||'slate');
+
+const TASK_TYPES = ['Cuộc gọi','Follow-up','Họp','Thăm khách','Khác'];
+
+// ---- action handlers (exposed for inline onclick) ----
+const TF = 'himedic_crm.task_and_activity.flows';
+async function run(fn){ try { await fn(); } catch(e){ toast(e.message||String(e), 'err'); } }
+
+window.__taskUI = {
+  async openCreate(){
+    let userNames = [];
+    try { const u = await api('admin','users'); userNames = (u.rows||[]).map(r=>r.name); }
+    catch(e){ /* fall back to empty list */ }
+    openModal({ title:'Thêm công việc', submitLabel:'Tạo',
+      bodyHtml: field('Tiêu đề','subject',{required:true})
+        + selectField('Phụ trách','assigned_to', userNames)
+        + selectField('Loại','task_type', TASK_TYPES)
+        + field('Hạn','due_date',{type:'date'}),
+      onSubmit: async (v)=>{
+        const r = await apiPost(`${TF}.create_task`, { payload: JSON.stringify(v) });
+        toast(`Đã tạo công việc${r && r.name ? ' '+r.name : ''}`); refresh();
+      }});
+  },
+  complete(name){
+    run(async ()=>{
+      await apiPost(`${TF}.complete_task`, { name });
+      toast('Đã hoàn tất công việc'); refresh();
+    });
+  },
+};
 
 // Monday of the week containing `base` (a Date).
 function weekStart(base){
@@ -40,7 +70,7 @@ export const calendar = async () => {
     `${disabledBtn('◀','px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg')}
      ${disabledBtn('Hôm nay','px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg')}
      ${disabledBtn('▶','px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg')}
-     ${disabledBtn('+ Sự kiện','px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg')}`);
+     <button onclick="window.__taskUI.openCreate()" class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg hover:bg-brand-700">+ Thêm việc</button>`);
 
   if(!rows.length) return head + emptyState('Chưa có công việc nào');
 
@@ -57,7 +87,10 @@ export const calendar = async () => {
             return `<div class="border-l border-slate-100 first:border-l-0 p-2 space-y-2 align-top ${on?'bg-brand-50/40':''}">
               ${items.map(t=>`
                 <div class="rounded-lg bg-${STATUS_COLOR[t.status]||'slate'}-100 text-${STATUS_COLOR[t.status]||'slate'}-800 border border-${STATUS_COLOR[t.status]||'slate'}-300 px-2 py-1.5 text-xs font-medium">
-                  <div class="leading-snug">${t.subject||'—'}</div>
+                  <div class="flex items-start justify-between gap-1">
+                    <div class="leading-snug">${t.subject||'—'}</div>
+                    ${t.status!=='Done'?`<button onclick="window.__taskUI.complete('${t.name}')" title="Hoàn tất" class="flex-shrink-0 leading-none text-emerald-700 hover:text-emerald-900">✓</button>`:''}
+                  </div>
                   <div class="mt-1 flex items-center justify-between gap-1 text-[10px] opacity-80">
                     <span>${t.task_type||''}</span>
                     <span>${t.assigned_to?initials(t.assigned_to):''}</span>
@@ -79,7 +112,7 @@ export const board = async () => {
 
   const head = screenHeader('Bảng công việc',
     `Của tôi · ${total} công việc · ${cols.length} trạng thái`,
-    disabledBtn('+ Thêm việc','px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg'));
+    `<button onclick="window.__taskUI.openCreate()" class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg hover:bg-brand-700">+ Thêm việc</button>`);
 
   if(!total) return head + emptyState('Chưa có công việc nào');
 
@@ -103,6 +136,7 @@ export const board = async () => {
                   </div>
                   ${t.assigned_to?avatar(initials(t.assigned_to)):''}
                 </div>
+                ${c.status!=='Done'?`<button onclick="window.__taskUI.complete('${t.name}')" class="mt-2 w-full px-2 py-1 text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100">✓ Hoàn tất</button>`:''}
               </div>`).join('') || `<div class="text-center text-xs text-slate-300 pt-4">—</div>`}
           </div>
         </div>`;

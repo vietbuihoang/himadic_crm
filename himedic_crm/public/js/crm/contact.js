@@ -1,7 +1,61 @@
-import { api } from './app.js';
+import { api, apiPost, refresh } from './app.js';
 import { tag, avatar, initials, money, dfmt, screenHeader, emptyState, errorCard, disabledBtn, demoMark } from './lib.js';
+import { toast, openModal, field, selectField, textareaField } from './ui.js';
 
 const typeColor = t => t==='Cá nhân'?'cyan':t==='Bệnh viện'?'rose':t==='Phòng khám'?'amber':t==='Bảo hiểm'?'violet':'emerald';
+
+const CF = 'himedic_crm.contact_and_org.flows';
+const CTYPES = ['Cá nhân','Doanh nghiệp NLĐ','Khách bảo hiểm'];
+const REGIONS = ['Q.7','Q.10','Bình Tân','Bình Thạnh','Q.12'];
+
+let curContact = null;     // name of the contact shown on the profile screen
+let curContactDoc = null;  // last loaded profile doc (for edit prefill)
+let medicalRevealed = null; // name of the contact whose medical record was audited-then-revealed
+
+async function run(fn){ try { await fn(); } catch(e){ toast(e.message||String(e), 'err'); } }
+
+window.__contactUI = {
+  openCreate(){
+    openModal({ title:'Thêm khách', submitLabel:'Tạo',
+      bodyHtml: field('Họ tên','full_name',{required:true}) + field('SĐT','phone',{required:true})
+        + field('Email','email',{type:'email'}) + selectField('Loại khách','customer_type',CTYPES)
+        + selectField('Khu vực','region',REGIONS),
+      onSubmit: async (v)=>{
+        await apiPost(`${CF}.create_contact`, { payload: JSON.stringify(v) });
+        toast('Đã tạo khách hàng'); refresh();
+      }});
+  },
+  openEdit(){
+    const d = curContactDoc || {};
+    openModal({ title:'Sửa khách', submitLabel:'Lưu',
+      bodyHtml: field('Họ tên','full_name',{required:true,value:d.full_name||''})
+        + field('SĐT','phone',{required:true,value:d.phone||''})
+        + field('Email','email',{type:'email',value:d.email||''})
+        + selectField('Khu vực','region',REGIONS,d.region||''),
+      onSubmit: async (v)=>{
+        await apiPost(`${CF}.update_contact`, { name: curContact, payload: JSON.stringify(v) });
+        toast('Đã cập nhật khách hàng'); refresh();
+      }});
+  },
+  consent(){
+    run(async ()=>{
+      await apiPost(`${CF}.record_consent`, { contact: curContact, version: 'v1.0' });
+      toast('Đã ghi nhận đồng ý PDPA'); refresh();
+    });
+  },
+  revealMedical(){
+    openModal({ title:'Truy cập hồ sơ y tế', submitLabel:'Ghi nhật ký & xem',
+      bodyHtml: `<div class="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg p-2 mb-1">
+        🔒 BR-PDPA-001: Mọi truy cập hồ sơ y tế đều được ghi nhật ký kiểm toán trước khi hiển thị.</div>`
+        + textareaField('Lý do truy cập','purpose','Vì sao cần xem hồ sơ y tế của khách?'),
+      onSubmit: async (v)=>{
+        if(!v.purpose || !v.purpose.trim()) throw new Error('Cần nhập lý do truy cập');
+        await apiPost(`${CF}.log_medical_access`, { contact: curContact, purpose: v.purpose.trim() });
+        medicalRevealed = curContact;
+        toast('Đã ghi nhật ký truy cập'); refresh();
+      }});
+  },
+};
 
 export const list = async () => {
   let data;
@@ -11,7 +65,7 @@ export const list = async () => {
   const total = data.total || 0;
   const head = screenHeader('Khách hàng',
     `${total} contact · — đơn vị ${demoMark} · 86% đã liên kết PID Lab ${demoMark}`,
-    disabledBtn('+ Thêm khách','px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg'));
+    `<button onclick="window.__contactUI.openCreate()" class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg hover:bg-brand-700">+ Thêm khách</button>`);
   if(!rows.length) return head + emptyState('Chưa có khách hàng');
   const chips = [`Tất cả (${total})`, ...Object.entries(byType).map(([t,n])=>`${t} (${n})`)];
   return head + `
@@ -29,7 +83,7 @@ export const list = async () => {
           </tr></thead>
           <tbody class="divide-y divide-slate-100">
             ${rows.map(r=>`
-              <tr class="hover:bg-slate-50 cursor-pointer" onclick="window.__select('contact','profile')">
+              <tr class="hover:bg-slate-50 cursor-pointer" onclick="window.__contactOpen('${r.name}')">
                 <td class="p-3 font-medium">${r.full_name||'—'}${r.vip?` ${tag('VIP','amber')}`:''}</td>
                 <td class="p-3">${tag(r.customer_type||'—', typeColor(r.customer_type))}</td>
                 <td class="p-3 text-slate-600">${r.phone||'—'}${r.email?`<div class="text-xs text-slate-400">${r.email}</div>`:''}</td>
@@ -45,19 +99,27 @@ export const list = async () => {
     </div>`;
 };
 
+// open a specific contact's 360° profile (stash its id, then route)
+window.__contactOpen = (name)=>{ curContact = name; window.__select('contact','profile'); };
+
 export const profile = async () => {
   let d;
-  try { d = await api('contact', 'profile'); } catch(e){ return errorCard(e); }
+  try { d = await api('contact', 'profile', { name: curContact }); } catch(e){ return errorCard(e); }
   if(!d) return emptyState('Chưa có khách hàng');
+  curContact = d.name;
+  curContactDoc = d;
   const deals = d.deals || [];
   const results = d.results || [];
   const pdpa = d.pdpa_consent_given
     ? `Đã đồng ý xử lý dữ liệu y tế (PDPA)${d.pdpa_consent_date?` · ${dfmt(d.pdpa_consent_date)}`:''}`
     : 'Chưa đồng ý xử lý dữ liệu y tế (PDPA)';
+  const consentBtn = d.pdpa_consent_given
+    ? `<span class="px-3 py-1.5 text-sm text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg">✓ Đã đồng ý PDPA</span>`
+    : `<button onclick="window.__contactUI.consent()" class="px-3 py-1.5 text-sm bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">Ghi nhận đồng ý PDPA</button>`;
   const head = screenHeader(`Hồ sơ 360° · ${d.full_name||''}`,
     `${d.pid||'—'} · ${d.vip?'Khách VIP · ':''}${pdpa}`,
-    `${disabledBtn('In hồ sơ','px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg')}
-     ${disabledBtn('+ Đặt lịch lấy mẫu','px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg')}`);
+    `<button onclick="window.__contactUI.openEdit()" class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg hover:bg-slate-50">Sửa</button>
+     ${consentBtn}`);
   const tiles = [['LTV trọn đời','12.6M','emerald'],['Số lần khám','4','sky'],['Cơ hội đang chạy','1','amber'],['NPS','9/10','violet']];
   const tabsRow = ['Tổng quan','Lịch sử khám','Cơ hội & Khách tiềm năng','Tài liệu','Y tế (hạn chế)'];
   const medRows = [
@@ -65,6 +127,7 @@ export const profile = async () => {
     d.allergies ? `<div class="flex justify-between"><span class="text-slate-500">Dị ứng</span><b>${d.allergies}</b></div>` : '',
     d.chronic_diseases ? `<div class="flex justify-between"><span class="text-slate-500">Bệnh nền</span><b>${d.chronic_diseases}</b></div>` : '',
   ].filter(Boolean).join('');
+  const medShow = medicalRevealed === curContact;  // BR-PDPA-001: reveal only after audited access for THIS contact
   const timeline = [
     ...deals.map(x=>`<div class="flex gap-3"><div class="w-1 bg-emerald-400 rounded"></div><div class="flex-1"><b>${x.status||'Cơ hội'}</b> – ${x.deal_title||'—'} – ${money(x.grand_total)} · <span class="text-xs text-slate-500">${dfmt(x.modified)}</span></div></div>`),
     ...results.map(x=>`<div class="flex gap-3"><div class="w-1 bg-violet-400 rounded"></div><div class="flex-1"><b>Kết quả XN</b>${x.released_at?' đã trả':''} · <span class="text-xs text-slate-500">${dfmt(x.result_date)}</span></div></div>`),
@@ -108,7 +171,10 @@ export const profile = async () => {
         <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm space-y-2">
           <div class="font-semibold">Hồ sơ y tế (RBAC)</div>
           <div class="text-xs text-slate-500">Chỉ Sales được giao + Bác sĩ Lab xem được</div>
-          ${medRows ? `<div class="space-y-1.5">${medRows}</div>` : '<div class="text-xs text-slate-400">Không có dữ liệu y tế / không đủ quyền</div>'}
+          ${medShow
+            ? (medRows ? `<div class="space-y-1.5">${medRows}</div>` : '<div class="text-xs text-slate-400">Không có dữ liệu y tế / không đủ quyền</div>')
+            : `<button onclick="window.__contactUI.revealMedical()" class="w-full mt-1 px-3 py-2 text-sm bg-slate-800 text-white rounded-lg hover:bg-slate-900">🔒 Xem hồ sơ y tế</button>
+               <div class="text-[11px] text-slate-400">Cần nhập lý do; truy cập sẽ được ghi nhật ký kiểm toán (BR-PDPA-001).</div>`}
         </div>
         <div class="bg-cyan-50 border border-cyan-200 rounded-xl p-3 text-xs text-cyan-800">
           🔒 PDPA: ${pdpa}
