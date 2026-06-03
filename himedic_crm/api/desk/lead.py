@@ -41,5 +41,13 @@ def detail(name=None):
     doc = frappe.get_doc("HM Lead", name)
     doc.check_permission("read")
     d = doc.as_dict()
-    d["activities"] = [a.as_dict() for a in (doc.get("activities") or [])]
+    # Timeline = HM Activity records linked to this lead (logged calls/notes/etc.)
+    d["activities"] = frappe.get_all(
+        "HM Activity",
+        filters={"reference_doctype": "HM Lead", "reference_name": name},
+        fields=["activity_type", "subject", "note", "activity_time"],
+        order_by="activity_time desc", limit_page_length=50)
+    # Workflow actions currently available to the caller
+    from frappe.model.workflow import get_transitions
+    d["transitions"] = [t.get("action") for t in get_transitions(doc)]
     return d

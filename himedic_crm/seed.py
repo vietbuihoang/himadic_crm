@@ -90,6 +90,9 @@ def demo(clear=False):
         frappe.db.commit()
         return {"cleared": True}
 
+    from himedic_crm.lead.workflow_patch import ensure_nurturing_transitions
+    ensure_nurturing_transitions()
+
     for code, name in REGIONS:
         _ensure("HM CRM Region", {"region_code": code},
                 {"region_code": code, "region_name": name})
@@ -111,10 +114,15 @@ def demo(clear=False):
         d.insert(ignore_permissions=True)
         if stage != "Mới":
             frappe.db.set_value("HM Lead", d.name, "status", stage, update_modified=False)
-    for title, stage, prob, total, region in DEALS:
+    demo_contacts = frappe.get_all("HM Contact", filters={"full_name": ["in", [c[0] for c in CONTACT_NAMES]]},
+                                   pluck="name")
+    for idx, (title, stage, prob, total, region) in enumerate(DEALS):
         d = frappe.get_doc({"doctype": "HM Deal", "deal_title": title, "status": "Thẩm định", "probability": prob,
+            "contact": demo_contacts[idx % len(demo_contacts)] if demo_contacts else None,
             "grand_total": total, "subtotal": total, "region": region, "owner_user": OWNER,
-            "expected_close_date": frappe.utils.add_days(frappe.utils.nowdate(), 10)})
+            "expected_close_date": frappe.utils.add_days(frappe.utils.nowdate(), 10),
+            "items": [{"test_or_package": "Package", "package": "GOI-CB",
+                       "item_name": "Gói khám sức khỏe Cơ bản", "qty": 1, "price": total, "amount": total}]})
         d.insert(ignore_permissions=True)
         if stage != "Thẩm định":
             frappe.db.set_value("HM Deal", d.name, "status", stage, update_modified=False)
