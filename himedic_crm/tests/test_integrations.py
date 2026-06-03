@@ -5,6 +5,7 @@ import frappe
 from frappe.tests.utils import FrappeTestCase
 
 from himedic_crm.api import zalo
+from himedic_crm.api import health
 
 
 class TestZaloTokenRefresh(FrappeTestCase):
@@ -44,3 +45,13 @@ class TestZaloTokenRefresh(FrappeTestCase):
         s = frappe.get_single("HM CRM Settings")
         self.assertEqual(s.get_password("zalo_oa_token"), "NEWAT")
         self.assertEqual(s.get_password("zalo_refresh_token"), "NEWRT")  # rotated
+
+
+class TestIntegrationStatus(FrappeTestCase):
+    def test_status_shape_and_presence_only(self):
+        frappe.set_user("Administrator")
+        out = health.integration_status()
+        self.assertEqual(out["total"], len(out["checks"]))
+        # values are booleans (presence only — never the secret itself)
+        self.assertTrue(all(isinstance(v, bool) for v in out["checks"].values()))
+        self.assertIn("scheduler_enabled", out["checks"])

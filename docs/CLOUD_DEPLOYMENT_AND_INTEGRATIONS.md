@@ -342,4 +342,12 @@ bench --site crm.hi-medic.vn console                # set HM CRM Settings
 bench --site crm.hi-medic.vn backup --with-files    # backup thủ công
 tail -f sites/crm.hi-medic.vn/logs/*.log            # log lỗi (gồm tích hợp)
 # Lỗi tích hợp được ghi vào Error Log: /app/error-log
+
+# ✅ KIỂM TRA SẴN SÀNG TÍCH HỢP (sau khi điền credential) — chỉ báo có/không, KHÔNG lộ secret:
+bench --site crm.hi-medic.vn execute himedic_crm.api.health.integration_status
+# → {"checks": {"email_outgoing": true/false, "sms": …, "zalo_send": …,
+#     "zalo_auto_refresh": …, "lis": …, "voip": …, "maps": …, "ca_signature": …,
+#     "webhook_secret_fb/google/zalo": …, "scheduler_enabled": …},
+#    "configured": N, "total": 12, "critical_ready": bool, "missing": [...] }
+# critical_ready = true khi đã có Email Account Outgoing + scheduler bật.
 ```
