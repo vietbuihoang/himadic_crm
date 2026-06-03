@@ -99,6 +99,15 @@ def demo(clear=False):
     for code, name in TEAMS:
         _ensure("HM Team", {"team_code": code}, {"team_code": code, "team_name": name})
 
+    for tname, subject, body in [
+        ("Báo giá gói khám", "Hi-Medic – Báo giá gói khám của Quý khách",
+         "Kính gửi Quý khách,\nHi-Medic xin gửi báo giá gói khám phù hợp. Trân trọng."),
+        ("Nhắc lịch lấy mẫu", "Hi-Medic – Nhắc lịch lấy mẫu",
+         "Kính gửi Quý khách,\nNhắc lịch lấy mẫu. Vui lòng nhịn ăn 8 tiếng trước khi lấy mẫu."),
+    ]:
+        _ensure("HM Email Template", {"template_name": tname},
+                {"template_name": tname, "subject": subject, "body": body, "is_active": 1})
+
     for name, phone, ctype, region, gender, vip in CONTACT_NAMES:
         frappe.get_doc({"doctype": "HM Contact", "full_name": name, "phone": phone,
             "customer_type": ctype, "region": region, "gender": gender, "vip": vip,
