@@ -63,6 +63,17 @@ def send_email(contact, subject=None, body=None, template=None, reference_doctyp
 
 
 @frappe.whitelist()
+def send_sms(contact, body, reference_doctype=None, reference_name=None):
+    phone = frappe.db.get_value("HM Contact", contact, "phone")
+    if not phone:
+        frappe.throw("Khách hàng chưa có số điện thoại")
+    from himedic_crm.utils.sms import send_sms as _gw
+    res = _gw(phone, body)
+    _activity(reference_doctype, reference_name, "SMS", "Gửi SMS", body)
+    return {"ok": True, "sent": bool(res.get("ok")), "gateway": res}
+
+
+@frappe.whitelist()
 def log_call(contact, call_outcome=None, duration_sec=0, reference_doctype=None, reference_name=None):
     phone = frappe.db.get_value("HM Contact", contact, "phone")
     log = frappe.get_doc({

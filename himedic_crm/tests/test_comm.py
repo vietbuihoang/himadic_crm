@@ -27,6 +27,13 @@ class TestCommFlows(FrappeTestCase):
         self.assertTrue(out["message"])
         self.assertEqual(frappe.db.count("HM Zalo Message"), before + 1)
 
+    def test_send_sms_graceful_and_logs_activity(self):
+        c = self._contact()
+        out = comm.send_sms(c, "Xin chào", reference_doctype="HM Contact", reference_name=c)
+        self.assertTrue(out["ok"])  # handled gracefully even when gateway unconfigured
+        self.assertTrue(frappe.db.exists("HM Activity",
+            {"reference_name": c, "activity_type": "SMS"}))
+
     def test_log_call_creates_voip_log(self):
         c = self._contact()
         before = frappe.db.count("HM VoIP Call Log")
