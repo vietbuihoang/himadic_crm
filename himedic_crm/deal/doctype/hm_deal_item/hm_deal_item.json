@@ -7,7 +7,6 @@
  "engine": "InnoDB",
  "field_order": [
   "test_or_package",
-  "item_ref",
   "test",
   "package",
   "item_name",
@@ -25,12 +24,6 @@
    "options": "Test\nPackage",
    "reqd": 1,
    "in_list_view": 1
-  },
-  {
-   "fieldname": "item_ref",
-   "label": "Item",
-   "fieldtype": "Dynamic Link",
-   "options": "test_or_package_doctype"
   },
   {
    "fieldname": "test",
