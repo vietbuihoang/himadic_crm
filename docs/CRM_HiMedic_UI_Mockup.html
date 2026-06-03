@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hi-Medic CRM – UI Mockup theo Module</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { 50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',500:'#0891b2',600:'#0e7490',700:'#155e75',800:'#164e63',900:'#083344'},
+          accent: { 500:'#10b981',600:'#059669'},
+        },
+        fontFamily: { sans: ['Inter','system-ui','sans-serif'] }
+      }
+    }
+  }
+</script>
+<style>
+  body{font-family:Inter,system-ui,sans-serif;background:#f1f5f9}
+  .scroll-thin::-webkit-scrollbar{width:6px;height:6px}
+  .scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+  .phone-frame{width:380px;height:760px;border-radius:42px;background:#0f172a;padding:14px;box-shadow:0 30px 60px -20px rgba(0,0,0,.35)}
+  .phone-screen{width:100%;height:100%;border-radius:30px;background:#f8fafc;overflow:hidden;position:relative;display:flex;flex-direction:column}
+  .phone-notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:110px;height:26px;background:#0f172a;border-radius:20px;z-index:30}
+  .kanban-card{transition:transform .15s ease, box-shadow .15s ease}
+  .kanban-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(15,23,42,.18)}
+  .tab-active{background:white;color:#0e7490;box-shadow:0 1px 0 0 white;border-color:#cbd5e1 #cbd5e1 white #cbd5e1}
+  details>summary{list-style:none;cursor:pointer}
+  details>summary::-webkit-details-marker{display:none}
+  .pulse-dot{position:relative}
+  .pulse-dot::before{content:"";position:absolute;inset:0;border-radius:9999px;background:inherit;animation:pulse 1.6s ease-out infinite;opacity:.6}
+  @keyframes pulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.6);opacity:0}}
+</style>
+</head>
+<body class="text-slate-800">
+
+<div class="flex h-screen overflow-hidden">
+
+  <!-- SIDEBAR -->
+  <aside class="w-72 bg-brand-900 text-brand-100 flex flex-col flex-shrink-0">
+    <div class="px-5 py-5 border-b border-brand-700/60">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-300 to-cyan-600 flex items-center justify-center text-brand-900 font-extrabold text-lg">H</div>
+        <div>
+          <div class="font-bold text-white text-base leading-none">Hi-Medic CRM</div>
+          <div class="text-xs text-brand-200 mt-1">UI Mockup · v1.0</div>
+        </div>
+      </div>
+    </div>
+
+    <nav id="navList" class="flex-1 overflow-y-auto scroll-thin py-3 px-3 space-y-1 text-sm">
+      <!-- filled by JS -->
+    </nav>
+
+    <div class="px-4 py-3 border-t border-brand-700/60 text-[11px] text-brand-300 leading-relaxed">
+      Click vào module để xem các màn hình thiết kế.<br>
+      Mỗi module có 2-4 màn hình (desktop & mobile).
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 flex flex-col overflow-hidden">
+    <!-- TOP BAR -->
+    <header class="h-14 bg-white border-b border-slate-200 flex items-center px-6 gap-4 flex-shrink-0">
+      <div class="text-sm text-slate-500 flex items-center gap-2">
+        <span>Hi-Medic CRM</span>
+        <span class="text-slate-300">/</span>
+        <span id="moduleTitle" class="text-slate-800 font-medium">Tổng quan</span>
+      </div>
+      <div class="ml-auto flex items-center gap-3">
+        <div class="relative">
+          <input type="text" placeholder="Tìm khách tiềm năng, cơ hội, khách hàng..." class="w-72 pl-9 pr-3 py-1.5 text-sm bg-slate-100 rounded-lg border border-transparent focus:border-brand-500 focus:bg-white outline-none">
+          <svg class="w-4 h-4 absolute left-3 top-2 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+        <button class="relative p-2 hover:bg-slate-100 rounded-lg">
+          <svg class="w-5 h-5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+        </button>
+        <div class="flex items-center gap-2 pl-3 border-l border-slate-200">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white grid place-items-center text-sm font-semibold">NL</div>
+          <div class="text-xs leading-tight">
+            <div class="font-medium">Nguyễn Lan</div>
+            <div class="text-slate-500">Sales · Q.7</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MODULE CONTENT -->
+    <section id="mainContent" class="flex-1 overflow-y-auto scroll-thin bg-slate-100">
+      <!-- filled by JS -->
+    </section>
+  </main>
+</div>
+
+<script>
+/* =========================================================
+   DATA – module list + screen list
+   ========================================================= */
+const MODULES = [
+  { id:'overview', name:'Tổng quan', icon:icon('layout-grid'), screens:[{id:'home',name:'Welcome'}] },
+  { id:'lead',     name:'1. Quản lý Khách tiềm năng', icon:icon('user-plus'),
+      screens:[{id:'list',name:'Danh sách khách'},{id:'kanban',name:'Luồng chuyển đổi'},{id:'detail',name:'Chi tiết khách'}] },
+  { id:'deal',     name:'2. Quản lý Cơ hội', icon:icon('handshake'),
+      screens:[{id:'kanban',name:'Luồng cơ hội'},{id:'detail',name:'Chi tiết cơ hội'}] },
+  { id:'contact',  name:'3. Khách hàng & Đơn vị', icon:icon('users'),
+      screens:[{id:'list',name:'Danh sách liên hệ'},{id:'profile',name:'Hồ sơ 360°'}] },
+  { id:'sample',   name:'4. Lấy mẫu', icon:icon('test-tube'),
+      screens:[{id:'list',name:'Đơn lấy mẫu'},{id:'mobile',name:'📱 Quy trình Mobile'}] },
+  { id:'logistics',name:'5. Vận chuyển mẫu', icon:icon('truck'),
+      screens:[{id:'manifest',name:'Phiếu giao & Theo dõi'},{id:'reception',name:'Tiếp nhận tại Lab'}] },
+  { id:'catalog',  name:'6. Danh mục Xét nghiệm', icon:icon('flask'),
+      screens:[{id:'tests',name:'Danh mục test'},{id:'package',name:'Gói combo'}] },
+  { id:'tasks',    name:'7. Công việc & Lịch', icon:icon('check-square'),
+      screens:[{id:'calendar',name:'Lịch'},{id:'board',name:'Bảng công việc'}] },
+  { id:'comm',     name:'8. Giao tiếp đa kênh', icon:icon('message-square'),
+      screens:[{id:'inbox',name:'Hộp thư hợp nhất'},{id:'portal',name:'Cổng khách hàng'}] },
+  { id:'marketing',name:'9. Tiếp thị & Phân khách', icon:icon('megaphone'),
+      screens:[{id:'campaigns',name:'Hiệu quả chiến dịch'},{id:'routing',name:'Quy tắc phân khách'}] },
+  { id:'reports',  name:'10. Báo cáo & Phân tích', icon:icon('bar-chart'),
+      screens:[{id:'sales',name:'Bảng KD'},{id:'ops',name:'Bảng vận hành'}] },
+  { id:'mobile',   name:'11. 📱 Ứng dụng Mobile (Lấy mẫu)', icon:icon('smartphone'),
+      screens:[
+        {id:'login',name:'Đăng nhập'},
+        {id:'home',name:'Trang chủ'},
+        {id:'route',name:'Lịch tuyến'},
+        {id:'orderDetail',name:'Chi tiết đơn'},
+        {id:'consult',name:'Tư vấn & Chọn XN'},
+        {id:'verify',name:'Xác minh KH'},
+        {id:'collect',name:'Lấy mẫu'},
+        {id:'sign',name:'Ký số & In tem'},
+        {id:'handover',name:'Bàn giao Lab'},
+        {id:'history',name:'Lịch sử & Thông báo'},
+      ] },
+  { id:'admin',    name:'12. Admin & Settings', icon:icon('settings'),
+      screens:[{id:'users',name:'Người dùng & Quyền'},{id:'workflow',name:'Trình tạo quy trình'}] },
+];
+
+/* =========================================================
+   Inline icon helper
+   ========================================================= */
+function icon(name){
+  const I = {
+    'layout-grid':'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>',
+    'user-plus':'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>',
+    'handshake':'<path d="m11 17 2 2a1 1 0 0 0 3 0c0-.5-.5-1-1-1l-2-2"/><path d="m14 14 2.5 2.5a1 1 0 0 0 3 0c0-.5-.5-1-1-1L17 14"/><path d="m17 11 2 2a1 1 0 0 0 3 0c0-.5-.5-1-1-1l-5-5-5 5"/><path d="m4 13 4-4 4 4-4 4z"/>',
+    'users':'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    'test-tube':'<path d="M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5h0c-1.4 0-2.5-1.1-2.5-2.5V2"/><path d="M8.5 2h7"/><path d="M14.5 16h-5"/>',
+    'truck':'<rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
+    'flask':'<path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/>',
+    'check-square':'<polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
+    'message-square':'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    'megaphone':'<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
+    'bar-chart':'<line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/>',
+    'smartphone':'<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>',
+    'settings':'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+  };
+  return `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[name]||''}</svg>`;
+}
+
+/* =========================================================
+   Render sidebar
+   ========================================================= */
+const navEl = document.getElementById('navList');
+MODULES.forEach(m=>{
+  const a = document.createElement('button');
+  a.className='w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-brand-800 text-left transition';
+  a.innerHTML = `<span class="text-brand-200">${m.icon}</span><span>${m.name}</span>`;
+  a.onclick = ()=>select(m.id, m.screens[0].id);
+  a.dataset.module = m.id;
+  navEl.appendChild(a);
+});
+
+/* =========================================================
+   Module screens factory
+   ========================================================= */
+const SCREENS = {};
+
+/* ---- helpers ---- */
+const tag = (txt,color) => `<span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-${color}-100 text-${color}-700">${txt}</span>`;
+const avatar = (initials,from='emerald',to='emerald-600') => `<div class="w-7 h-7 rounded-full bg-gradient-to-br from-${from}-400 to-${to} text-white grid place-items-center text-[11px] font-semibold flex-shrink-0">${initials}</div>`;
+
+function screenHeader(title, subtitle, actionsHtml=''){
+  return `<div class="px-6 pt-5 pb-3 bg-white border-b border-slate-200">
+    <div class="flex items-start gap-4">
+      <div>
+        <h2 class="text-lg font-semibold text-slate-800">${title}</h2>
+        <p class="text-xs text-slate-500 mt-0.5">${subtitle}</p>
+      </div>
+      <div class="ml-auto flex items-center gap-2">${actionsHtml}</div>
+    </div></div>`;
+}
+
+function tabs(screens, current, moduleId){
+  return `<div class="px-6 pt-3 bg-white border-b border-slate-200 flex gap-1 text-sm">
+    ${screens.map(s=>`
+      <button onclick="select('${moduleId}','${s.id}')"
+        class="px-4 py-2 border-b-2 ${s.id===current?'border-brand-600 text-brand-700 font-medium':'border-transparent text-slate-500 hover:text-slate-800'}">
+        ${s.name}
+      </button>`).join('')}
+  </div>`;
+}
+
+/* =========================================================
+   OVERVIEW
+   ========================================================= */
+SCREENS.overview = {
+  home: () => `
+    <div class="p-10 max-w-5xl mx-auto">
+      <div class="rounded-2xl bg-gradient-to-br from-brand-700 via-brand-600 to-cyan-500 text-white p-10 shadow-xl">
+        <h1 class="text-3xl font-extrabold">Hi-Medic CRM · Bộ thiết kế giao diện</h1>
+        <p class="mt-3 text-cyan-50 max-w-2xl">Tổng cộng 12 module – mỗi module có 2 đến 4 màn hình thiết kế chi tiết, bao gồm cả phiên bản desktop cho văn phòng và phiên bản mobile cho đội lấy mẫu tại hiện trường.</p>
+        <div class="mt-6 flex gap-3 flex-wrap text-sm">
+          <span class="px-3 py-1 rounded-full bg-white/15">Frappe CRM base</span>
+          <span class="px-3 py-1 rounded-full bg-white/15">Tùy chỉnh y tế</span>
+          <span class="px-3 py-1 rounded-full bg-white/15">Lấy mẫu hiện trường</span>
+          <span class="px-3 py-1 rounded-full bg-white/15">Tích hợp LIS</span>
+        </div>
+      </div>
+
+      <h3 class="mt-10 mb-4 font-semibold text-slate-700 text-sm uppercase tracking-wide">12 Module thiết kế</h3>
+      <div class="grid grid-cols-3 gap-4">
+        ${MODULES.filter(m=>m.id!=='overview').map(m=>`
+          <button onclick="select('${m.id}','${m.screens[0].id}')" class="text-left bg-white rounded-xl border border-slate-200 p-4 hover:border-brand-500 hover:shadow-md transition">
+            <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-700 grid place-items-center mb-3">${m.icon}</div>
+            <div class="font-semibold text-slate-800 text-sm">${m.name}</div>
+            <div class="text-xs text-slate-500 mt-1">${m.screens.length} màn hình</div>
+          </button>`).join('')}
+      </div>
+    </div>`
+};
+
+/* =========================================================
+   1. LEAD MANAGEMENT
+   ========================================================= */
+const LEADS = [
+  { name:'Chị Hương Trần',          phone:'0908 123 456', org:'Cá nhân',                  source:'FB Ads',    score:82, stage:'New',       owner:'Nguyễn Lan',  area:'Q.7',  campaign:'GoiKhamTongQuat-T05', last:'2 phút' },
+  { name:'PK Đa khoa Hoàng Anh',    phone:'028 3895 1122', org:'PK Đa khoa Hoàng Anh',     source:'Google Ads',score:74, stage:'Contacted', owner:'Trần Minh',   area:'Bình Tân', campaign:'B2B-Q2',          last:'12 phút' },
+  { name:'Anh Phạm Quốc Hùng',      phone:'0913 778 901', org:'Cty TNHH Hùng Phát',        source:'Zalo OA',   score:91, stage:'Qualified', owner:'Nguyễn Lan',  area:'Q.7',  campaign:'KCN-VSIP-T04',     last:'1 giờ' },
+  { name:'BV Đa khoa Tâm Phúc',     phone:'028 6677 8899', org:'BV Đa khoa Tâm Phúc',      source:'Sự kiện',   score:68, stage:'Nurturing', owner:'Lê Hoài',     area:'Q.10', campaign:'Triển lãm Y tế',   last:'4 giờ' },
+  { name:'Chị Lưu Diệu Linh',       phone:'0987 555 333', org:'Cá nhân',                  source:'Hotline',   score:55, stage:'New',       owner:'Trần Minh',   area:'Q.Bình Thạnh', campaign:'-', last:'8 phút' },
+  { name:'Cty CP May Sao Mai',      phone:'028 3944 0011', org:'Cty CP May Sao Mai',       source:'Sales tự',  score:78, stage:'Qualified', owner:'Lê Hoài',     area:'Q.12', campaign:'-',                last:'1 ngày' },
+];
+
+const STAGE_VN = {New:'Mới', Contacted:'Đã liên hệ', Qualified:'Đủ điều kiện', Nurturing:'Chăm sóc', Converted:'Đã chuyển đổi', Lost:'Đã hủy'};
+const stageColor = {New:'sky', Contacted:'amber', Qualified:'emerald', Nurturing:'violet', Converted:'cyan', Lost:'rose'};
+
+SCREENS.lead = {
+  list: () => `
+    ${screenHeader('Danh sách Khách tiềm năng', 'Tổng 247 khách · 38 mới hôm nay · Thời gian phản hồi TB: 28 phút (mục tiêu 30)',
+      `<button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg hover:bg-slate-50">Nhập từ Excel</button>
+       <button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg hover:bg-brand-700">+ Thêm khách</button>`)}
+    <div class="p-6">
+      <div class="flex gap-2 mb-4 flex-wrap">
+        ${['Tất cả (247)','Tôi phụ trách (42)','Mới hôm nay (38)','Quá SLA (3)','Marketing chuyển','Sales tự phát triển'].map((t,i)=>`
+          <button class="px-3 py-1.5 text-sm rounded-lg border ${i===0?'bg-brand-50 border-brand-300 text-brand-700':'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}">${t}</button>`).join('')}
+        <div class="ml-auto flex gap-2">
+          <select class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg"><option>Tất cả nguồn</option></select>
+          <select class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg"><option>Tất cả khu vực</option></select>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs text-slate-500 uppercase tracking-wide">
+            <tr>
+              <th class="text-left p-3 w-8"><input type="checkbox" class="rounded"></th>
+              <th class="text-left p-3">Tên / Đơn vị</th>
+              <th class="text-left p-3">Liên hệ</th>
+              <th class="text-left p-3">Nguồn</th>
+              <th class="text-left p-3">Score</th>
+              <th class="text-left p-3">Trạng thái</th>
+              <th class="text-left p-3">Khu vực</th>
+              <th class="text-left p-3">Phụ trách</th>
+              <th class="text-left p-3">Cập nhật</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            ${LEADS.map((l,i)=>`
+              <tr class="hover:bg-slate-50 cursor-pointer" onclick="select('lead','detail')">
+                <td class="p-3"><input type="checkbox" class="rounded"></td>
+                <td class="p-3">
+                  <div class="font-medium text-slate-800">${l.name}</div>
+                  <div class="text-xs text-slate-500">${l.org}</div>
+                </td>
+                <td class="p-3 text-slate-600">${l.phone}</td>
+                <td class="p-3">${tag(l.source, l.source==='FB Ads'?'blue':l.source==='Google Ads'?'amber':l.source==='Zalo OA'?'sky':l.source==='Hotline'?'rose':l.source==='Sự kiện'?'violet':'slate')}</td>
+                <td class="p-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-14 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                      <div class="h-full ${l.score>=80?'bg-emerald-500':l.score>=60?'bg-amber-500':'bg-rose-500'}" style="width:${l.score}%"></div>
+                    </div>
+                    <span class="text-xs font-medium">${l.score}</span>
+                  </div>
+                </td>
+                <td class="p-3">${tag(STAGE_VN[l.stage]||l.stage, stageColor[l.stage])}</td>
+                <td class="p-3 text-slate-600">${l.area}</td>
+                <td class="p-3"><div class="flex items-center gap-2">${avatar(l.owner.split(' ').slice(-1)[0][0]+l.owner[0])}<span class="text-xs">${l.owner}</span></div></td>
+                <td class="p-3 text-xs text-slate-500">${l.last}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+        <div class="px-4 py-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+          <span>Hiển thị 6 / 247 lead</span>
+          <div class="flex gap-1">
+            ${[1,2,3,'…',42].map(n=>`<button class="px-2 py-1 rounded ${n===1?'bg-brand-600 text-white':'hover:bg-slate-100'}">${n}</button>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>`,
+
+  kanban: () => {
+    const cols = [
+      {name:'Mới', color:'sky', count:38, leads:[LEADS[0],LEADS[4]]},
+      {name:'Đã liên hệ', color:'amber', count:62, leads:[LEADS[1]]},
+      {name:'Đủ điều kiện', color:'emerald', count:41, leads:[LEADS[2],LEADS[5]]},
+      {name:'Đang chăm sóc', color:'violet', count:74, leads:[LEADS[3]]},
+      {name:'Đã chuyển đổi', color:'cyan', count:18, leads:[]},
+      {name:'Đã hủy', color:'rose', count:14, leads:[]},
+    ];
+    return `
+    ${screenHeader('Luồng chuyển đổi khách – Kanban', 'Kéo thả thẻ giữa các cột để đổi trạng thái',
+      `<div class="flex items-center gap-2 text-xs">
+        <span class="text-slate-500">Hiển thị:</span>
+        <button class="px-3 py-1.5 bg-brand-50 text-brand-700 rounded-lg border border-brand-200">Của tôi</button>
+        <button class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg">Toàn đội</button>
+       </div>`)}
+    <div class="p-6">
+      <div class="flex gap-3 overflow-x-auto pb-4 scroll-thin">
+        ${cols.map(c=>`
+          <div class="w-72 flex-shrink-0">
+            <div class="flex items-center gap-2 mb-2 px-1">
+              <span class="w-2 h-2 rounded-full bg-${c.color}-500"></span>
+              <span class="text-sm font-semibold text-slate-700">${c.name}</span>
+              <span class="text-xs text-slate-500 bg-slate-200 px-1.5 rounded">${c.count}</span>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-2 min-h-[400px] space-y-2 border border-slate-200/60">
+              ${c.leads.map(l=>`
+                <div class="kanban-card bg-white rounded-lg p-3 border border-slate-200 cursor-pointer" onclick="select('lead','detail')">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="font-medium text-sm text-slate-800">${l.name}</div>
+                    <span class="text-[10px] font-bold ${l.score>=80?'text-emerald-600':l.score>=60?'text-amber-600':'text-rose-600'}">${l.score}</span>
+                  </div>
+                  <div class="text-xs text-slate-500 mt-1">${l.org}</div>
+                  <div class="mt-2 flex gap-1 flex-wrap">${tag(l.source,'slate')}${tag(l.area,'slate')}</div>
+                  <div class="mt-2 flex items-center justify-between">
+                    ${avatar(l.owner[0]+l.owner.split(' ').slice(-1)[0][0])}
+                    <span class="text-[11px] text-slate-400">${l.last}</span>
+                  </div>
+                </div>`).join('')}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  },
+
+  detail: () => `
+    ${screenHeader('Khách tiềm năng · Chị Hương Trần',
+      'Nguồn FB Ads · Chiến dịch: GoiKhamTongQuat-T05 · Tạo 2 phút trước',
+      `<button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg">Đánh dấu Đã hủy</button>
+       <button class="px-3 py-1.5 text-sm bg-emerald-600 text-white rounded-lg">Chuyển đổi → Tạo cơ hội</button>`)}
+    <div class="p-6 grid grid-cols-3 gap-6">
+      <div class="col-span-2 space-y-4">
+        <!-- pipeline progress -->
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="flex items-center gap-1 text-xs font-medium">
+            ${['Mới','Đã liên hệ','Đủ điều kiện','Chăm sóc','Đã chuyển đổi'].map((s,i)=>`
+              <div class="flex-1 flex items-center gap-1">
+                <div class="flex-1 h-7 grid place-items-center rounded ${i===0?'bg-sky-500 text-white':i<3?'bg-slate-100 text-slate-500':'bg-slate-50 text-slate-400'}">${s}</div>
+                ${i<4?'<svg class="w-3 h-3 text-slate-300" fill="currentColor" viewBox="0 0 20 20"><path d="M7 5l6 5-6 5V5z"/></svg>':''}
+              </div>`).join('')}
+          </div>
+        </div>
+        <!-- timeline -->
+        <div class="bg-white rounded-xl border border-slate-200">
+          <div class="px-4 py-3 border-b border-slate-100 flex items-center gap-3 text-sm">
+            <span class="font-semibold">Lịch sử hoạt động</span>
+            <div class="ml-auto flex gap-1">
+              ${['Tất cả','Cuộc gọi','Email','Zalo','Ghi chú'].map((t,i)=>`<button class="px-2.5 py-1 text-xs rounded ${i===0?'bg-brand-50 text-brand-700':'hover:bg-slate-100'}">${t}</button>`).join('')}
+            </div>
+          </div>
+          <div class="p-4 space-y-4 text-sm">
+            <div class="flex gap-3">
+              <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 grid place-items-center flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.93.36 1.85.7 2.73a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.35-1.27a2 2 0 0 1 2.11-.45c.88.34 1.8.57 2.73.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <div><b>Cuộc gọi đến</b> – kết nối 2 phút 14 giây</div>
+                  <span class="text-xs text-slate-400">2 phút trước</span>
+                </div>
+                <div class="text-slate-600 text-xs mt-1">Khách hỏi gói khám tổng quát cho mẹ 65 tuổi, ưu tiên lấy mẫu tại nhà sáng cuối tuần. Đã gửi báo giá qua Zalo.</div>
+                <button class="text-xs text-brand-600 mt-1">▶ Nghe ghi âm</button>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-8 h-8 rounded-full bg-sky-100 text-sky-600 grid place-items-center flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <div><b>Đã gửi Zalo</b> – Báo giá gói khám tổng quát Premium</div>
+                  <span class="text-xs text-slate-400">5 phút trước</span>
+                </div>
+                <div class="text-slate-600 text-xs mt-1">Mẫu Zalo: ZL-BG-GoiTongQuatPremium – Đã đọc</div>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 grid place-items-center flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <div><b>Lead được phân</b> tự động cho Nguyễn Lan (khu vực Q.7)</div>
+                  <span class="text-xs text-slate-400">10 phút trước</span>
+                </div>
+                <div class="text-slate-600 text-xs mt-1">Quy tắc: FB Ads + Q.7 → round-robin trong nhóm Q.7</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 border-t border-slate-100">
+            <textarea class="w-full border border-slate-200 rounded-lg p-2 text-sm" rows="2" placeholder="Ghi chú nhanh, @mention đồng nghiệp..."></textarea>
+            <div class="mt-2 flex gap-2 text-sm">
+              <button class="px-3 py-1.5 bg-brand-600 text-white rounded-lg">Lưu ghi chú</button>
+              <button class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg">📞 Gọi</button>
+              <button class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg">✉ Email</button>
+              <button class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg">💬 Zalo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right rail -->
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="flex items-center gap-3">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-white grid place-items-center text-lg font-bold">HT</div>
+            <div>
+              <div class="font-semibold">Chị Hương Trần</div>
+              <div class="text-xs text-slate-500">Cá nhân · 65t (mẹ)</div>
+            </div>
+          </div>
+          <dl class="mt-4 space-y-2 text-sm">
+            <div class="flex justify-between"><dt class="text-slate-500">SĐT</dt><dd class="font-medium">0908 123 456</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Email</dt><dd class="font-medium">huong.tran@gmail.com</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Khu vực</dt><dd class="font-medium">Q.7, TP.HCM</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Score</dt><dd class="font-bold text-emerald-600">82 / 100</dd></div>
+          </dl>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-2">Nguồn & Chiến dịch</div>
+          <div class="space-y-1.5 text-xs">
+            <div>Nguồn: ${tag('FB Ads','blue')}</div>
+            <div>Chiến dịch: <b>GoiKhamTongQuat-T05</b></div>
+            <div>Ad Set: <b>Phụ huynh 35-55 Q.7</b></div>
+            <div>Cost / lead: <b>87.000đ</b></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-2">Quan tâm</div>
+          <div class="flex flex-wrap gap-1">${['Gói khám tổng quát','Tầm soát ung thư','Lấy mẫu tại nhà'].map(t=>tag(t,'cyan')).join('')}</div>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800">
+          ⚠ Mục tiêu phản hồi 30 phút – đã liên hệ trong 8 phút ✓
+        </div>
+      </div>
+    </div>`
+};
+
+/* =========================================================
+   2. DEAL MANAGEMENT
+   ========================================================= */
+const DEALS = [
+  { name:'Gói khám tổng quát Premium x2', org:'Chị Hương Trần', val:'8.400.000đ', prob:60, stage:'Báo giá', owner:'Nguyễn Lan', due:'3/6', mode:'Tại nhà' },
+  { name:'HĐ khám SK định kỳ 250 NLĐ',   org:'Cty CP May Sao Mai', val:'425.000.000đ', prob:75, stage:'Đàm phán', owner:'Lê Hoài', due:'15/6', mode:'Tại nhà máy' },
+  { name:'Gói tầm soát ung thư nữ',       org:'Chị Lưu Diệu Linh', val:'4.200.000đ', prob:40, stage:'Thẩm định', owner:'Trần Minh', due:'8/6', mode:'Tại điểm Hi-Medic' },
+  { name:'HĐ khung 12 tháng',            org:'PK Đa khoa Hoàng Anh', val:'180.000.000đ', prob:55, stage:'Báo giá', owner:'Trần Minh', due:'20/6', mode:'Doanh nghiệp' },
+  { name:'Gói tiền hôn nhân x1',         org:'Anh Phạm Quốc Hùng', val:'3.800.000đ', prob:80, stage:'Đàm phán', owner:'Nguyễn Lan', due:'2/6', mode:'Tại điểm Hi-Medic' },
+];
+const DEAL_STAGE_VN = {Qualification:'Thẩm định', Proposal:'Báo giá', Negotiation:'Đàm phán', Won:'Đã chốt', Lost:'Thất bại'};
+const dealStageColor = {Qualification:'sky', Proposal:'amber', Negotiation:'violet', Won:'emerald', Lost:'rose'};
+
+SCREENS.deal = {
+  kanban: () => {
+    const cols = [
+      {name:'Thẩm định', count:12, val:'42M', deals:[DEALS[2]]},
+      {name:'Báo giá', count:18, val:'186M', deals:[DEALS[0],DEALS[3]]},
+      {name:'Đàm phán', count:9, val:'612M', deals:[DEALS[1],DEALS[4]]},
+      {name:'Đã chốt', count:24, val:'288M', deals:[]},
+      {name:'Thất bại', count:7, val:'42M', deals:[]},
+    ];
+    return `
+    ${screenHeader('Luồng Cơ hội','Dự báo T6: 4.8 tỷ · Tỷ lệ chốt: 32% · Chu kỳ TB: 18 ngày',
+      `<button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">+ Thêm cơ hội</button>`)}
+    <div class="p-6">
+      <div class="grid grid-cols-5 gap-3 mb-4">
+        ${[
+          ['Tổng giá trị luồng','5.2 tỷ','emerald'],
+          ['Dự báo theo xác suất','1.86 tỷ','blue'],
+          ['Cơ hội đang mở','70','violet'],
+          ['Đã chốt T5','24','cyan'],
+          ['Tỷ lệ chốt','32%','amber'],
+        ].map(([l,v,c])=>`<div class="bg-white rounded-xl border border-slate-200 p-3"><div class="text-xs text-slate-500">${l}</div><div class="mt-1 font-bold text-${c}-600 text-lg">${v}</div></div>`).join('')}
+      </div>
+      <div class="flex gap-3 overflow-x-auto pb-4 scroll-thin">
+        ${cols.map(c=>`
+          <div class="w-72 flex-shrink-0">
+            <div class="flex items-center justify-between mb-2 px-1">
+              <div class="font-semibold text-sm text-slate-700">${c.name}</div>
+              <div class="text-xs text-slate-500"><b>${c.count}</b> · ${c.val}</div>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-2 min-h-[400px] space-y-2 border border-slate-200/60">
+              ${c.deals.map(d=>`
+                <div class="kanban-card bg-white rounded-lg p-3 border border-slate-200 cursor-pointer" onclick="select('deal','detail')">
+                  <div class="text-sm font-medium text-slate-800 leading-snug">${d.name}</div>
+                  <div class="text-xs text-slate-500 mt-1">${d.org}</div>
+                  <div class="mt-2 flex items-center justify-between">
+                    <div class="font-bold text-emerald-600 text-sm">${d.val}</div>
+                    <div class="text-xs px-1.5 py-0.5 rounded bg-slate-100">${d.prob}%</div>
+                  </div>
+                  <div class="mt-2 flex gap-1 flex-wrap text-[10px]">${tag(d.mode,'slate')}</div>
+                  <div class="mt-2 flex items-center justify-between text-[11px]">
+                    ${avatar(d.owner.split(' ').slice(-1)[0][0])}
+                    <span class="text-slate-400">Đóng: ${d.due}</span>
+                  </div>
+                </div>`).join('')}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  },
+
+  detail: () => `
+    ${screenHeader('Cơ hội · HĐ khám SK định kỳ 250 NLĐ – Cty CP May Sao Mai',
+      'Giá trị 425.000.000đ · Đàm phán · 75% · Dự kiến chốt 15/06',
+      `<button class="px-3 py-1.5 text-sm bg-rose-50 text-rose-700 rounded-lg">Đánh dấu Thất bại</button>
+       <button class="px-3 py-1.5 text-sm bg-emerald-600 text-white rounded-lg">Chốt → Tạo đơn lấy mẫu</button>`)}
+    <div class="p-6 grid grid-cols-3 gap-6">
+      <div class="col-span-2 space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="flex items-center gap-1 text-xs font-medium">
+            ${['Thẩm định','Báo giá','Đàm phán','Đã chốt'].map((s,i)=>`
+              <div class="flex-1 flex items-center gap-1">
+                <div class="flex-1 h-7 grid place-items-center rounded ${i<=2?'bg-violet-500 text-white':'bg-slate-50 text-slate-400'}">${s}</div>
+                ${i<3?'<svg class="w-3 h-3 text-slate-300" fill="currentColor" viewBox="0 0 20 20"><path d="M7 5l6 5-6 5V5z"/></svg>':''}
+              </div>`).join('')}
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200">
+          <div class="px-4 py-3 border-b border-slate-100 font-semibold text-sm">Dịch vụ trong Cơ hội</div>
+          <table class="w-full text-sm">
+            <thead class="bg-slate-50 text-xs text-slate-500"><tr>
+              <th class="text-left p-3">Gói / Test</th><th class="text-left p-3">SL</th><th class="text-right p-3">Đơn giá</th><th class="text-right p-3">Thành tiền</th>
+            </tr></thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr><td class="p-3"><b>Gói Khám SK Định kỳ NLĐ (Theo TT14)</b><div class="text-xs text-slate-500">14 chỉ số · TAT 48h</div></td><td class="p-3">250 người</td><td class="p-3 text-right">1.500.000đ</td><td class="p-3 text-right font-medium">375.000.000đ</td></tr>
+              <tr><td class="p-3"><b>Gói tầm soát ung thư phổi (HRCT)</b><div class="text-xs text-slate-500">Mở rộng cho 50 NLĐ &gt;40t</div></td><td class="p-3">50</td><td class="p-3 text-right">1.000.000đ</td><td class="p-3 text-right font-medium">50.000.000đ</td></tr>
+              <tr class="bg-slate-50 font-semibold"><td class="p-3" colspan="3">Tổng</td><td class="p-3 text-right text-emerald-700">425.000.000đ</td></tr>
+            </tbody>
+          </table>
+          <div class="p-3 border-t border-slate-100 text-xs flex items-center gap-2 text-amber-700 bg-amber-50">
+            ⚠ Chiết khấu 8% (yêu cầu Trưởng nhóm KD duyệt) – <button class="text-brand-700 font-medium">Gửi duyệt</button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200">
+          <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between text-sm">
+            <span class="font-semibold">Mốc tiếp theo</span>
+            <button class="text-xs text-brand-600">+ Thêm</button>
+          </div>
+          <div class="p-4 space-y-2 text-sm">
+            <div class="flex items-center gap-3 p-2 border border-slate-200 rounded-lg">
+              <input type="checkbox" class="rounded"><div class="flex-1">Họp chốt giá với GĐ Nhân sự</div><span class="text-xs text-slate-500">31/05 14h</span>
+            </div>
+            <div class="flex items-center gap-3 p-2 border border-slate-200 rounded-lg">
+              <input type="checkbox" class="rounded"><div class="flex-1">Khảo sát mặt bằng nhà máy + lập kế hoạch lấy mẫu theo ca</div><span class="text-xs text-slate-500">02/06</span>
+            </div>
+            <div class="flex items-center gap-3 p-2 border border-slate-200 rounded-lg">
+              <input type="checkbox" class="rounded"><div class="flex-1">Trình hợp đồng khung 12 tháng để 2 bên ký</div><span class="text-xs text-slate-500">10/06</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-3">Thông tin Cơ hội</div>
+          <dl class="space-y-2">
+            <div class="flex justify-between"><dt class="text-slate-500">Khách hàng</dt><dd class="font-medium">Cty CP May Sao Mai</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Loại cơ hội</dt><dd class="font-medium">HĐ dài hạn B2B</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Mô hình</dt><dd class="font-medium">Lấy mẫu tại nhà máy</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Khu vực</dt><dd class="font-medium">Q.12</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Phụ trách</dt><dd class="font-medium">Lê Hoài</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Giá trị</dt><dd class="font-bold text-emerald-600">425.000.000đ</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Xác suất</dt><dd class="font-bold">75%</dd></div>
+          </dl>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-2">Đầu mối</div>
+          <div class="flex items-center gap-2 mb-2">${avatar('NV')}<div><div class="text-sm">Nguyễn Văn Đại</div><div class="text-xs text-slate-500">GĐ Nhân sự · Người ra quyết định</div></div></div>
+          <div class="flex items-center gap-2">${avatar('TK','sky','sky-600')}<div><div class="text-sm">Trần Thị Kim</div><div class="text-xs text-slate-500">Trưởng phòng Y tế · Đầu mối nhận mẫu</div></div></div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-2">Tài liệu</div>
+          <div class="space-y-1.5 text-xs">
+            <div class="flex items-center gap-2"><span>📄</span><span class="flex-1">BaoGia_SaoMai_v3.pdf</span><span class="text-slate-400">2.4MB</span></div>
+            <div class="flex items-center gap-2"><span>📄</span><span class="flex-1">HopDongKhung_Draft.docx</span><span class="text-slate-400">340KB</span></div>
+            <div class="flex items-center gap-2"><span>📄</span><span class="flex-1">DSNLD_KhamSK.xlsx</span><span class="text-slate-400">88KB</span></div>
+          </div>
+        </div>
+      </div>
+    </div>`,
+};
+
+/* =========================================================
+   3. CONTACT & ORGANIZATION
+   ========================================================= */
+SCREENS.contact = {
+  list: () => `
+    ${screenHeader('Khách hàng', '12.840 contact · 1.247 đơn vị · 86% đã liên kết PID Lab',
+      `<button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">+ Thêm khách</button>`)}
+    <div class="p-6 flex gap-2 mb-2 text-xs">
+      ${['Cá nhân (10.218)','Phòng khám (412)','Bệnh viện (38)','Doanh nghiệp B2B (642)','Đối tác bảo hiểm (12)'].map((t,i)=>`<button class="px-3 py-1.5 rounded-lg border ${i===0?'bg-brand-50 border-brand-300 text-brand-700':'bg-white border-slate-200 text-slate-600'}">${t}</button>`).join('')}
+    </div>
+    <div class="px-6 pb-6">
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs text-slate-500 uppercase"><tr>
+            <th class="text-left p-3">Tên</th><th class="text-left p-3">Loại</th><th class="text-left p-3">SĐT / Email</th><th class="text-left p-3">PID Lab</th><th class="text-left p-3">LTV</th><th class="text-left p-3">Lần khám gần nhất</th><th class="text-left p-3">Phụ trách</th>
+          </tr></thead>
+          <tbody class="divide-y divide-slate-100">
+            ${[
+              ['Chị Hương Trần','Cá nhân','0908 123 456','PID-008712','8.4M','—','Nguyễn Lan'],
+              ['Cty CP May Sao Mai','Doanh nghiệp','028 3944 0011','—','—','—','Lê Hoài'],
+              ['BV Đa khoa Tâm Phúc','Bệnh viện','028 6677 8899','—','42M','15/03','Lê Hoài'],
+              ['Anh Phạm Quốc Hùng','Cá nhân','0913 778 901','PID-007884','12.6M','02/01','Nguyễn Lan'],
+              ['PK Đa khoa Hoàng Anh','Phòng khám','028 3895 1122','—','138M','—','Trần Minh'],
+            ].map(r=>`
+              <tr class="hover:bg-slate-50 cursor-pointer" onclick="select('contact','profile')">
+                <td class="p-3 font-medium">${r[0]}</td>
+                <td class="p-3">${tag(r[1], r[1]==='Cá nhân'?'cyan':r[1]==='Bệnh viện'?'rose':r[1]==='Phòng khám'?'amber':'emerald')}</td>
+                <td class="p-3 text-slate-600">${r[2]}</td>
+                <td class="p-3"><code class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">${r[3]}</code></td>
+                <td class="p-3 font-semibold text-emerald-600">${r[4]}</td>
+                <td class="p-3 text-slate-600">${r[5]}</td>
+                <td class="p-3"><div class="flex items-center gap-2">${avatar(r[6].split(' ').slice(-1)[0][0])}<span class="text-xs">${r[6]}</span></div></td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>`,
+
+  profile: () => `
+    ${screenHeader('Hồ sơ 360° · Anh Phạm Quốc Hùng', 'PID-007884 · Khách VIP · Đã đồng ý xử lý dữ liệu y tế (PDPA) · 03/2025',
+      `<button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg">In hồ sơ</button>
+       <button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">+ Đặt lịch lấy mẫu</button>`)}
+    <div class="p-6 grid grid-cols-3 gap-6">
+      <div class="col-span-2 space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200">
+          <div class="border-b border-slate-100 px-4 pt-3 flex gap-1 text-sm">
+            ${['Tổng quan','Lịch sử khám','Cơ hội & Khách tiềm năng','Tài liệu','Y tế (hạn chế)'].map((t,i)=>`<button class="px-3 py-2 border-b-2 ${i===0?'border-brand-500 text-brand-700 font-medium':'border-transparent text-slate-500'}">${t}</button>`).join('')}
+          </div>
+          <div class="p-4 grid grid-cols-4 gap-4 text-sm">
+            ${[['LTV trọn đời','12.6M','emerald'],['Số lần khám','4','sky'],['Cơ hội đang chạy','1','amber'],['NPS','9/10','violet']].map(([l,v,c])=>`<div class="rounded-lg bg-${c}-50 border border-${c}-200 p-3"><div class="text-xs text-${c}-700">${l}</div><div class="font-bold text-xl text-${c}-700">${v}</div></div>`).join('')}
+          </div>
+          <div class="p-4 border-t border-slate-100">
+            <div class="font-semibold text-sm mb-3">Timeline tương tác</div>
+            <div class="space-y-3 text-sm">
+              <div class="flex gap-3"><div class="w-1 bg-emerald-400 rounded"></div><div class="flex-1"><b>Won</b> – Gói tiền hôn nhân – 3.8M · <span class="text-xs text-slate-500">28/04/2026</span></div></div>
+              <div class="flex gap-3"><div class="w-1 bg-sky-400 rounded"></div><div class="flex-1"><b>Lấy mẫu</b> tại điểm Hi-Medic Q.7 · <span class="text-xs text-slate-500">02/01/2026</span></div></div>
+              <div class="flex gap-3"><div class="w-1 bg-violet-400 rounded"></div><div class="flex-1"><b>Kết quả XN</b> đã trả qua Zalo · TAT 28h · <span class="text-xs text-slate-500">03/01/2026</span></div></div>
+              <div class="flex gap-3"><div class="w-1 bg-cyan-400 rounded"></div><div class="flex-1"><b>Gọi follow-up</b> – Sales Nguyễn Lan · <span class="text-xs text-slate-500">10/01/2026</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="font-semibold text-sm mb-3">Liên kết tổ chức</div>
+          <div class="flex items-center justify-between p-2 border border-slate-200 rounded">
+            <div><div class="font-medium text-sm">Cty TNHH Hùng Phát</div><div class="text-xs text-slate-500">Giám đốc · MST 0312…</div></div>
+            <button class="text-xs text-brand-600">Xem đơn vị →</button>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-center">
+          <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-emerald-300 to-emerald-500 text-white grid place-items-center text-2xl font-bold">PH</div>
+          <div class="mt-2 font-semibold">Anh Phạm Quốc Hùng</div>
+          <div class="text-xs text-slate-500">Nam · 42 tuổi · Q.7</div>
+          <div class="mt-3 flex justify-center gap-2">
+            <button class="p-2 rounded-lg bg-emerald-50 text-emerald-600">📞</button>
+            <button class="p-2 rounded-lg bg-sky-50 text-sky-600">✉</button>
+            <button class="p-2 rounded-lg bg-blue-50 text-blue-600">💬</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm space-y-2">
+          <div class="font-semibold">Hồ sơ y tế (RBAC)</div>
+          <div class="text-xs text-slate-500">Chỉ Sales được giao + Bác sĩ Lab xem được</div>
+          <div class="space-y-1.5">
+            <div class="flex justify-between"><span class="text-slate-500">Nhóm máu</span><b>O Rh+</b></div>
+            <div class="flex justify-between"><span class="text-slate-500">Dị ứng</span><b>Penicillin</b></div>
+            <div class="flex justify-between"><span class="text-slate-500">Bệnh nền</span><b>Tăng huyết áp</b></div>
+          </div>
+        </div>
+        <div class="bg-cyan-50 border border-cyan-200 rounded-xl p-3 text-xs text-cyan-800">
+          🔒 PDPA: Đã đồng ý xử lý dữ liệu y tế ngày 14/03/2025 · <a class="underline" href="#">Xem văn bản</a>
+        </div>
+      </div>
+    </div>`
+};
+
+/* =========================================================
+   4. SAMPLE COLLECTION
+   ========================================================= */
+SCREENS.sample = {
+  list: () => `
+    ${screenHeader('Đơn lấy mẫu', 'Hôm nay: 42 đơn · Sáng 28 · Chiều 14 · Đã hoàn thành 9/42',
+      `<button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">+ Tạo Đơn lấy mẫu</button>`)}
+    <div class="p-6 grid grid-cols-4 gap-4 mb-4">
+      ${[
+        ['Chờ phân công','8','amber'],
+        ['Đã phân công','25','blue'],
+        ['Đang đi','7','violet'],
+        ['Đã lấy mẫu','9','emerald'],
+      ].map(([l,v,c])=>`<div class="bg-white rounded-xl border border-slate-200 p-4"><div class="text-xs text-slate-500">${l}</div><div class="text-2xl font-bold text-${c}-600 mt-1">${v}</div></div>`).join('')}
+    </div>
+    <div class="px-6 pb-6">
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs text-slate-500 uppercase"><tr>
+            <th class="text-left p-3">SO #</th><th class="text-left p-3">Khách hàng</th><th class="text-left p-3">Gói / Test</th><th class="text-left p-3">Địa điểm</th><th class="text-left p-3">Lịch</th><th class="text-left p-3">Phlebotomist</th><th class="text-left p-3">Trạng thái</th><th></th>
+          </tr></thead>
+          <tbody class="divide-y divide-slate-100">
+            ${[
+              ['SO-26052901','Chị Hương Trần','Gói khám tổng quát Premium x2','Q.7, Phú Mỹ Hưng','29/05 · 07:30','Nguyễn Lan','Đang đi','violet'],
+              ['SO-26052902','Anh Phạm Quốc Hùng','Tổng phân tích máu','Q.7, R.118 Saigon Pearl','29/05 · 08:15','Nguyễn Lan','Đã phân công','blue'],
+              ['SO-26052903','Cty CP May Sao Mai (Đợt 1 · 80 người)','Gói khám SK định kỳ','KCN Tân Bình – nhà máy','29/05 · 06:00','Lê Hoài + 3 NV','Đã lấy mẫu','emerald'],
+              ['SO-26052904','BV Đa khoa Tâm Phúc','Vận chuyển mẫu định kỳ ca chiều','Q.10, BV Tâm Phúc','29/05 · 14:00','Chưa phân','Chờ phân công','amber'],
+            ].map(r=>`
+              <tr class="hover:bg-slate-50 cursor-pointer">
+                <td class="p-3 font-mono text-xs">${r[0]}</td>
+                <td class="p-3 font-medium">${r[1]}</td>
+                <td class="p-3 text-slate-600">${r[2]}</td>
+                <td class="p-3 text-slate-600">${r[3]}</td>
+                <td class="p-3 text-slate-600">${r[4]}</td>
+                <td class="p-3 text-slate-600">${r[5]}</td>
+                <td class="p-3">${tag(r[6], r[7])}</td>
+                <td class="p-3"><button class="text-xs text-brand-600">Chi tiết →</button></td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>`,
+
+  mobile: () => `
+    ${screenHeader('Quy trình Mobile – Lấy mẫu', 'Xem nhanh 3 bước cốt lõi · chi tiết đầy đủ ở module 11')}
+    <div class="p-8 grid grid-cols-3 gap-6 justify-items-center bg-gradient-to-b from-slate-100 to-slate-50">
+      ${[mobileRouteScreen(), mobileConsultScreen(), mobileCollectScreen()].join('')}
+    </div>`
+};
+
+/* =========================================================
+   5. SAMPLE LOGISTICS
+   ========================================================= */
+SCREENS.logistics = {
+  manifest: () => `
+    ${screenHeader('Vận chuyển mẫu · Phiếu giao & Theo dõi', 'Lô vận chuyển M-26052901 (Ca sáng Q.7-Q.4) · 38 ống · Lạnh 2-8°C',
+      `<button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg">In manifest</button>
+       <button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">Bàn giao Lab</button>`)}
+    <div class="p-6 grid grid-cols-3 gap-6">
+      <div class="col-span-2 space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="font-semibold text-sm mb-3">Chain of custody – realtime</div>
+          <div class="relative">
+            <div class="absolute left-4 top-2 bottom-2 w-0.5 bg-slate-200"></div>
+            ${[
+              ['Đã lấy mẫu tại 12 điểm','06:30 – 09:45','emerald','✓'],
+              ['Gom về xe lạnh BS 51A-12345','10:05','emerald','✓'],
+              ['Trên đường về Lab Trung tâm','10:18','blue','🚚'],
+              ['Bàn giao Tiếp nhận tại Lab','—','slate','◯'],
+              ['Lab tiếp nhận & nhập LIS','—','slate','◯'],
+            ].map(([t,ts,c,ic])=>`
+              <div class="relative pl-12 pb-4">
+                <div class="absolute left-1 top-0 w-7 h-7 rounded-full bg-${c}-500 text-white grid place-items-center text-xs ${c==='blue'?'pulse-dot':''}">${ic}</div>
+                <div class="font-medium text-sm">${t}</div>
+                <div class="text-xs text-slate-500">${ts}</div>
+              </div>`).join('')}
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200">
+          <div class="px-4 py-3 border-b border-slate-100 font-semibold text-sm flex items-center gap-3">
+            Nhật ký nhiệt độ
+            <span class="text-xs text-emerald-600 ml-auto">● Trong ngưỡng (2-8°C)</span>
+          </div>
+          <div class="p-4">
+            <div class="h-32 relative">
+              <svg viewBox="0 0 400 100" class="w-full h-full">
+                <line x1="0" y1="20" x2="400" y2="20" stroke="#ef4444" stroke-dasharray="3 3" stroke-width="1"/>
+                <line x1="0" y1="80" x2="400" y2="80" stroke="#3b82f6" stroke-dasharray="3 3" stroke-width="1"/>
+                <polyline fill="none" stroke="#10b981" stroke-width="2" points="0,50 40,52 80,48 120,45 160,55 200,50 240,48 280,52 320,49 360,51 400,50"/>
+                <text x="2" y="16" font-size="8" fill="#ef4444">8°C max</text>
+                <text x="2" y="92" font-size="8" fill="#3b82f6">2°C min</text>
+              </svg>
+            </div>
+            <div class="text-xs text-slate-500 mt-2">Datalogger IoT TempTrack-08 · 1 mẫu/30s · 4.5°C avg</div>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-3">Lô M-26052901</div>
+          <dl class="space-y-2">
+            <div class="flex justify-between"><dt class="text-slate-500">Ca</dt><dd class="font-medium">Sáng</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Tuyến</dt><dd class="font-medium">Q.7 → Q.4</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Shipper</dt><dd class="font-medium">Trần Hữu Phúc</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Xe</dt><dd class="font-medium">51A-12345 (xe lạnh)</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Ống mẫu</dt><dd class="font-medium">38 (EDTA · Citrate · Serum)</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">SLA về Lab</dt><dd class="font-medium text-emerald-600">Còn 1h25</dd></div>
+          </dl>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="font-semibold text-sm mb-2">Vị trí xe</div>
+          <div class="h-40 rounded-lg bg-gradient-to-br from-sky-100 to-emerald-100 grid place-items-center text-slate-500 text-sm">
+            🗺️ Bản đồ realtime (Mapbox)
+          </div>
+          <div class="text-xs text-slate-500 mt-2">Đang ở Cầu Khánh Hội · ETA Lab 10:42</div>
+        </div>
+      </div>
+    </div>`,
+
+  reception: () => `
+    ${screenHeader('Tiếp nhận tại Lab · Nhận mẫu', 'Ca sáng · 5 lô đang chờ · 38/120 ống đã nhập LIS',
+      `<button class="px-3 py-1.5 text-sm bg-rose-50 text-rose-700 rounded-lg">Từ chối lô</button>
+       <button class="px-3 py-1.5 text-sm bg-emerald-600 text-white rounded-lg">Xác nhận nhận</button>`)}
+    <div class="p-6 grid grid-cols-3 gap-6">
+      <div class="col-span-2">
+        <div class="bg-white rounded-xl border border-slate-200">
+          <div class="border-b border-slate-100 p-4 flex items-center gap-4">
+            <div class="flex-1">
+              <div class="font-semibold">Lô M-26052901 · Q.7 sáng</div>
+              <div class="text-xs text-slate-500">Shipper: Trần Hữu Phúc · Đến lúc 10:38 · Nhiệt độ 4.6°C ✓</div>
+            </div>
+            <input type="text" placeholder="Scan barcode ống mẫu..." class="px-3 py-2 text-sm bg-slate-100 border border-transparent rounded-lg focus:bg-white focus:border-brand-500 outline-none w-72">
+          </div>
+          <table class="w-full text-sm">
+            <thead class="bg-slate-50 text-xs text-slate-500 uppercase"><tr>
+              <th class="text-left p-3 w-10">#</th><th class="text-left p-3">Barcode</th><th class="text-left p-3">Khách hàng</th><th class="text-left p-3">Loại ống</th><th class="text-left p-3">Test</th><th class="text-left p-3">Tình trạng</th>
+            </tr></thead>
+            <tbody class="divide-y divide-slate-100">
+              ${[
+                ['1','HM-08712-EDTA-01','Chị Hương Trần (PID-008712)','EDTA tím','CBC, HbA1c','OK','emerald'],
+                ['2','HM-08712-SER-01','Chị Hương Trần','Serum vàng','Sinh hóa 14, TSH','OK','emerald'],
+                ['3','HM-08712-CIT-01','Chị Hương Trần','Citrate xanh','PT, APTT','OK','emerald'],
+                ['4','HM-07884-EDTA-01','Anh Phạm Q.Hùng','EDTA tím','CBC','Vỡ ống','rose'],
+                ['5','HM-07884-SER-01','Anh Phạm Q.Hùng','Serum vàng','Sinh hóa','OK','emerald'],
+              ].map(r=>`
+                <tr>
+                  <td class="p-3 text-slate-500">${r[0]}</td>
+                  <td class="p-3"><code class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">${r[1]}</code></td>
+                  <td class="p-3">${r[2]}</td>
+                  <td class="p-3">${r[3]}</td>
+                  <td class="p-3 text-slate-600">${r[4]}</td>
+                  <td class="p-3">${tag(r[5],r[6])}</td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+          <div class="p-3 border-t border-slate-100 bg-rose-50 text-xs text-rose-700 flex items-center gap-2">
+            ⚠ Có 1 ống vỡ – đã tự sinh yêu cầu lấy lại SO-RR-26052901 cho Sales Nguyễn Lan.
+          </div>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-3">Checklist tiếp nhận</div>
+          ${['Đúng số lượng ống (38)','Nhiệt độ trong ngưỡng','Niêm phong nguyên vẹn','Manifest khớp barcode','Phiếu chỉ định đầy đủ'].map((t,i)=>`
+            <label class="flex items-center gap-2 py-1.5 text-sm"><input type="checkbox" ${i<4?'checked':''} class="rounded text-emerald-500"><span class="${i<4?'':'text-slate-500'}">${t}</span></label>`).join('')}
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-2">Hàng chờ tiếp theo</div>
+          <div class="space-y-2">
+            ${[['M-26052902','Q.4 sáng','38 ống','Đến 11:10'],['M-26052903','KCN Tân Bình','120 ống','Đến 12:00'],['M-26052904','Q.10 sáng','22 ống','Đang đi']].map(([id,r,n,e])=>`
+              <div class="p-2 border border-slate-200 rounded text-xs flex items-center gap-2">
+                <span class="font-mono">${id}</span>
+                <span class="ml-auto text-slate-500">${e}</span>
+                <div class="w-full text-slate-500">${r} · ${n}</div>
+              </div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>`
+};
+
+/* =========================================================
+   6. TEST CATALOG
+   ========================================================= */
+SCREENS.catalog = {
+  tests: () => `
+    ${screenHeader('Danh mục Test', '342 test · 28 nhóm chuyên khoa · Đồng bộ LIS lần cuối 10:15',
+      `<button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg">⟲ Sync LIS</button>
+       <button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">+ Thêm test</button>`)}
+    <div class="p-6 grid grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+        <div class="font-semibold mb-3">Nhóm chuyên khoa</div>
+        ${[['Sinh hóa',98,true],['Huyết học',54,false],['Vi sinh',42,false],['Miễn dịch',38,false],['Giải phẫu bệnh',28,false],['Di truyền',24,false],['Nội tiết',32,false],['Chẩn đoán hình ảnh',26,false]].map(([n,c,a])=>`
+          <button class="w-full flex items-center justify-between px-2 py-1.5 rounded ${a?'bg-brand-50 text-brand-700':'hover:bg-slate-50'}"><span>${n}</span><span class="text-xs ${a?'bg-brand-100':'bg-slate-100'} px-1.5 rounded">${c}</span></button>`).join('')}
+      </div>
+      <div class="col-span-3">
+        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-50 text-xs text-slate-500 uppercase"><tr>
+              <th class="text-left p-3">Mã</th><th class="text-left p-3">Tên test (VN/EN)</th><th class="text-left p-3">Mẫu</th><th class="text-left p-3">TAT</th><th class="text-right p-3">Giá lẻ</th><th class="text-right p-3">Giá B2B</th><th class="text-left p-3">Trạng thái</th>
+            </tr></thead>
+            <tbody class="divide-y divide-slate-100">
+              ${[
+                ['SH-001','Đường huyết (Glucose)','Serum 2ml','2h','60.000','45.000','active'],
+                ['SH-014','Cholesterol toàn phần','Serum 2ml','2h','90.000','70.000','active'],
+                ['SH-022','HbA1c','EDTA 3ml','3h','280.000','220.000','active'],
+                ['HH-001','Tổng phân tích máu (CBC)','EDTA 3ml','1h','120.000','95.000','active'],
+                ['MD-008','Anti-HCV','Serum 3ml','4h','350.000','280.000','active'],
+                ['DT-002','BRCA1/BRCA2','EDTA 5ml','10 ngày','12.000.000','9.500.000','active'],
+              ].map(r=>`
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3"><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">${r[0]}</code></td>
+                  <td class="p-3 font-medium">${r[1]}</td>
+                  <td class="p-3 text-slate-600">${r[2]}</td>
+                  <td class="p-3 text-slate-600">${r[3]}</td>
+                  <td class="p-3 text-right">${r[4]}đ</td>
+                  <td class="p-3 text-right text-emerald-600 font-medium">${r[5]}đ</td>
+                  <td class="p-3">${tag('Đang bán','emerald')}</td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>`,
+
+  package: () => `
+    ${screenHeader('Gói combo · Gói Khám SK Định kỳ NLĐ', 'Áp dụng cho hợp đồng B2B – đang chỉnh sửa',
+      `<button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg">Sao chép gói</button>
+       <button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">Lưu phiên bản</button>`)}
+    <div class="p-6 grid grid-cols-3 gap-6">
+      <div class="col-span-2 space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="grid grid-cols-2 gap-3 text-sm">
+            <label class="block"><span class="text-slate-500 text-xs">Tên gói</span><input class="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg" value="Gói Khám SK Định kỳ NLĐ"></label>
+            <label class="block"><span class="text-slate-500 text-xs">Mã gói</span><input class="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg" value="PKG-B2B-SKDK"></label>
+            <label class="block"><span class="text-slate-500 text-xs">Đối tượng</span><select class="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg"><option>B2B – Khám SK định kỳ NLĐ</option></select></label>
+            <label class="block"><span class="text-slate-500 text-xs">Theo thông tư</span><select class="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg"><option>TT14/2013/TT-BYT</option></select></label>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200">
+          <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between text-sm">
+            <span class="font-semibold">Test trong gói (14)</span>
+            <button class="text-xs text-brand-600">+ Thêm test</button>
+          </div>
+          <table class="w-full text-sm">
+            <thead class="bg-slate-50 text-xs text-slate-500"><tr>
+              <th class="text-left p-3">Test</th><th class="text-left p-3">Loại mẫu</th><th class="text-left p-3">Bắt buộc</th><th class="text-right p-3">Giá B2B</th><th></th>
+            </tr></thead>
+            <tbody class="divide-y divide-slate-100">
+              ${[['CBC','EDTA','✓','95.000'],['Glucose','Serum','✓','45.000'],['Cholesterol TP','Serum','✓','70.000'],['HDL/LDL','Serum','✓','95.000'],['Ure','Serum','✓','45.000'],['Creatinin','Serum','✓','50.000'],['AST/ALT','Serum','✓','100.000'],['XQ ngực thẳng','—','✓','120.000']].map(r=>`
+                <tr><td class="p-3 font-medium">${r[0]}</td><td class="p-3 text-slate-600">${r[1]}</td><td class="p-3 text-center">${r[2]}</td><td class="p-3 text-right text-emerald-600">${r[3]}đ</td><td class="p-3 text-slate-400">⋮</td></tr>`).join('')}
+              <tr class="bg-slate-50 font-semibold"><td class="p-3" colspan="3">Tổng giá thành phần</td><td class="p-3 text-right">1.620.000đ</td><td></td></tr>
+              <tr class="bg-emerald-50 font-semibold text-emerald-700"><td class="p-3" colspan="3">Giá bán gói (combo)</td><td class="p-3 text-right">1.500.000đ</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-3">Hiệu lực giá</div>
+          <div class="space-y-2">
+            <label class="block"><span class="text-slate-500 text-xs">Từ ngày</span><input type="date" value="2026-01-01" class="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg"></label>
+            <label class="block"><span class="text-slate-500 text-xs">Đến ngày</span><input type="date" value="2026-12-31" class="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg"></label>
+            <label class="block"><span class="text-slate-500 text-xs">Phê duyệt</span><input class="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg" value="GĐ Kinh doanh · 22/12/2025"></label>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-3">Lịch sử phiên bản</div>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between"><span>v2.1 (hiện tại)</span><span class="text-slate-500">22/12/25</span></div>
+            <div class="flex justify-between"><span>v2.0</span><span class="text-slate-500">01/06/25</span></div>
+            <div class="flex justify-between"><span>v1.0</span><span class="text-slate-500">10/01/25</span></div>
+          </div>
+        </div>
+      </div>
+    </div>`
+};
+
+/* =========================================================
+   7. TASKS & ACTIVITY
+   ========================================================= */
+SCREENS.tasks = {
+  calendar: () => {
+    const slots = ['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
+    const days = ['T2 27/5','T3 28/5','T4 29/5','T5 30/5','T6 31/5','T7 1/6','CN 2/6'];
+    const events = [
+      {d:0,s:1,h:2,t:'Lấy mẫu Q.7 (3 khách)',c:'emerald'},
+      {d:1,s:0,h:1,t:'Gọi follow PK Hoàng Anh',c:'sky'},
+      {d:2,s:0,h:3,t:'KCN Tân Bình – đợt 1',c:'violet'},
+      {d:3,s:4,h:1,t:'Họp chốt deal Sao Mai',c:'amber'},
+      {d:4,s:7,h:2,t:'Lấy mẫu Q.4 chiều',c:'emerald'},
+      {d:5,s:2,h:1,t:'Sự kiện khám SK miễn phí Q.7',c:'rose'},
+    ];
+    return `
+    ${screenHeader('Lịch tuần', 'Tuần 22 · 27/05 - 02/06/2026',
+      `<button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg">◀</button>
+       <button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg">Hôm nay</button>
+       <button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-lg">▶</button>
+       <button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">+ Sự kiện</button>`)}
+    <div class="p-6">
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="grid grid-cols-8 border-b border-slate-200 text-xs font-semibold text-slate-600 bg-slate-50">
+          <div class="p-2"></div>
+          ${days.map((d,i)=>`<div class="p-2 text-center ${i===2?'bg-brand-50 text-brand-700':''}">${d}</div>`).join('')}
+        </div>
+        <div class="relative">
+          ${slots.map(s=>`
+            <div class="grid grid-cols-8 border-b border-slate-100">
+              <div class="p-2 text-xs text-slate-400 text-right pr-3">${s}</div>
+              ${days.map(()=>`<div class="h-12 border-l border-slate-100"></div>`).join('')}
+            </div>`).join('')}
+          ${events.map(e=>`
+            <div class="absolute left-0 right-0 pointer-events-none">
+              <div class="grid grid-cols-8">
+                <div></div>
+                ${days.map((_,di)=>{
+                  if(di===e.d){
+                    return `<div class="px-1.5 pt-1" style="grid-row-start:${e.s+1}">
+                      <div class="rounded-lg bg-${e.c}-100 text-${e.c}-800 border border-${e.c}-300 px-2 py-1.5 text-xs font-medium pointer-events-auto" style="position:absolute;left:calc(${(di+1)*12.5}% + 2px);top:${e.s*48 + 4}px;height:${e.h*48 - 8}px;width:calc(12.5% - 6px)">
+                        ${e.t}
+                      </div></div>`;
+                  }
+                  return '<div></div>';
+                }).join('')}
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  },
+
+  board: () => `
+    ${screenHeader('Bảng công việc', 'Của tôi · 14 việc mở · 3 quá hạn')}
+    <div class="p-6 grid grid-cols-4 gap-3">
+      ${[
+        ['Cần làm hôm nay',[['Gọi chăm sóc chị Hương Trần (KH tiềm năng)','urgent','rose'],['Chuẩn bị báo giá v3 Sao Mai','today','amber'],['Đặt lịch xe lạnh ca chiều','today','blue']]],
+        ['Đang làm',[['Khảo sát mặt bằng KCN Tân Bình','—','violet'],['Tổng hợp DSNV khám SK','—','violet']]],
+        ['Chờ xử lý',[['Duyệt chiết khấu 8% – Sao Mai','wait Mgr','amber'],['Khách phản hồi BG v2 – PK Hoàng Anh','wait','sky']]],
+        ['Hoàn thành',[['Gửi báo giá v2 Sao Mai','✓','emerald'],['Lấy mẫu Anh Hùng PID-007884','✓','emerald'],['Họp nội bộ pipeline','✓','emerald']]],
+      ].map(([h,items])=>`
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-200">
+          <div class="font-semibold text-sm mb-2 px-1">${h} <span class="text-xs text-slate-400">(${items.length})</span></div>
+          <div class="space-y-2">
+            ${items.map(([t,lbl,c])=>`
+              <div class="bg-white rounded-lg p-2.5 border border-slate-200">
+                <div class="text-sm">${t}</div>
+                <div class="mt-1.5 flex items-center justify-between">${tag(lbl,c)}<div class="flex items-center gap-1">${avatar('NL')}</div></div>
+              </div>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`
+};
+
+/* =========================================================
+   8. COMMUNICATION HUB
+   ========================================================= */
+SCREENS.comm = {
+  inbox: () => `
+    ${screenHeader('Hộp thư hợp nhất', 'Email + Zalo + Cuộc gọi · Hợp nhất theo khách hàng')}
+    <div class="p-6 grid grid-cols-12 gap-4">
+      <div class="col-span-4 bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="border-b border-slate-200 p-3 flex gap-1 text-xs">
+          ${['Tất cả (28)','Chưa đọc (12)','Đã gán'].map((t,i)=>`<button class="px-2 py-1 rounded ${i===0?'bg-brand-50 text-brand-700':'hover:bg-slate-100 text-slate-600'}">${t}</button>`).join('')}
+        </div>
+        <div class="divide-y divide-slate-100">
+          ${[
+            ['Chị Hương Trần','Cảm ơn em, mai 7:30 nhé!','Zalo','2m','blue',true],
+            ['Cty CP May Sao Mai','RE: Báo giá v3','Email','15m','amber',true],
+            ['Anh Phạm Quốc Hùng','Khi nào có kết quả vậy em?','Zalo','1h','blue',false],
+            ['PK Đa khoa Hoàng Anh','Đề xuất sửa điều khoản thanh toán','Email','3h','amber',false],
+            ['Hotline','Cuộc gọi nhỡ – 0987 555 333','Call','5h','emerald',false],
+          ].map(([n,p,k,t,c,act])=>`
+            <div class="p-3 hover:bg-slate-50 cursor-pointer ${act?'bg-brand-50/40':''}">
+              <div class="flex items-center gap-2">
+                ${avatar(n.split(' ').slice(-1)[0][0])}
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2"><span class="font-medium text-sm truncate">${n}</span>${tag(k,c)}</div>
+                  <div class="text-xs text-slate-500 truncate">${p}</div>
+                </div>
+                <span class="text-[11px] text-slate-400">${t}</span>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <div class="col-span-8 bg-white rounded-xl border border-slate-200 flex flex-col">
+        <div class="border-b border-slate-200 p-3 flex items-center gap-3">
+          ${avatar('HT','amber','amber-500')}
+          <div class="flex-1">
+            <div class="font-semibold">Chị Hương Trần</div>
+            <div class="text-xs text-slate-500">Zalo OA · KH tiềm năng đang chăm sóc · Phụ trách: bạn</div>
+          </div>
+          <button class="text-xs px-3 py-1.5 bg-brand-50 text-brand-700 rounded-lg">Mở hồ sơ →</button>
+        </div>
+        <div class="flex-1 p-4 space-y-3 bg-slate-50 min-h-[400px]">
+          <div class="text-center text-xs text-slate-400">Hôm nay 10:30</div>
+          <div class="flex justify-start"><div class="max-w-md bg-white px-3 py-2 rounded-2xl rounded-tl-sm text-sm border border-slate-200">Chào em, chị muốn đặt gói khám tổng quát cho mẹ nha.</div></div>
+          <div class="flex justify-end"><div class="max-w-md bg-brand-600 text-white px-3 py-2 rounded-2xl rounded-tr-sm text-sm">Dạ chào chị! Em là Lan từ Hi-Medic. Em xin gửi báo giá Gói Tổng quát Premium phù hợp tuổi của bác ạ. (đính kèm)</div></div>
+          <div class="flex justify-start"><div class="max-w-md bg-white px-3 py-2 rounded-2xl rounded-tl-sm text-sm border border-slate-200">Lấy mẫu tại nhà được không em? Sáng cuối tuần nhé.</div></div>
+          <div class="flex justify-end"><div class="max-w-md bg-brand-600 text-white px-3 py-2 rounded-2xl rounded-tr-sm text-sm">Dạ được ạ. Em book sáng thứ 7 7:30 nhé chị. Em sẽ ghé đúng giờ.</div></div>
+          <div class="flex justify-start"><div class="max-w-md bg-white px-3 py-2 rounded-2xl rounded-tl-sm text-sm border border-slate-200">Cảm ơn em, mai 7:30 nhé!</div></div>
+        </div>
+        <div class="border-t border-slate-200 p-3">
+          <div class="flex items-center gap-2 mb-2 text-xs">
+            <button class="px-2 py-1 bg-slate-100 rounded">📋 Mẫu</button>
+            <button class="px-2 py-1 bg-slate-100 rounded">📎 Đính kèm</button>
+            <button class="px-2 py-1 bg-slate-100 rounded">✨ AI gợi ý</button>
+            <span class="ml-auto text-slate-400">Gửi qua: <b class="text-blue-600">Zalo</b></span>
+          </div>
+          <div class="flex gap-2">
+            <input class="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm" placeholder="Nhập tin nhắn…">
+            <button class="px-4 py-2 bg-brand-600 text-white rounded-lg text-sm">Gửi</button>
+          </div>
+        </div>
+      </div>
+    </div>`,
+
+  portal: () => `
+    ${screenHeader('Cổng khách hàng – Xem trước', 'Khách đăng nhập bằng SĐT + OTP để xem kết quả')}
+    <div class="p-8 bg-slate-100 grid place-items-center">
+      <div class="w-[900px] bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+        <div class="h-12 bg-brand-700 text-white px-6 flex items-center gap-3 text-sm">
+          <div class="w-7 h-7 rounded-lg bg-cyan-300 grid place-items-center text-brand-900 font-bold">H</div>
+          <span class="font-semibold">Hi-Medic</span>
+          <span class="ml-auto">Xin chào, anh Phạm Quốc Hùng</span>
+        </div>
+        <div class="p-6 grid grid-cols-3 gap-4">
+          ${[['Lần khám gần nhất','02/01/2026','sky'],['Kết quả mới','1 ✨','emerald'],['Lịch hẹn sắp tới','15/06','amber']].map(([l,v,c])=>`<div class="rounded-xl bg-${c}-50 border border-${c}-200 p-4"><div class="text-xs text-${c}-700">${l}</div><div class="font-bold text-xl text-${c}-700 mt-1">${v}</div></div>`).join('')}
+        </div>
+        <div class="px-6 pb-6">
+          <div class="font-semibold mb-3 text-sm">Kết quả xét nghiệm</div>
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500 text-white grid place-items-center">✓</div>
+            <div class="flex-1">
+              <div class="font-semibold">Gói tiền hôn nhân – Kết quả đã có</div>
+              <div class="text-xs text-emerald-700">14 chỉ số · Bác sĩ Lab đã ký · Tải PDF (có dấu)</div>
+            </div>
+            <button class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm">Xem kết quả</button>
+          </div>
+          <div class="mt-4 font-semibold mb-3 text-sm">Đặt lịch mới</div>
+          <div class="grid grid-cols-3 gap-3">
+            ${['Khám tổng quát','Tầm soát ung thư','Theo dõi định kỳ'].map(t=>`<button class="p-4 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-brand-50 text-sm font-medium">${t}</button>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>`
+};
+
+/* =========================================================
+   9. MARKETING & LEAD ROUTING
+   ========================================================= */
+SCREENS.marketing = {
+  campaigns: () => `
+    ${screenHeader('Hiệu quả Chiến dịch', 'T5/2026 · Tổng chi 412M · 982 khách tiềm năng · Doanh thu chốt 1.86 tỷ · ROI 4.5x',
+      `<button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">+ Chiến dịch mới</button>`)}
+    <div class="p-6 grid grid-cols-4 gap-4 mb-6">
+      ${[
+        ['Chi phí / Khách','420.000đ','sky'],['Chuyển sang Đủ ĐK','38%','amber'],['Chuyển sang Chốt','12%','emerald'],['ROAS','4.5x','violet']
+      ].map(([l,v,c])=>`<div class="bg-white rounded-xl border border-slate-200 p-4"><div class="text-xs text-slate-500">${l}</div><div class="text-2xl font-bold text-${c}-600 mt-1">${v}</div></div>`).join('')}
+    </div>
+    <div class="px-6 pb-6">
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs text-slate-500 uppercase"><tr>
+            <th class="text-left p-3">Chiến dịch</th><th class="text-left p-3">Kênh</th><th class="text-right p-3">Chi phí</th><th class="text-right p-3">Khách</th><th class="text-right p-3">Chi/Khách</th><th class="text-right p-3">Đủ ĐK</th><th class="text-right p-3">Đã chốt</th><th class="text-right p-3">Doanh thu</th><th class="text-right p-3">ROAS</th>
+          </tr></thead>
+          <tbody class="divide-y divide-slate-100">
+            ${[
+              ['GoiKhamTongQuat-T05','FB Ads','152M','384','396k','148','42','620M','4.1x'],
+              ['B2B-Q2','Google Ads','98M','142','690k','58','12','580M','5.9x'],
+              ['KCN-VSIP-T04','Zalo OA','42M','118','356k','41','9','220M','5.2x'],
+              ['Triển lãm Y tế','Sự kiện','85M','156','545k','62','15','340M','4.0x'],
+              ['Hotline & Walk-in','Khác','35M','182','192k','38','11','100M','2.9x'],
+            ].map(r=>`
+              <tr class="hover:bg-slate-50">
+                <td class="p-3 font-medium">${r[0]}</td>
+                <td class="p-3">${tag(r[1], r[1]==='FB Ads'?'blue':r[1]==='Google Ads'?'amber':r[1]==='Zalo OA'?'sky':r[1]==='Sự kiện'?'violet':'slate')}</td>
+                <td class="p-3 text-right">${r[2]}</td>
+                <td class="p-3 text-right">${r[3]}</td>
+                <td class="p-3 text-right text-slate-600">${r[4]}</td>
+                <td class="p-3 text-right">${r[5]}</td>
+                <td class="p-3 text-right text-emerald-700 font-medium">${r[6]}</td>
+                <td class="p-3 text-right font-semibold text-emerald-700">${r[7]}</td>
+                <td class="p-3 text-right font-bold">${r[8]}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>`,
+
+  routing: () => `
+    ${screenHeader('Quy tắc Phân khách tự động', 'Phân khách tiềm năng từ Tiếp thị → Kinh doanh')}
+    <div class="p-6 space-y-4">
+      ${[
+        {name:'Quy tắc 1 · FB Ads Q.7', cond:'Nguồn = FB Ads VÀ Khu vực = Q.7', action:'Chia luân phiên trong nhóm Q.7 (Nguyễn Lan, Trần Khôi)', sla:'30 phút', priority:1, active:true},
+        {name:'Quy tắc 2 · Doanh nghiệp B2B', cond:'Loại khách = Doanh nghiệp VÀ Quy mô > 100 NLĐ', action:'Gán cho Trần Minh (Trưởng nhóm KD doanh nghiệp)', sla:'1 giờ', priority:2, active:true},
+        {name:'Quy tắc 3 · Khách VIP – điểm ≥ 85', cond:'Điểm khách tiềm năng ≥ 85', action:'Báo ngay cho NV Kinh doanh được gán + đồng gửi Trưởng nhóm', sla:'15 phút', priority:3, active:true},
+        {name:'Quy tắc 4 · Mặc định', cond:'(Không khớp quy tắc nào)', action:'Vào nhóm chung – NV Kinh doanh tự nhận', sla:'2 giờ', priority:99, active:true},
+      ].map(r=>`
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-700 grid place-items-center font-bold">#${r.priority}</div>
+            <div class="flex-1">
+              <div class="flex items-center gap-3">
+                <div class="font-semibold">${r.name}</div>
+                ${tag(r.active?'Đang chạy':'Tắt', r.active?'emerald':'slate')}
+                <div class="ml-auto"><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" ${r.active?'checked':''} class="sr-only peer"><div class="w-9 h-5 bg-slate-200 rounded-full peer-checked:bg-emerald-500 after:absolute after:left-0.5 after:top-0.5 after:bg-white after:h-4 after:w-4 after:rounded-full after:transition peer-checked:after:translate-x-4"></div></label></div>
+              </div>
+              <div class="mt-3 grid grid-cols-3 gap-4 text-sm">
+                <div><div class="text-xs text-slate-500">Điều kiện</div><div class="font-mono text-xs mt-0.5 text-slate-700 bg-slate-50 p-2 rounded">${r.cond}</div></div>
+                <div><div class="text-xs text-slate-500">Hành động</div><div class="mt-0.5">${r.action}</div></div>
+                <div><div class="text-xs text-slate-500">SLA phản hồi</div><div class="mt-0.5 font-semibold text-emerald-700">${r.sla}</div></div>
+              </div>
+            </div>
+          </div>
+        </div>`).join('')}
+      <button class="w-full p-3 border-2 border-dashed border-slate-300 rounded-xl text-slate-500 hover:bg-white hover:border-brand-500 hover:text-brand-700 text-sm">+ Thêm quy tắc</button>
+    </div>`
+};
+
+/* =========================================================
+   10. REPORTS
+   ========================================================= */
+SCREENS.reports = {
+  sales: () => `
+    ${screenHeader('Bảng điều khiển Kinh doanh', 'T5/2026 · Real-time')}
+    <div class="p-6 grid grid-cols-4 gap-4 mb-6">
+      ${[['Doanh thu đã chốt','3.42 tỷ','+18% so cùng kỳ','emerald'],['Dự báo theo xác suất','1.86 tỷ','+12%','blue'],['Cơ hội đang chạy','70','-3','amber'],['Tỷ lệ chốt','32%','+4 đpt','violet']].map(([l,v,d,c])=>`
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="text-xs text-slate-500">${l}</div>
+          <div class="text-2xl font-bold text-${c}-600 mt-1">${v}</div>
+          <div class="text-xs text-slate-500 mt-1">${d}</div>
+        </div>`).join('')}
+    </div>
+    <div class="px-6 grid grid-cols-3 gap-4 mb-6">
+      <div class="col-span-2 bg-white rounded-xl border border-slate-200 p-4">
+        <div class="flex items-center justify-between mb-3"><div class="font-semibold text-sm">Doanh thu theo tháng</div><div class="text-xs text-slate-500">12 tháng gần nhất</div></div>
+        <div class="h-48 flex items-end gap-2">
+          ${[42,48,55,52,60,58,65,72,68,75,82,86].map((v,i)=>`<div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-gradient-to-t from-brand-600 to-cyan-400 rounded-t" style="height:${v*1.5}px"></div><div class="text-[10px] text-slate-400">T${i+1}</div></div>`).join('')}
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <div class="font-semibold text-sm mb-3">Tỷ lệ chốt theo nguồn</div>
+        ${[['FB Ads',38,'blue'],['Google Ads',42,'amber'],['Zalo OA',31,'sky'],['Sự kiện',28,'violet'],['Tự phát triển',45,'emerald']].map(([n,v,c])=>`
+          <div class="mb-2">
+            <div class="flex justify-between text-xs mb-1"><span>${n}</span><b>${v}%</b></div>
+            <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-${c}-500" style="width:${v}%"></div></div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="px-6 pb-6 grid grid-cols-2 gap-4">
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <div class="font-semibold text-sm mb-3">Top NV Kinh doanh T5</div>
+        <table class="w-full text-sm">
+          <tbody class="divide-y divide-slate-100">
+            ${[['Lê Hoài','Q.12','985M','7'],['Nguyễn Lan','Q.7','742M','12'],['Trần Minh','Bình Thạnh','620M','9'],['Phạm An','Q.10','485M','6']].map((r,i)=>`
+              <tr><td class="p-2 w-8 text-slate-400 font-bold">${i+1}</td><td class="p-2 font-medium">${r[0]}</td><td class="p-2 text-xs text-slate-500">${r[1]}</td><td class="p-2 text-right font-semibold text-emerald-600">${r[2]}</td><td class="p-2 text-right text-xs text-slate-500">${r[3]} deals</td></tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <div class="font-semibold text-sm mb-3">Lý do thất bại cơ hội (T5)</div>
+        ${[['Giá cao',38,'rose'],['Khách hoãn quyết định',26,'amber'],['Đã chọn đối thủ',18,'slate'],['Yêu cầu kỹ thuật vượt khả năng',12,'violet'],['Khác',6,'sky']].map(([n,v,c])=>`
+          <div class="mb-2">
+            <div class="flex justify-between text-xs mb-1"><span>${n}</span><b>${v}%</b></div>
+            <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-${c}-500" style="width:${v}%"></div></div>
+          </div>`).join('')}
+      </div>
+    </div>`,
+
+  ops: () => `
+    ${screenHeader('Bảng điều khiển Vận hành', 'Vận hành lấy mẫu & vận chuyển – T5/2026')}
+    <div class="p-6 grid grid-cols-4 gap-4 mb-6">
+      ${[['Đơn lấy mẫu','1.248','sky'],['Tỷ lệ mẫu lỗi','1.8%','rose'],['TAT lấy→Lab TB','2h12','amber'],['Tỷ lệ trễ SLA','3.2%','violet']].map(([l,v,c])=>`
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="text-xs text-slate-500">${l}</div>
+          <div class="text-2xl font-bold text-${c}-600 mt-1">${v}</div>
+        </div>`).join('')}
+    </div>
+    <div class="px-6 grid grid-cols-2 gap-4">
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <div class="font-semibold text-sm mb-3">Phân bổ lý do mẫu lỗi</div>
+        ${[['Vỡ ống',42,'rose'],['Đông không đúng quy cách',28,'amber'],['Không đủ thể tích',18,'orange'],['Sai nhãn / barcode',8,'slate'],['Khác',4,'sky']].map(([n,v,c])=>`
+          <div class="mb-2"><div class="flex justify-between text-xs mb-1"><span>${n}</span><b>${v}%</b></div>
+          <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-${c}-500" style="width:${v}%"></div></div></div>`).join('')}
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <div class="font-semibold text-sm mb-3">TAT theo tuyến</div>
+        <table class="w-full text-sm">
+          <thead class="text-xs text-slate-500 uppercase"><tr><th class="text-left p-2">Tuyến</th><th class="text-right p-2">TAT TB</th><th class="text-right p-2">SLA</th><th class="text-right p-2">Trễ %</th></tr></thead>
+          <tbody class="divide-y divide-slate-100">
+            ${[['Q.7-Q.4 sáng','1h48','3h','0.8%'],['Q.10 chiều','2h22','3h','2.1%'],['KCN Tân Bình','3h05','4h','5.2%'],['Bình Tân','2h42','3h','3.8%'],['Q.12','2h15','3h','1.4%']].map(r=>`
+              <tr><td class="p-2 font-medium">${r[0]}</td><td class="p-2 text-right">${r[1]}</td><td class="p-2 text-right text-slate-500">${r[2]}</td><td class="p-2 text-right">${r[3]}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>`
+};
+
+/* =========================================================
+   11. FIELD MOBILE APP
+   ========================================================= */
+function phone(content){
+  return `<div class="phone-frame">
+    <div class="phone-notch"></div>
+    <div class="phone-screen">${content}</div>
+  </div>`;
+}
+
+function mobileRouteScreen(){
+  return phone(`
+    <div class="bg-brand-700 text-white px-4 pt-8 pb-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <div class="text-xs text-cyan-200">Hôm nay · 29/05</div>
+          <div class="font-bold text-lg">Lịch tuyến của Lan</div>
+        </div>
+        <div class="text-right text-xs">
+          <div class="bg-emerald-500 px-2 py-0.5 rounded-full">5/8 hoàn thành</div>
+        </div>
+      </div>
+      <div class="mt-3 grid grid-cols-3 gap-2 text-center">
+        ${[['Đã','5','text-emerald-300'],['Đang','1','text-amber-300'],['Còn','2','text-cyan-200']].map(([l,v,c])=>`<div class="bg-white/10 rounded-lg p-2"><div class="${c} font-bold text-lg">${v}</div><div class="text-[10px]">${l}</div></div>`).join('')}
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto bg-slate-50 p-3 space-y-2">
+      ${[
+        ['07:00','Chị Hương Trần','Phú Mỹ Hưng, Q.7','Gói TQ Premium','✓','emerald'],
+        ['07:45','Anh Phạm Q.Hùng','Saigon Pearl, R.118','CBC + Sinh hóa','✓','emerald'],
+        ['08:30','Chị Lê Thanh','Riverpark, Q.7','Tầm soát ung thư','✓','emerald'],
+        ['09:15','BV Tâm Phúc','Q.10 – Reception','Vận chuyển mẫu','✓','emerald'],
+        ['10:00','Anh Vũ Bình','Sunrise City','Tổng quát','✓','emerald'],
+        ['10:45','Chị Mai Loan','Belleza Q.7','Tiền hôn nhân','▶','amber'],
+        ['11:30','Cty Sao Mai','KCN Tân Bình','HĐ định kỳ – 12 NLĐ','◯','slate'],
+        ['14:00','Chị Vy Nguyễn','Q.4','Tầm soát NT-proBNP','◯','slate'],
+      ].map(([t,n,a,p,s,c])=>`
+        <div class="bg-white rounded-xl p-3 border-l-4 border-${c}-500 shadow-sm">
+          <div class="flex items-start gap-3">
+            <div class="text-center">
+              <div class="text-[10px] text-slate-400 uppercase">${t.split(':')[0]}h</div>
+              <div class="font-bold text-${c}-600 text-sm">${t}</div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold text-sm">${n}</div>
+              <div class="text-xs text-slate-500 truncate">📍 ${a}</div>
+              <div class="text-xs text-slate-600 mt-1">🧪 ${p}</div>
+            </div>
+            <div class="w-7 h-7 rounded-full bg-${c}-100 text-${c}-600 grid place-items-center text-sm font-bold">${s}</div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="border-t border-slate-200 bg-white grid grid-cols-4 text-xs">
+      ${[['🏠','Tuyến','emerald'],['🧾','Đơn','slate'],['💬','Tin nhắn','slate'],['👤','Tôi','slate']].map(([ic,l,c])=>`<button class="py-2 ${c==='emerald'?'text-emerald-600':'text-slate-400'}"><div class="text-lg">${ic}</div><div>${l}</div></button>`).join('')}
+    </div>`);
+}
+
+/* ====== Helper khung mobile có header chung ====== */
+function mphHeader(color, sub, title){
+  return `<div class="bg-${color}-600 text-white px-4 pt-8 pb-3 flex items-center gap-3 flex-shrink-0">
+    <button class="text-2xl">←</button>
+    <div><div class="text-xs text-${color}-100">${sub}</div><div class="font-bold">${title}</div></div>
+  </div>`;
+}
+
+/* ====== MÀN: Tư vấn & Chọn xét nghiệm (THAY thế ống mẫu) ====== */
+function mobileConsultScreen(){
+  return phone(`
+    ${mphHeader('emerald','Đơn LM-26052906 · 10:45','Tư vấn & Chọn xét nghiệm')}
+    <div class="flex-1 overflow-y-auto bg-slate-50 p-3 space-y-3 pb-24">
+      <div class="bg-white rounded-xl p-3">
+        <div class="text-xs text-slate-500">Khách hàng</div>
+        <div class="font-semibold">Chị Mai Loan · Nữ · 32 tuổi</div>
+        <div class="text-xs text-slate-500 mt-1">PID: HM-12340 · SĐT 0938 555 121</div>
+        <div class="mt-2 flex gap-1 flex-wrap text-[11px]">
+          <span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700">⚠ Dị ứng: Penicillin</span>
+          <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">Có thai 12 tuần</span>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3">
+        <div class="flex items-center justify-between mb-2">
+          <div class="font-semibold text-sm">Đã đặt khi đăng ký</div>
+          <span class="text-[11px] text-slate-400">2 mục</span>
+        </div>
+        ${[
+          ['Gói Tiền hôn nhân – Nữ','14 chỉ số · CBC, Sinh hóa, HBsAg, anti-HCV, HIV, RPR, TSH, FT4, AMH, Rubella IgG…','3.800.000đ',true,'cyan'],
+          ['Tổng phân tích nước tiểu (10 thông số)','Mẫu nước tiểu giữa dòng','80.000đ',true,'sky'],
+        ].map(([n,d,p,sel,c])=>`
+          <label class="flex items-start gap-2 p-2 border border-${c}-200 bg-${c}-50/40 rounded-lg mb-2">
+            <input type="checkbox" ${sel?'checked':''} class="mt-1 rounded text-${c}-600">
+            <div class="flex-1">
+              <div class="font-medium text-sm">${n}</div>
+              <div class="text-[11px] text-slate-500 mt-0.5">${d}</div>
+            </div>
+            <div class="text-sm font-bold text-emerald-700">${p}</div>
+          </label>`).join('')}
+      </div>
+
+      <div class="bg-white rounded-xl p-3">
+        <div class="font-semibold text-sm mb-2">Khách muốn bổ sung gói</div>
+        <div class="space-y-2">
+          ${[
+            ['Gói Sàng lọc tiền sản cơ bản','Double test, TSH, FT4, Toxoplasma IgG','2.450.000đ','recommended'],
+            ['Gói Tầm soát ung thư nữ','CA 15-3, CA 125, AFP, CEA, SCC','3.200.000đ',''],
+            ['Bổ sung vi chất thai kỳ','Sắt huyết thanh, Ferritin, Vitamin D, Canxi','1.150.000đ',''],
+          ].map(([n,d,p,tag])=>`
+            <label class="flex items-start gap-2 p-2 border border-slate-200 rounded-lg ${tag?'ring-1 ring-amber-300':''}">
+              <input type="checkbox" class="mt-1 rounded">
+              <div class="flex-1">
+                <div class="flex items-center gap-1">
+                  <span class="font-medium text-sm">${n}</span>
+                  ${tag?'<span class="text-[10px] px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded-full">Gợi ý cho thai kỳ</span>':''}
+                </div>
+                <div class="text-[11px] text-slate-500 mt-0.5">${d}</div>
+              </div>
+              <div class="text-sm font-semibold text-slate-700">${p}</div>
+            </label>`).join('')}
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3">
+        <div class="flex items-center justify-between mb-2">
+          <div class="font-semibold text-sm">Thêm xét nghiệm lẻ</div>
+          <button class="text-xs text-emerald-700">🔍 Tìm mã/tên</button>
+        </div>
+        <div class="text-[11px] text-slate-500 mb-2">Phổ biến · chạm để chọn</div>
+        <div class="flex flex-wrap gap-1.5">
+          ${[
+            ['Đường huyết (Glucose)','60k',false],
+            ['HbA1c','280k',true],
+            ['Mỡ máu 4TP','310k',false],
+            ['AST/ALT','100k',false],
+            ['Ure/Creatinin','95k',false],
+            ['TSH','180k',false],
+            ['FT4','190k',false],
+            ['Vitamin D toàn phần','520k',true],
+            ['Sắt huyết thanh','120k',false],
+            ['Ferritin','220k',false],
+            ['Acid uric','70k',false],
+            ['CRP định lượng','150k',false],
+            ['Sàng lọc tuyến giáp NB','350k',false],
+            ['Nhóm máu ABO/Rh','85k',false],
+          ].map(([n,p,sel])=>`
+            <button class="px-2.5 py-1 rounded-full text-xs border ${sel?'bg-emerald-600 text-white border-emerald-600':'bg-white text-slate-700 border-slate-300'}">
+              ${n} <span class="opacity-70">· ${p}</span>
+            </button>`).join('')}
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3">
+        <div class="font-semibold text-sm mb-2">Ống mẫu cần lấy (tự tính)</div>
+        <div class="text-[11px] text-slate-500 mb-2">Hệ thống tự suy ra từ các xét nghiệm đã chọn</div>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          ${[
+            ['EDTA tím · 3ml','×2','CBC, HbA1c, Nhóm máu','tím','violet'],
+            ['Serum vàng · 5ml','×2','Sinh hóa, TSH/FT4, Vitamin D, Sắt, HBsAg, anti-HCV','vàng','amber'],
+            ['Citrate xanh · 2ml','×1','PT, APTT','xanh','sky'],
+            ['Ống nước tiểu','×1','TPT nước tiểu 10TS','vàng','yellow'],
+          ].map(([n,q,t,c,tc])=>`
+            <div class="p-2 border border-${tc}-200 bg-${tc}-50/50 rounded-lg">
+              <div class="flex items-center justify-between">
+                <div class="font-semibold">${n}</div>
+                <span class="text-sm font-bold text-${tc}-700">${q}</span>
+              </div>
+              <div class="text-[10px] text-slate-600 mt-0.5">${t}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white border-t border-slate-200 px-4 py-3 flex items-center gap-3 flex-shrink-0">
+      <div class="flex-1">
+        <div class="text-[11px] text-slate-500">Tổng tiền sau tư vấn</div>
+        <div class="text-lg font-extrabold text-emerald-700">7.180.000đ</div>
+        <div class="text-[10px] text-slate-400">Đã đặt: 3.880.000đ · Bổ sung: 3.300.000đ</div>
+      </div>
+      <button class="px-4 py-3 bg-emerald-600 text-white rounded-xl font-semibold text-sm">Khách đồng ý → Lấy mẫu</button>
+    </div>`);
+}
+
+/* ====== MÀN: Lấy mẫu (ống tự sinh từ XN đã chọn) ====== */
+function mobileCollectScreen(){
+  return phone(`
+    ${mphHeader('emerald','Bước 4/6 · Đang lấy mẫu','Quét mã ống mẫu')}
+    <div class="flex-1 overflow-y-auto bg-slate-50 p-3 space-y-3 pb-24">
+      <div class="bg-white rounded-xl p-3">
+        <div class="text-xs text-slate-500 mb-1">Khách hàng</div>
+        <div class="font-semibold">Chị Mai Loan · PID HM-12340</div>
+        <div class="mt-2 grid grid-cols-3 gap-2 text-center text-[11px]">
+          <div class="bg-emerald-50 rounded p-1.5"><div class="font-bold text-emerald-700">3</div><div>Đã lấy</div></div>
+          <div class="bg-amber-50 rounded p-1.5"><div class="font-bold text-amber-700">1</div><div>Đang lấy</div></div>
+          <div class="bg-slate-100 rounded p-1.5"><div class="font-bold text-slate-700">2</div><div>Còn lại</div></div>
+        </div>
+      </div>
+
+      <div class="text-xs font-semibold text-slate-500 px-1">Danh sách ống cần lấy</div>
+      ${[
+        ['HM-12340-EDTA-01','EDTA tím · 3ml','CBC + HbA1c + Nhóm máu','done'],
+        ['HM-12340-SER-01','Serum vàng · 5ml','Sinh hóa cơ bản + HBsAg/anti-HCV','done'],
+        ['HM-12340-SER-02','Serum vàng · 5ml','TSH/FT4 + Vitamin D + Sắt + Ferritin','done'],
+        ['HM-12340-EDTA-02','EDTA tím · 3ml','AMH + sàng lọc tiền sản','scan'],
+        ['HM-12340-CIT-01','Citrate xanh · 2ml','PT, APTT','pending'],
+        ['HM-12340-URN-01','Ống nước tiểu','TPT nước tiểu 10 thông số','pending'],
+      ].map(([code,tube,tests,st])=>`
+        <div class="bg-white rounded-xl p-3 ${st==='scan'?'ring-2 ring-amber-400':''}">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-lg grid place-items-center ${st==='done'?'bg-emerald-100 text-emerald-700':st==='scan'?'bg-amber-100 text-amber-700':'bg-slate-100 text-slate-500'}">
+              ${st==='done'?'✓':st==='scan'?'📷':'◯'}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-semibold text-sm">${tube}</div>
+              <div class="text-[11px] text-slate-500 truncate">${tests}</div>
+            </div>
+          </div>
+          ${st==='done'?`<div class="mt-2 text-[10px] font-mono bg-emerald-50 px-2 py-1 rounded text-emerald-700">${code} · đã in tem</div>`:''}
+          ${st==='scan'?`<button class="w-full mt-2 py-2 bg-amber-500 text-white rounded-lg text-sm font-semibold">📷 Quét barcode ống tiếp theo</button>`:''}
+          ${st==='pending'?`<div class="mt-2 text-[11px] text-slate-400">Chờ lấy</div>`:''}
+        </div>`).join('')}
+
+      <div class="bg-rose-50 border border-rose-200 rounded-xl p-3 text-xs text-rose-800">
+        ⚠ Lưu ý y tế: Khách có thai 12 tuần · ưu tiên lấy mẫu ở tư thế ngồi, không buộc garô quá 1 phút.
+      </div>
+    </div>
+
+    <div class="bg-white border-t border-slate-200 px-4 py-3 flex items-center gap-2 flex-shrink-0">
+      <button class="px-3 py-2.5 bg-rose-50 text-rose-700 rounded-xl text-sm">Báo sự cố</button>
+      <button class="flex-1 py-2.5 bg-emerald-600 text-white rounded-xl font-semibold text-sm">Hoàn tất 6/6 ống → Ký xác nhận</button>
+    </div>`);
+}
+
+/* ====== MÀN: Đăng nhập ====== */
+function mobileLoginScreen(){
+  return phone(`
+    <div class="flex-1 bg-gradient-to-b from-brand-700 via-brand-600 to-cyan-500 text-white p-6 flex flex-col">
+      <div class="pt-12 text-center">
+        <div class="w-20 h-20 rounded-2xl bg-white text-brand-900 grid place-items-center text-3xl font-extrabold mx-auto shadow-xl">H</div>
+        <div class="mt-3 text-2xl font-extrabold">Hi-Medic Field</div>
+        <div class="text-cyan-100 text-sm">Ứng dụng dành cho nhân viên lấy mẫu</div>
+      </div>
+      <div class="mt-10 bg-white text-slate-800 rounded-2xl p-5 shadow-xl">
+        <div class="font-semibold text-sm mb-3">Đăng nhập</div>
+        <label class="block">
+          <span class="text-xs text-slate-500">Số điện thoại</span>
+          <input class="w-full mt-1 px-3 py-2.5 border border-slate-300 rounded-lg text-sm" value="0908 222 333">
+        </label>
+        <label class="block mt-3">
+          <span class="text-xs text-slate-500">Mật khẩu</span>
+          <input type="password" class="w-full mt-1 px-3 py-2.5 border border-slate-300 rounded-lg text-sm" value="••••••••">
+        </label>
+        <div class="mt-2 flex items-center justify-between text-xs">
+          <label class="flex items-center gap-1"><input type="checkbox" checked class="rounded"> Ghi nhớ</label>
+          <a class="text-emerald-700">Quên mật khẩu?</a>
+        </div>
+        <button class="w-full mt-4 py-3 bg-emerald-600 text-white rounded-xl font-semibold text-sm">Đăng nhập</button>
+        <div class="mt-3 text-center text-xs text-slate-400">Hoặc</div>
+        <button class="w-full mt-2 py-2.5 bg-slate-100 text-slate-700 rounded-xl text-sm">📱 Đăng nhập bằng OTP</button>
+      </div>
+      <div class="mt-auto text-center text-[11px] text-cyan-100">Phiên bản 1.0 · © Hi-Medic 2026</div>
+    </div>`);
+}
+
+/* ====== MÀN: Trang chủ ====== */
+function mobileHomeScreen(){
+  return phone(`
+    <div class="bg-gradient-to-br from-brand-700 to-cyan-500 text-white px-4 pt-8 pb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-full bg-white/15 grid place-items-center font-bold">NL</div>
+        <div class="flex-1">
+          <div class="text-xs text-cyan-100">Chào buổi sáng</div>
+          <div class="font-bold">Nguyễn Lan</div>
+        </div>
+        <button class="relative w-9 h-9 rounded-full bg-white/15 grid place-items-center">
+          🔔<span class="absolute top-1 right-1 w-2 h-2 bg-rose-400 rounded-full"></span>
+        </button>
+      </div>
+      <div class="mt-5 bg-white/10 backdrop-blur rounded-2xl p-3">
+        <div class="text-xs text-cyan-100">Hôm nay · 29/05/2026 · Tuyến Q.7</div>
+        <div class="mt-1 flex items-end justify-between">
+          <div><div class="text-3xl font-extrabold">8</div><div class="text-xs">đơn lấy mẫu</div></div>
+          <div class="text-right text-xs">
+            <div>✓ Đã xong <b>5</b></div>
+            <div>▶ Đang làm <b>1</b></div>
+            <div>⏳ Còn <b>2</b></div>
+          </div>
+        </div>
+        <div class="mt-2 h-2 bg-white/20 rounded-full overflow-hidden"><div class="h-full bg-emerald-300" style="width:62%"></div></div>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto bg-slate-50 p-3 -mt-3 rounded-t-2xl space-y-3">
+      <div class="grid grid-cols-4 gap-2">
+        ${[['🗺️','Tuyến','emerald'],['📋','Đơn của tôi','sky'],['🔍','Quét mã','amber'],['📞','Hỗ trợ','violet']].map(([ic,l,c])=>`
+          <button class="bg-white rounded-xl p-3 text-center border border-slate-200">
+            <div class="w-9 h-9 mx-auto rounded-lg bg-${c}-50 grid place-items-center text-lg">${ic}</div>
+            <div class="text-[11px] mt-1">${l}</div>
+          </button>`).join('')}
+      </div>
+
+      <div class="bg-white rounded-xl p-3">
+        <div class="flex items-center justify-between mb-2">
+          <div class="font-semibold text-sm">Đơn tiếp theo</div>
+          <span class="text-[11px] px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded-full">Sau 12 phút</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="text-center"><div class="text-[10px] text-slate-400">10h</div><div class="font-bold text-amber-600">10:45</div></div>
+          <div class="flex-1">
+            <div class="font-semibold">Chị Mai Loan</div>
+            <div class="text-xs text-slate-500">📍 Belleza Apartment, P. Phú Mỹ, Q.7</div>
+            <div class="text-xs text-slate-600 mt-1">🧪 Gói Tiền hôn nhân (Nữ) + Nước tiểu</div>
+          </div>
+        </div>
+        <div class="mt-3 flex gap-2">
+          <button class="flex-1 py-2 bg-slate-100 rounded-lg text-xs font-medium">🗺️ Chỉ đường</button>
+          <button class="flex-1 py-2 bg-emerald-600 text-white rounded-lg text-xs font-semibold">Mở đơn →</button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3">
+        <div class="font-semibold text-sm mb-2">Thông báo gần đây</div>
+        <div class="space-y-2 text-xs">
+          ${[
+            ['📦','Mẫu lô M-26052901 đã đến Lab','5 phút','emerald'],
+            ['🆕','Bạn được phân 1 đơn mới chiều nay','22 phút','sky'],
+            ['🧾','Kết quả XN anh Phạm Q.Hùng đã có','1 giờ','violet'],
+          ].map(([ic,t,ts,c])=>`
+            <div class="flex items-center gap-2 p-2 bg-${c}-50 rounded-lg">
+              <span>${ic}</span><span class="flex-1">${t}</span><span class="text-[10px] text-slate-400">${ts}</span>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3">
+        <div class="font-semibold text-sm mb-2">Chỉ tiêu tháng 5</div>
+        <div class="grid grid-cols-3 gap-2 text-center text-[11px]">
+          <div class="bg-emerald-50 p-2 rounded"><div class="font-bold text-emerald-700">742M</div><div>Doanh thu</div></div>
+          <div class="bg-sky-50 p-2 rounded"><div class="font-bold text-sky-700">112</div><div>Đơn LM</div></div>
+          <div class="bg-violet-50 p-2 rounded"><div class="font-bold text-violet-700">4.9★</div><div>Đánh giá</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-slate-200 bg-white grid grid-cols-4 text-xs flex-shrink-0">
+      ${[['🏠','Trang chủ','emerald'],['🗺️','Tuyến','slate'],['🧾','Đơn','slate'],['👤','Tôi','slate']].map(([ic,l,c])=>`
+        <button class="py-2 ${c==='emerald'?'text-emerald-600':'text-slate-400'}"><div class="text-lg">${ic}</div><div>${l}</div></button>`).join('')}
+    </div>`);
+}
+
+/* ====== MÀN: Chi tiết đơn (xem trước khi đi) ====== */
+function mobileOrderDetailScreen(){
+  return phone(`
+    ${mphHeader('brand','Đơn LM-26052906','Chi tiết đơn lấy mẫu')}
+    <div class="flex-1 overflow-y-auto bg-slate-50 p-3 space-y-3 pb-24">
+      <div class="bg-white rounded-xl p-3">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-white grid place-items-center text-lg font-bold">ML</div>
+          <div class="flex-1">
+            <div class="font-semibold">Chị Mai Loan</div>
+            <div class="text-xs text-slate-500">Nữ · 32 tuổi · PID HM-12340</div>
+          </div>
+          <a href="#" class="text-emerald-700 text-xs">📞 Gọi</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3 text-sm">
+        <div class="font-semibold mb-2">📍 Địa điểm lấy mẫu</div>
+        <div>Tòa C, Belleza Apartment</div>
+        <div class="text-xs text-slate-500">P. Phú Mỹ, Quận 7, TP.HCM · Tầng 18 căn 1803</div>
+        <div class="mt-3 h-32 rounded-lg bg-gradient-to-br from-sky-100 to-emerald-100 grid place-items-center text-slate-500 text-sm">🗺️ Bản đồ</div>
+        <div class="mt-2 grid grid-cols-2 gap-2 text-xs">
+          <button class="py-2 bg-slate-100 rounded-lg">📍 Chỉ đường</button>
+          <button class="py-2 bg-slate-100 rounded-lg">📋 Copy địa chỉ</button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3 text-sm">
+        <div class="font-semibold mb-2">📅 Lịch hẹn</div>
+        <div class="flex items-center gap-3">
+          <div class="text-center">
+            <div class="text-[10px] text-slate-400">T6</div>
+            <div class="text-2xl font-bold text-brand-700">29/05</div>
+            <div class="text-[11px] text-slate-500">2026</div>
+          </div>
+          <div class="border-l border-slate-200 pl-3 flex-1">
+            <div><b>10:45 – 11:15</b></div>
+            <div class="text-xs text-slate-500">Lấy mẫu tại nhà · 30 phút dự kiến</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3 text-sm">
+        <div class="font-semibold mb-2">🧪 Đã đặt khi đăng ký</div>
+        ${[
+          ['Gói Tiền hôn nhân (Nữ)','14 chỉ số · Lab Trung tâm','3.800.000đ'],
+          ['Tổng phân tích nước tiểu','10 thông số','80.000đ'],
+        ].map(([n,d,p])=>`
+          <div class="flex items-start gap-2 py-2 border-t border-slate-100 first:border-0">
+            <span class="text-cyan-500">●</span>
+            <div class="flex-1"><div class="font-medium">${n}</div><div class="text-[11px] text-slate-500">${d}</div></div>
+            <div class="font-semibold text-emerald-700">${p}</div>
+          </div>`).join('')}
+        <div class="border-t border-slate-200 mt-2 pt-2 flex justify-between font-semibold"><span>Tạm tính</span><span class="text-emerald-700">3.880.000đ</span></div>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800">
+        <div class="font-semibold mb-1">⚠ Lưu ý từ tư vấn viên</div>
+        Khách có thai 12 tuần · dị ứng Penicillin · ưu tiên hỏi xem có muốn thêm gói sàng lọc tiền sản không.
+      </div>
+    </div>
+
+    <div class="bg-white border-t border-slate-200 px-4 py-3 flex items-center gap-2 flex-shrink-0">
+      <button class="flex-1 py-2.5 bg-slate-100 text-slate-700 rounded-xl text-sm">Hoãn lịch</button>
+      <button class="flex-1 py-2.5 bg-emerald-600 text-white rounded-xl text-sm font-semibold">📍 Bắt đầu di chuyển</button>
+    </div>`);
+}
+
+/* ====== MÀN: Xác minh KH + Checklist tiền XN ====== */
+function mobileVerifyScreen(){
+  return phone(`
+    ${mphHeader('brand','Bước 2-3/6','Xác minh khách & Checklist')}
+    <div class="flex-1 overflow-y-auto bg-slate-50 p-3 space-y-3 pb-4">
+      <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-sm flex items-center gap-2">
+        <span class="w-7 h-7 rounded-full bg-emerald-500 text-white grid place-items-center text-xs">✓</span>
+        <div class="flex-1">
+          <div class="font-semibold text-emerald-800">Đã đến nơi · 10:42</div>
+          <div class="text-xs text-emerald-700">GPS sai số ±8m · cách vị trí đặt 12m</div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3">
+        <div class="font-semibold text-sm mb-2">📷 Quét CCCD khách</div>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="rounded-lg overflow-hidden border border-slate-200">
+            <div class="h-24 bg-gradient-to-br from-slate-200 to-slate-300 grid place-items-center text-xs text-slate-500">Ảnh mặt trước</div>
+            <div class="text-[10px] p-1.5 bg-slate-50 text-center">CCCD 0791…12340</div>
+          </div>
+          <div class="rounded-lg overflow-hidden border-2 border-emerald-400">
+            <div class="h-24 bg-emerald-50 grid place-items-center text-emerald-600 text-2xl">✓</div>
+            <div class="text-[10px] p-1.5 bg-emerald-50 text-emerald-700 text-center font-semibold">Khớp 96% với hồ sơ</div>
+          </div>
+        </div>
+        <div class="mt-2 text-xs text-slate-600 bg-slate-50 rounded p-2">
+          <b>Mai Thị Loan</b> · Nữ · 04/03/1994 · 12340 Nguyễn Văn Linh, Q.7
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3">
+        <div class="font-semibold text-sm mb-2">📋 Checklist tiền xét nghiệm</div>
+        <div class="space-y-1">
+          ${[
+            ['Đã nhịn ăn ≥ 8 giờ?',true],
+            ['Không uống cà phê / nước ngọt buổi sáng?',true],
+            ['Không uống thuốc trong 24 giờ qua?',true],
+            ['Sức khỏe ổn định, không sốt?',true],
+            ['Đã đi tiểu để lấy mẫu nước tiểu?',false],
+          ].map(([t,ch])=>`
+            <label class="flex items-center gap-2 py-1.5 text-sm">
+              <input type="checkbox" ${ch?'checked':''} class="rounded text-emerald-500 w-4 h-4">
+              <span class="${ch?'':'text-slate-500'}">${t}</span>
+            </label>`).join('')}
+        </div>
+        <textarea class="w-full mt-2 px-2 py-1.5 text-xs border border-slate-200 rounded-lg" rows="2" placeholder="Ghi chú đặc biệt từ khách..."></textarea>
+      </div>
+
+      <div class="bg-white rounded-xl p-3">
+        <div class="font-semibold text-sm mb-2">⚠ Cảnh báo y tế từ hồ sơ</div>
+        <div class="space-y-1.5 text-xs">
+          <div class="flex items-center gap-2 bg-rose-50 text-rose-800 p-2 rounded"><span>💊</span><span>Dị ứng Penicillin</span></div>
+          <div class="flex items-center gap-2 bg-amber-50 text-amber-800 p-2 rounded"><span>🤰</span><span>Có thai 12 tuần · lấy mẫu tư thế ngồi</span></div>
+          <div class="flex items-center gap-2 bg-violet-50 text-violet-800 p-2 rounded"><span>💉</span><span>Tiền sử ngất khi lấy máu (2023)</span></div>
+        </div>
+      </div>
+
+      <button class="w-full py-3 bg-brand-600 text-white rounded-xl font-semibold text-sm">Tiếp tục → Tư vấn & Chọn xét nghiệm</button>
+    </div>`);
+}
+
+/* ====== MÀN: Lịch sử & Thông báo ====== */
+function mobileHistoryScreen(){
+  return phone(`
+    <div class="bg-brand-700 text-white px-4 pt-8 pb-3">
+      <div class="font-bold text-lg">Hoạt động của tôi</div>
+      <div class="mt-3 flex gap-1 text-xs">
+        ${[['Lịch sử đơn','active'],['Thông báo','12'],['Sự cố','2']].map(([t,b],i)=>`
+          <button class="flex-1 py-2 rounded-lg ${i===0?'bg-white text-brand-700 font-semibold':'bg-white/10 text-white'}">${t}${b!=='active'?` <span class="text-[10px] opacity-80">${b}</span>`:''}</button>`).join('')}
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto bg-slate-50 p-3 space-y-3">
+      <div class="bg-white rounded-xl p-3 text-xs">
+        <div class="font-semibold mb-2">Lọc theo</div>
+        <div class="flex gap-1.5 flex-wrap">
+          ${['Hôm nay','7 ngày','30 ngày','Tự chọn','✓ Đã xong','⚠ Sự cố','💰 Phát sinh'].map((t,i)=>`
+            <button class="px-2 py-1 rounded-full border ${i===1?'bg-brand-50 border-brand-300 text-brand-700':'bg-white border-slate-200 text-slate-600'}">${t}</button>`).join('')}
+        </div>
+      </div>
+
+      <div class="text-[11px] font-semibold text-slate-500 uppercase px-1">Hôm nay · 29/05</div>
+      ${[
+        ['Chị Mai Loan','10:45','Gói Tiền hôn nhân + 2 bổ sung','Đang lấy mẫu','amber','▶'],
+        ['Anh Vũ Bình','10:00','Tổng phân tích máu','Đã hoàn tất · 7.180.000đ','emerald','✓'],
+        ['Chị Lê Thanh','08:30','Tầm soát ung thư nữ','Đã hoàn tất · 4.200.000đ','emerald','✓'],
+        ['Anh Phạm Hùng','07:45','CBC + Sinh hóa','Hoàn tất · ⚠ Vỡ 1 ống, đã đặt lấy lại','rose','✓'],
+      ].map(([n,t,p,st,c,ic])=>`
+        <div class="bg-white rounded-xl p-3 border-l-4 border-${c}-400">
+          <div class="flex items-start gap-2">
+            <div class="text-center"><div class="text-[10px] text-slate-400">${t.split(':')[0]}h</div><div class="text-${c}-600 font-bold text-sm">${t}</div></div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2"><div class="font-semibold text-sm truncate">${n}</div><span class="text-${c}-600">${ic}</span></div>
+              <div class="text-[11px] text-slate-500 truncate">${p}</div>
+              <div class="text-xs mt-1 text-${c}-700">${st}</div>
+            </div>
+          </div>
+        </div>`).join('')}
+
+      <div class="text-[11px] font-semibold text-slate-500 uppercase px-1 mt-2">Hôm qua · 28/05</div>
+      ${[
+        ['6 đơn lấy mẫu','08:00-17:30','Tổng 9.842.000đ · 0 sự cố','emerald'],
+        ['Bàn giao Lab M-26052801','17:45','38 ống · 4.6°C ✓','sky'],
+      ].map(([n,t,p,c])=>`
+        <div class="bg-white rounded-xl p-3">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-full bg-${c}-100 text-${c}-700 grid place-items-center">📋</div>
+            <div class="flex-1"><div class="font-semibold text-sm">${n}</div><div class="text-[11px] text-slate-500">${p}</div></div>
+            <span class="text-[10px] text-slate-400">${t}</span>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="border-t border-slate-200 bg-white grid grid-cols-4 text-xs flex-shrink-0">
+      ${[['🏠','Trang chủ','slate'],['🗺️','Tuyến','slate'],['🧾','Đơn','emerald'],['👤','Tôi','slate']].map(([ic,l,c])=>`
+        <button class="py-2 ${c==='emerald'?'text-emerald-600':'text-slate-400'}"><div class="text-lg">${ic}</div><div>${l}</div></button>`).join('')}
+    </div>`);
+}
+
+function mobileSignScreen(){
+  return phone(`
+    <div class="bg-brand-700 text-white px-4 pt-8 pb-3 flex items-center gap-3">
+      <button class="text-2xl">←</button>
+      <div>
+        <div class="text-xs text-cyan-200">Bước 5/5 · Xác nhận</div>
+        <div class="font-bold">Chữ ký số khách</div>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto bg-slate-50 p-3 space-y-3">
+      <div class="bg-white rounded-xl p-3 text-sm">
+        <div class="font-semibold mb-2">Phiếu giao nhận mẫu</div>
+        <div class="text-xs space-y-1 text-slate-600">
+          <div>Khách: <b class="text-slate-800">Chị Mai Loan</b></div>
+          <div>SO: <b class="text-slate-800">SO-26052906</b></div>
+          <div>Số ống: <b class="text-slate-800">3 (EDTA, Serum, Citrate)</b></div>
+          <div>Phlebotomist: <b class="text-slate-800">Nguyễn Lan</b></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-3">
+        <div class="text-xs text-slate-500 mb-2">Khách ký xác nhận đã được lấy mẫu</div>
+        <div class="h-40 rounded-lg border-2 border-dashed border-brand-300 bg-brand-50/30 relative overflow-hidden">
+          <svg viewBox="0 0 300 160" class="w-full h-full">
+            <path d="M30 110 Q 60 60 90 100 T 150 90 Q 180 70 220 110 Q 240 130 270 100" stroke="#0e7490" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <button class="absolute right-2 top-2 text-xs text-slate-400">Xóa</button>
+        </div>
+        <div class="text-[11px] text-slate-500 mt-1 text-right">Ký ngày 29/05/2026 10:58</div>
+      </div>
+      <div class="bg-white rounded-xl p-3">
+        <div class="text-xs text-slate-500 mb-2">Tem barcode in qua máy in Bluetooth</div>
+        <div class="grid grid-cols-3 gap-2">
+          ${[1,2,3].map(i=>`<div class="rounded border border-slate-200 p-2 text-center">
+            <div class="font-mono text-[10px] text-slate-700">HM-12340-T${i}</div>
+            <div class="mt-1 h-8" style="background:repeating-linear-gradient(90deg,#000 0,#000 2px,#fff 2px,#fff 4px)"></div>
+            <div class="text-[10px] mt-1">Loan M.</div>
+          </div>`).join('')}
+        </div>
+      </div>
+      <button class="w-full py-3 bg-emerald-600 text-white rounded-xl font-semibold">✓ Hoàn tất – Chuyển bước Bàn giao</button>
+    </div>`);
+}
+
+function mobileHandoverScreen(){
+  return phone(`
+    <div class="bg-violet-600 text-white px-4 pt-8 pb-3 flex items-center gap-3">
+      <button class="text-2xl">←</button>
+      <div>
+        <div class="text-xs text-violet-100">Cuối ca · 11:15</div>
+        <div class="font-bold">Bàn giao về Lab</div>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto bg-slate-50 p-3 space-y-3">
+      <div class="bg-white rounded-xl p-3">
+        <div class="text-xs text-slate-500 mb-1">Manifest M-26052901</div>
+        <div class="font-bold text-lg">38 ống · 12 khách</div>
+        <div class="text-xs text-slate-500 mt-1">Lạnh 2-8°C · Q.7 → Lab Trung tâm</div>
+      </div>
+      <div class="bg-white rounded-xl p-3">
+        <div class="text-sm font-semibold mb-2">Nhiệt độ thùng giữ mẫu</div>
+        <div class="flex items-center gap-3">
+          <div class="text-4xl font-bold text-emerald-600">4.6°C</div>
+          <div class="flex-1 text-xs text-slate-500">Trong ngưỡng (2-8°C)<br>Đo lúc 11:14</div>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-3">
+        <div class="text-sm font-semibold mb-2">Giao cho shipper</div>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-400 to-violet-600 text-white grid place-items-center font-bold">TP</div>
+          <div class="flex-1">
+            <div class="font-medium">Trần Hữu Phúc</div>
+            <div class="text-xs text-slate-500">Xe lạnh 51A-12345</div>
+          </div>
+          <button class="px-3 py-1.5 bg-violet-50 text-violet-700 rounded-lg text-xs">📞 Gọi</button>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-3">
+        <div class="text-sm font-semibold mb-2">Niêm phong & xác nhận</div>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="rounded-lg bg-emerald-50 border border-emerald-200 p-2 text-center text-sm">✓ Niêm phong<br><span class="text-xs text-slate-500">Số seal: 028451</span></div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-200 p-2 text-center text-sm">✓ Shipper đã ký<br><span class="text-xs text-slate-500">11:15</span></div>
+        </div>
+      </div>
+      <button class="w-full py-3 bg-violet-600 text-white rounded-xl font-semibold">🚚 Đã giao – Bắt đầu tracking</button>
+    </div>`);
+}
+
+function mwrap(title, sub, content){
+  return `${screenHeader('📱 Mobile · '+title, sub)}<div class="p-8 grid place-items-center bg-gradient-to-b from-slate-100 to-slate-50 min-h-[600px]">${content}</div>`;
+}
+
+SCREENS.mobile = {
+  login:       () => mwrap('Đăng nhập', 'Nhân viên đăng nhập bằng SĐT + mật khẩu hoặc OTP', mobileLoginScreen()),
+  home:        () => mwrap('Trang chủ', 'Tổng quan hôm nay, đơn tiếp theo, thông báo, chỉ tiêu tháng', mobileHomeScreen()),
+  route:       () => mwrap('Lịch tuyến', 'Danh sách 8 đơn lấy mẫu trong ngày, sắp xếp theo giờ', mobileRouteScreen()),
+  orderDetail: () => mwrap('Chi tiết đơn', 'Xem trước khi đi: khách, địa chỉ, gói đã đặt, lưu ý y tế', mobileOrderDetailScreen()),
+  consult:     () => mwrap('Tư vấn & Chọn xét nghiệm', 'Nhân viên chốt danh sách XN cuối cùng sau khi tư vấn cho khách – có thể bổ sung gói/test lẻ, hệ thống tự tính ống mẫu', mobileConsultScreen()),
+  verify:      () => mwrap('Xác minh KH & Checklist', 'Quét CCCD, đối chiếu hồ sơ, checklist tiền XN, cảnh báo y tế', mobileVerifyScreen()),
+  collect:     () => mwrap('Lấy mẫu', 'Danh sách ống mẫu được sinh tự động từ XN đã chốt – quét barcode từng ống', mobileCollectScreen()),
+  sign:        () => mwrap('Ký số & In tem', 'Khách ký xác nhận trên màn hình, in tem barcode qua máy in Bluetooth', mobileSignScreen()),
+  handover:    () => mwrap('Bàn giao Lab', 'Cuối ca: gom manifest, đo nhiệt độ, giao shipper, niêm phong', mobileHandoverScreen()),
+  history:     () => mwrap('Lịch sử & Thông báo', 'Xem lại các đơn đã làm, sự cố, thông báo từ hệ thống', mobileHistoryScreen()),
+};
+
+/* =========================================================
+   12. ADMIN
+   ========================================================= */
+SCREENS.admin = {
+  users: () => `
+    ${screenHeader('Người dùng & Phân quyền', '42 user · 6 vai trò · 8 nhóm theo khu vực',
+      `<button class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">+ Thêm user</button>`)}
+    <div class="p-6 grid grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+        <div class="font-semibold mb-3">Vai trò (Roles)</div>
+        ${[['NV Kinh doanh',28,true],['Trưởng nhóm KD',4,false],['Marketing',3,false],['Điều phối Lab',4,false],['Kế toán',2,false],['Admin',1,false]].map(([n,c,a])=>`
+          <button class="w-full flex items-center justify-between px-2 py-1.5 rounded ${a?'bg-brand-50 text-brand-700':'hover:bg-slate-50'}"><span>${n}</span><span class="text-xs ${a?'bg-brand-100':'bg-slate-100'} px-1.5 rounded">${c}</span></button>`).join('')}
+        <hr class="my-3">
+        <div class="font-semibold mb-2 text-xs uppercase">Nhóm khu vực</div>
+        ${['Q.7','Q.10','Bình Tân','Q.12','Bình Thạnh','Thủ Đức'].map(t=>`<button class="w-full text-left px-2 py-1 rounded hover:bg-slate-50">${t}</button>`).join('')}
+      </div>
+      <div class="col-span-3 space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-50 text-xs text-slate-500 uppercase"><tr>
+              <th class="text-left p-3">User</th><th class="text-left p-3">Email</th><th class="text-left p-3">Vai trò</th><th class="text-left p-3">Khu vực</th><th class="text-left p-3">Trạng thái</th><th></th>
+            </tr></thead>
+            <tbody class="divide-y divide-slate-100">
+              ${[
+                ['Nguyễn Lan','lan.nguyen@himedic.vn','NV Kinh doanh','Q.7','active','emerald'],
+                ['Trần Khôi','khoi.tran@himedic.vn','NV Kinh doanh','Q.7','active','emerald'],
+                ['Lê Hoài','hoai.le@himedic.vn','NV Kinh doanh','Q.12','active','emerald'],
+                ['Trần Minh','minh.tran@himedic.vn','Trưởng nhóm KD','Toàn HCM','active','emerald'],
+                ['Phạm Thu','thu.pham@himedic.vn','Marketing','—','active','emerald'],
+                ['Vũ Phương','phuong.vu@himedic.vn','Điều phối Lab','Lab TT','suspended','rose'],
+              ].map(r=>`
+                <tr class="hover:bg-slate-50">
+                  <td class="p-3 flex items-center gap-2">${avatar(r[0].split(' ').slice(-1)[0][0]+r[0][0])}<span class="font-medium">${r[0]}</span></td>
+                  <td class="p-3 text-slate-600 text-xs">${r[1]}</td>
+                  <td class="p-3">${tag(r[2],'sky')}</td>
+                  <td class="p-3 text-slate-600">${r[3]}</td>
+                  <td class="p-3">${tag(r[4],r[5])}</td>
+                  <td class="p-3 text-slate-400">⋮</td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="font-semibold text-sm mb-3">Ma trận quyền (rút gọn)</div>
+          <table class="w-full text-xs">
+            <thead><tr class="bg-slate-50 text-slate-500"><th class="text-left p-2">Module</th><th class="p-2">Sales</th><th class="p-2">Manager</th><th class="p-2">Marketing</th><th class="p-2">Lab</th><th class="p-2">Kế toán</th></tr></thead>
+            <tbody class="divide-y divide-slate-100">
+              ${[
+                ['Khách tiềm năng','R/W','R/W','R/W','—','—'],
+                ['Cơ hội','R/W (mình)','R/W (đội)','R','—','R (Đã chốt)'],
+                ['Đơn lấy mẫu','R/W (mình)','R/W','—','R','—'],
+                ['Logistics','R','R/W','—','R/W','—'],
+                ['Hồ sơ y tế','R (giao)','R (đội)','—','R/W','—'],
+                ['Báo cáo','R (mình)','R/W','R (MKT)','R (Lab)','R (Doanh thu)'],
+              ].map(r=>`<tr><td class="p-2 font-medium">${r[0]}</td>${r.slice(1).map(v=>`<td class="p-2 text-center ${v.includes('W')?'text-emerald-600':v==='—'?'text-slate-300':'text-slate-600'}">${v}</td>`).join('')}</tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>`,
+
+  workflow: () => `
+    ${screenHeader('Trình tạo quy trình · Duyệt chiết khấu Cơ hội', 'Kích hoạt khi: Cơ hội có chiết khấu ≥ 5%')}
+    <div class="p-6 grid grid-cols-3 gap-6">
+      <div class="col-span-2 bg-white rounded-xl border border-slate-200 p-6">
+        <div class="flex items-center gap-3 mb-2"><span class="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs rounded">KÍCH HOẠT</span></div>
+        <div class="p-3 border border-emerald-200 bg-emerald-50/40 rounded-lg text-sm">Cơ hội được gửi duyệt VÀ chiết khấu &ge; 5%</div>
+        <div class="my-2 ml-4 text-slate-300">│</div>
+        <div class="flex items-center gap-3 mb-2"><span class="px-2 py-0.5 bg-sky-100 text-sky-700 text-xs rounded">BƯỚC 1</span></div>
+        <div class="p-3 border border-sky-200 bg-sky-50/40 rounded-lg text-sm">
+          <div class="font-medium">Gán cho Trưởng nhóm Kinh doanh (theo khu vực)</div>
+          <div class="text-xs text-slate-500 mt-1">SLA: 4 giờ · Email + Push · Auto-reminder mỗi 1h</div>
+        </div>
+        <div class="my-2 ml-4 text-slate-300">│</div>
+        <div class="flex items-center gap-3 mb-2"><span class="px-2 py-0.5 bg-amber-100 text-amber-700 text-xs rounded">DK</span></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 border border-amber-200 bg-amber-50/40 rounded-lg text-sm"><div class="font-medium">Nếu CK &lt; 10%</div><div class="text-xs text-slate-500 mt-1">Trưởng nhóm phê duyệt → Chốt</div></div>
+          <div class="p-3 border border-rose-200 bg-rose-50/40 rounded-lg text-sm"><div class="font-medium">Nếu CK ≥ 10%</div><div class="text-xs text-slate-500 mt-1">Chuyển GĐ Kinh doanh</div></div>
+        </div>
+        <div class="my-2 ml-4 text-slate-300">│</div>
+        <div class="flex items-center gap-3 mb-2"><span class="px-2 py-0.5 bg-violet-100 text-violet-700 text-xs rounded">KẾT THÚC</span></div>
+        <div class="p-3 border border-violet-200 bg-violet-50/40 rounded-lg text-sm">Cập nhật Cơ hội · Ghi nhật ký · Thông báo NV Kinh doanh</div>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-3">Cấu hình</div>
+          <label class="block mb-2"><span class="text-xs text-slate-500">Tên quy trình</span><input class="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg" value="Duyệt chiết khấu Cơ hội"></label>
+          <label class="block mb-2"><span class="text-xs text-slate-500">Áp dụng cho</span><select class="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg"><option>Đối tượng: Cơ hội</option></select></label>
+          <label class="flex items-center gap-2 mt-3 text-sm"><input type="checkbox" checked class="rounded"> Bật quy trình</label>
+          <label class="flex items-center gap-2 text-sm"><input type="checkbox" checked class="rounded"> Ghi nhật ký</label>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
+          <div class="font-semibold mb-3">Thêm hành động</div>
+          <div class="space-y-1.5 text-xs">
+            ${['+ Gửi email','+ Thông báo đẩy','+ Tạo công việc','+ Đổi trạng thái','+ Gọi webhook','+ Yêu cầu duyệt'].map(t=>`<button class="block w-full text-left px-2 py-1.5 rounded hover:bg-slate-50">${t}</button>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>`
+};
+
+/* =========================================================
+   ROUTER
+   ========================================================= */
+function select(moduleId, screenId){
+  const mod = MODULES.find(m=>m.id===moduleId);
+  if(!mod) return;
+  // sidebar highlight
+  document.querySelectorAll('#navList button').forEach(b=>{
+    b.classList.toggle('bg-brand-700', b.dataset.module===moduleId);
+    b.classList.toggle('text-white', b.dataset.module===moduleId);
+  });
+  document.getElementById('moduleTitle').textContent = mod.name;
+
+  const main = document.getElementById('mainContent');
+  // Build tabs (if more than 1 screen) + render screen
+  let html = '';
+  if(mod.screens.length>1){
+    html += tabs(mod.screens, screenId, moduleId);
+  }
+  const screenFn = SCREENS[moduleId] && SCREENS[moduleId][screenId];
+  html += screenFn ? screenFn() : `<div class="p-10 text-slate-400">Màn hình đang được phác thảo…</div>`;
+  main.innerHTML = html;
+  main.scrollTop = 0;
+}
+
+// initial
+select('overview','home');
+</script>
+</body>
+</html>
