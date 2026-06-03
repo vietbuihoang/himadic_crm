@@ -107,6 +107,28 @@ def _resolve_contact(user):
 
 
 @frappe.whitelist()
+def request_booking(service):
+    """Customer requests a new appointment from the portal — recorded as a real
+    activity on their contact so sales can follow up. No fake confirmation."""
+    user = frappe.session.user
+    contact = _resolve_contact(user)
+    if not contact:
+        frappe.throw("Không xác định được khách hàng")
+    if not service:
+        frappe.throw("Vui lòng chọn dịch vụ")
+    frappe.get_doc({
+        "doctype": "HM Activity",
+        "activity_type": "Ghi chú",
+        "user": user,
+        "reference_doctype": "HM Contact",
+        "reference_name": contact,
+        "subject": "Yêu cầu đặt lịch từ Cổng khách hàng",
+        "note": f"Khách yêu cầu đặt lịch dịch vụ: {service}",
+    }).insert(ignore_permissions=True)
+    return {"ok": True}
+
+
+@frappe.whitelist()
 def consent_pdpa(consent_version="v1.0"):
     user = frappe.session.user
     contact = _resolve_contact(user)
