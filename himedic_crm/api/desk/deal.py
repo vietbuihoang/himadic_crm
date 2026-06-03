@@ -32,4 +32,6 @@ def detail(name=None):
     doc.check_permission("read")
     d = doc.as_dict()
     d["items"] = [i.as_dict() for i in (doc.get("items") or [])]
+    from frappe.model.workflow import get_transitions
+    d["transitions"] = [t.get("action") for t in get_transitions(doc)]
     return d
