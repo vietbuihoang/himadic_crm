@@ -1,8 +1,59 @@
-import { api } from './app.js';
-import { tag, money, screenHeader, emptyState, errorCard, disabledBtn } from './lib.js';
+import { api, apiPost, refresh } from './app.js';
+import { tag, money, screenHeader, emptyState, errorCard } from './lib.js';
+import { toast, openModal, field, selectField } from './ui.js';
 
 const channelColor = c => ({'FB':'blue','FB Ads':'blue','Google':'amber','Google Ads':'amber','Zalo':'sky','Zalo OA':'sky','Sự kiện':'violet'}[c]||'slate');
-const statusColor = s => ({'Đang chạy':'emerald','Tạm dừng':'amber','Đã kết thúc':'slate','Nháp':'slate'}[s]||'slate');
+const statusColor = s => ({'Mở':'sky','Đang chạy':'emerald','Tạm dừng':'amber','Kết thúc':'slate','Đã kết thúc':'slate','Nháp':'slate'}[s]||'slate');
+
+const CHANNELS = ['FB','Google','Zalo','Landing','SEO','Email','Offline'];
+const STATUSES = ['Mở','Đang chạy','Tạm dừng','Kết thúc'];
+const ASSIGN_TYPES = ['Round-robin','Load-balanced','Skill-based','Fixed user'];
+
+const MF = 'himedic_crm.marketing.flows';
+async function run(fn){ try { await fn(); } catch(e){ toast(e.message||String(e), 'err'); } }
+
+window.__mktUI = {
+  openCreateCampaign(){
+    openModal({ title:'Thêm chiến dịch', submitLabel:'Tạo',
+      bodyHtml: field('Mã chiến dịch','campaign_code',{required:true})
+        + field('Tên chiến dịch','campaign_name',{required:true})
+        + selectField('Kênh','channel',CHANNELS)
+        + field('Ngân sách (đ)','budget',{type:'number',value:'0'}),
+      onSubmit: async (v)=>{
+        const r = await apiPost(`${MF}.create_campaign`, { payload: JSON.stringify(v) });
+        toast(`Đã tạo chiến dịch ${r.name||v.campaign_code}`); refresh();
+      }});
+  },
+  recomputeRoi(name){
+    run(async ()=>{
+      await apiPost(`${MF}.recompute_roi`, { campaign: name });
+      toast('Đã tính lại ROI'); refresh();
+    });
+  },
+  setStatus(name, status){
+    run(async ()=>{
+      await apiPost(`${MF}.set_status`, { name, status });
+      toast(`Trạng thái → ${status}`); refresh();
+    });
+  },
+  openCreateRule(){
+    openModal({ title:'Thêm quy tắc phân khách', submitLabel:'Tạo',
+      bodyHtml: field('Tên quy tắc','rule_name',{required:true})
+        + selectField('Kiểu phân công','assignment_type',ASSIGN_TYPES)
+        + field('Độ ưu tiên','priority',{type:'number',value:'0'})
+        + field('Điểm tối thiểu','min_score',{type:'number',value:'0'}),
+      onSubmit: async (v)=>{
+        const r = await apiPost(`${MF}.create_rule`, { payload: JSON.stringify(v) });
+        toast(`Đã tạo quy tắc ${r.name||v.rule_name}`); refresh();
+      }});
+  },
+  toggleRule(name){
+    run(async ()=>{
+      await apiPost(`${MF}.toggle_rule`, { name });
+      toast('Đã cập nhật trạng thái quy tắc'); refresh();
+    });
+  },
+};
 
 export const campaigns = async () => {
   let data;
@@ -11,7 +62,7 @@ export const campaigns = async () => {
   const t = data.totals || {};
   const head = screenHeader('Hiệu quả Chiến dịch',
     `Tổng chi ${money(t.spent)} · ${t.leads||0} khách tiềm năng · Doanh thu ${money(t.revenue)} · Ngân sách ${money(t.budget)}`,
-    disabledBtn('+ Chiến dịch mới', 'px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg'));
+    `<button onclick="window.__mktUI.openCreateCampaign()" class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg hover:bg-brand-700">+ Chiến dịch</button>`);
   if(!rows.length) return head + emptyState('Chưa có chiến dịch');
   const roiOverall = (t.spent ? (t.revenue/t.spent) : 0).toFixed(1);
   const cplOverall = t.leads ? Math.round(t.spent/t.leads) : 0;
@@ -34,6 +85,7 @@ export const campaigns = async () => {
             <th class="text-right p-3">Chi/Khách</th>
             <th class="text-right p-3">Đã chốt</th><th class="text-right p-3">Doanh thu</th>
             <th class="text-right p-3">ROAS</th><th class="text-left p-3">Trạng thái</th>
+            <th class="text-right p-3">Thao tác</th>
           </tr></thead>
           <tbody class="divide-y divide-slate-100">
             ${rows.map(r=>`
@@ -46,7 +98,14 @@ export const campaigns = async () => {
                 <td class="p-3 text-right text-emerald-700 font-medium">${r.won_count||0}</td>
                 <td class="p-3 text-right font-semibold text-emerald-700">${money(r.revenue)}</td>
                 <td class="p-3 text-right font-bold">${r.roas!=null?Number(r.roas).toFixed(1)+'x':'—'}</td>
-                <td class="p-3">${tag(r.status||'—', statusColor(r.status))}</td>
+                <td class="p-3">
+                  <select onchange="window.__mktUI.setStatus('${r.name}', this.value)" class="text-xs px-2 py-1 border border-slate-200 rounded-lg bg-white outline-none focus:border-brand-500">
+                    ${STATUSES.map(s=>`<option value="${s}" ${s===r.status?'selected':''}>${s}</option>`).join('')}
+                  </select>
+                </td>
+                <td class="p-3 text-right">
+                  <button onclick="window.__mktUI.recomputeRoi('${r.name}')" class="text-xs px-2.5 py-1 bg-brand-50 text-brand-700 rounded-lg hover:bg-brand-100 whitespace-nowrap">↻ Tính lại ROI</button>
+                </td>
               </tr>`).join('')}
           </tbody>
         </table>
@@ -63,7 +122,7 @@ const cond = r => {
   return parts.length ? parts.join(' VÀ ') : '(Không khớp quy tắc nào)';
 };
 const actionText = r => {
-  if(r.assignment_type === 'Cố định' || r.fixed_user) return `Gán cho ${r.fixed_user||'—'}`;
+  if(r.assignment_type === 'Cố định' || r.assignment_type === 'Fixed user' || r.fixed_user) return `Gán cho ${r.fixed_user||'—'}`;
   if(r.team) return `${r.assignment_type||'Phân công'} trong nhóm ${r.team}`;
   return r.assignment_type || 'Vào nhóm chung – NV Kinh doanh tự nhận';
 };
@@ -72,7 +131,8 @@ export const routing = async () => {
   let data;
   try { data = await api('marketing', 'routing'); } catch(e){ return errorCard(e); }
   const rows = data.rows || [];
-  const head = screenHeader('Quy tắc Phân khách tự động', 'Phân khách tiềm năng từ Tiếp thị → Kinh doanh');
+  const head = screenHeader('Quy tắc Phân khách tự động', 'Phân khách tiềm năng từ Tiếp thị → Kinh doanh',
+    `<button onclick="window.__mktUI.openCreateRule()" class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg hover:bg-brand-700">+ Quy tắc</button>`);
   if(!rows.length) return head + emptyState('Chưa có quy tắc phân khách');
   return head + `
     <div class="p-6 space-y-4">
@@ -84,7 +144,9 @@ export const routing = async () => {
               <div class="flex items-center gap-3">
                 <div class="font-semibold">${r.rule_name||r.name||'—'}</div>
                 ${tag(r.is_active?'Đang chạy':'Tắt', r.is_active?'emerald':'slate')}
-                <div class="ml-auto"><label class="relative inline-flex items-center cursor-not-allowed" title="Chỉ đọc trong bản này"><input type="checkbox" ${r.is_active?'checked':''} disabled class="sr-only peer"><div class="w-9 h-5 bg-slate-200 rounded-full peer-checked:bg-emerald-500 after:absolute after:left-0.5 after:top-0.5 after:bg-white after:h-4 after:w-4 after:rounded-full after:transition peer-checked:after:translate-x-4 opacity-60"></div></label></div>
+                <div class="ml-auto">
+                  <button onclick="window.__mktUI.toggleRule('${r.name}')" class="text-xs px-3 py-1.5 rounded-lg ${r.is_active?'bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100':'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100'}">${r.is_active?'Tắt':'Bật'}</button>
+                </div>
               </div>
               <div class="mt-3 grid grid-cols-3 gap-4 text-sm">
                 <div><div class="text-xs text-slate-500">Điều kiện</div><div class="font-mono text-xs mt-0.5 text-slate-700 bg-slate-50 p-2 rounded">${cond(r)}</div></div>
@@ -94,6 +156,5 @@ export const routing = async () => {
             </div>
           </div>
         </div>`).join('')}
-      ${disabledBtn('+ Thêm quy tắc', 'w-full p-3 border-2 border-dashed border-slate-300 rounded-xl text-slate-500 text-sm')}
     </div>`;
 };

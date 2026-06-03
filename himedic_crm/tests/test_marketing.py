@@ -12,6 +12,12 @@ class TestMarketingFlows(FrappeTestCase):
     @classmethod
     def setUpClass(cls):
         demo()
+        # natural-key records (campaign_code / rule_name are the PK) must not collide
+        # across runs since demo() commits and breaks per-test rollback isolation.
+        for dt, key in [("HM Campaign", "QA-CMP"), ("HM Lead Assignment Rule", "QA Rule")]:
+            if frappe.db.exists(dt, key):
+                frappe.delete_doc(dt, key, force=True, ignore_permissions=True)
+        frappe.db.commit()
 
     def test_create_campaign_and_status(self):
         r = mk.create_campaign(json.dumps({"campaign_code": "QA-CMP", "campaign_name": "QA Campaign",
