@@ -35,6 +35,15 @@ window.__commUI = {
           reference_doctype:'HM Contact', reference_name:v.contact });
         toast(`Đã gửi Zalo (${r.status})`); refresh(); }});
   },
+  async sms(){
+    const sel = await contactSelect();
+    openModal({ title:'Gửi tin nhắn SMS', submitLabel:'Gửi',
+      bodyHtml: sel + textareaField('Nội dung','body','Hi-Medic: nhắc lịch lấy mẫu …'),
+      onSubmit: async (v)=>{
+        const r = await apiPost(`${CF}.send_sms`, { contact:v.contact, body:v.body,
+          reference_doctype:'HM Contact', reference_name:v.contact });
+        toast(r.sent ? 'Đã gửi SMS' : 'Đã ghi nhận SMS (SMS gateway chưa cấu hình)'); refresh(); }});
+  },
   async email(){
     const sel = await contactSelect();
     const tpls = await apiPost(`${CF}.email_templates`, {});
@@ -64,6 +73,7 @@ window.__commUI = {
 
 const composeBar = `<div class="flex items-center gap-2">
   <button onclick="window.__commUI.zalo()" class="px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg">💬 Zalo</button>
+  <button onclick="window.__commUI.sms()" class="px-3 py-1.5 text-sm bg-violet-600 text-white rounded-lg">📱 SMS</button>
   <button onclick="window.__commUI.email()" class="px-3 py-1.5 text-sm bg-brand-600 text-white rounded-lg">✉ Email</button>
   <button onclick="window.__commUI.call()" class="px-3 py-1.5 text-sm bg-emerald-600 text-white rounded-lg">📞 Cuộc gọi</button>
 </div>`;
