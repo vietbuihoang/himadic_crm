@@ -46,7 +46,7 @@ def convert_lead(lead_name, deal_value=0, deal_type="Đơn lẻ", expected_close
         "contact": contact,
         "organization": org,
         "lead": lead.name,
-        "owner_user": lead.owner_user,
+        "owner_user": lead.owner_user or frappe.session.user,
         "team": lead.team,
         "region": lead.region,
         "status": "Thẩm định",

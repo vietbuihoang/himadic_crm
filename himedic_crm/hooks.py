@@ -74,6 +74,9 @@ scheduler_events = {
             "himedic_crm.logistics.scheduled.check_temperature_alerts",
             "himedic_crm.deal.scheduled.nudge_b2b_renewal",
         ],
+        "0 */12 * * *": [
+            "himedic_crm.api.zalo.refresh_oa_token",
+        ],
     },
     "daily": [
         "himedic_crm.marketing.scheduled.compute_daily_roi",

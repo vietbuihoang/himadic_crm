@@ -1,32 +1,23 @@
-{% extends "templates/web.html" %}
-{% block page_content %}
-<div class="hm-portal-shell">
-  <header><h2>Hi-Medic — Cổng khách hàng</h2></header>
-  <main>
-    <div class="hm-card">
-      <h3>Đăng nhập bằng SĐT + OTP</h3>
-      <input id="hm-phone" type="tel" placeholder="SĐT (vd 0901xxxxxx)" style="padding:.5rem;border:1px solid #cbd5e1;border-radius:6px;width:240px;">
-      <button class="hm-btn" onclick="HM.requestOtp()">Gửi OTP</button>
-      <div id="hm-otp-block" style="display:none;margin-top:1rem;">
-        <input id="hm-otp" type="text" placeholder="OTP" style="padding:.5rem;border:1px solid #cbd5e1;border-radius:6px;width:160px;">
-        <button class="hm-btn" onclick="HM.verifyOtp()">Xác nhận</button>
-      </div>
-    </div>
-  </main>
-</div>
-<script>
-HM.requestOtp = async function() {
-  const phone = document.getElementById("hm-phone").value.trim();
-  if (!phone) return;
-  await HM.api("himedic_crm.api.portal.request_otp", { phone });
-  document.getElementById("hm-otp-block").style.display="block";
-  alert("Đã gửi OTP qua Zalo/SMS");
-};
-HM.verifyOtp = async function() {
-  const phone = document.getElementById("hm-phone").value.trim();
-  const code = document.getElementById("hm-otp").value.trim();
-  const r = await HM.api("himedic_crm.api.portal.verify_otp", { phone, code });
-  if (r && r.ok) location.href = "/portal/dashboard";
-};
-</script>
-{% endblock %}
+{% raw %}<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hi-Medic — Cổng khách hàng</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#ecfeff',600:'#0e7490',700:'#155e75',900:'#083344'}}}}}</script>
+<style>body{font-family:Inter,system-ui,sans-serif;background:#f1f5f9}.scroll-thin::-webkit-scrollbar{width:0}</style>
+</head>
+<body>{% endraw %}
+<script>window.hmUser="{{ user }}";window.hmFullname="{{ full_name }}";window.hmIsCustomer={{ is_customer }};window.csrf_token="{{ csrf_token }}";</script>
+{% raw %}<div class="max-w-md mx-auto min-h-screen bg-white shadow-sm flex flex-col">
+  <header class="bg-brand-700 text-white px-5 py-4 flex items-center gap-2">
+    <div class="w-8 h-8 rounded-lg bg-cyan-300 text-brand-900 grid place-items-center font-bold">H</div>
+    <div class="font-semibold">Hi-Medic</div>
+    <div id="p-who" class="ml-auto text-xs text-cyan-100"></div>
+  </header>
+  <main id="p-main" class="flex-1 overflow-y-auto scroll-thin p-5"></main>
+</div>{% endraw %}
+<script type="module" src="/assets/himedic_crm/js/portal/app.js"></script>
+</body>
+</html>

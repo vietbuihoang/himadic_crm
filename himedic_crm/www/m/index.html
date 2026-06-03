@@ -1,42 +1,29 @@
-{% extends "templates/web.html" %}
-{% block page_content %}
+{% raw %}<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hi-Medic Field</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{600:'#0e7490',700:'#155e75',900:'#083344'}}}}}</script>
 <style>
-  body { background:#0F172A; color:white; }
-  .m-shell{ max-width:480px;margin:0 auto;padding:1rem;font-family:Inter,system-ui; }
-  .m-card{ background:white;color:#0F172A;border-radius:14px;padding:.875rem 1rem;margin:.75rem 0;box-shadow:0 1px 2px rgba(0,0,0,.2); }
-  .m-kpi{display:flex;gap:.5rem;}
-  .m-kpi > div{flex:1;background:white;color:#0F172A;border-radius:12px;padding:.625rem;}
-  .m-pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.7rem;background:#0E7490;color:white;}
-  h1{font-size:1rem;}
+  body{font-family:Inter,system-ui,sans-serif;background:#0f172a}
+  #m-app{max-width:480px;margin:0 auto;min-height:100vh;background:#f1f5f9;display:flex;flex-direction:column}
+  .m-sig{touch-action:none;background:#fff;border:1px dashed #94a3b8;border-radius:12px;width:100%;height:160px}
+  .scroll-thin::-webkit-scrollbar{width:0}
 </style>
-<div class="m-shell">
-  <header style="display:flex;justify-content:space-between;align-items:center;">
-    <h1>📱 Hi-Medic Field</h1>
-    <small id="m-user"></small>
+</head>
+<body>{% endraw %}
+<script>window.hmUser="{{ user }}";window.hmFullname="{{ full_name }}";window.csrf_token="{{ csrf_token }}";</script>
+{% raw %}<div id="m-app">
+  <header class="bg-brand-900 text-white px-4 py-3 flex items-center gap-2 sticky top-0 z-20">
+    <button id="m-back" class="hidden text-white/80 text-lg">‹</button>
+    <div class="font-bold text-sm flex items-center gap-1">📱 Hi-Medic Field</div>
+    <div id="m-title" class="text-xs text-cyan-100 ml-1"></div>
+    <div class="ml-auto text-[11px] text-cyan-200" id="m-who"></div>
   </header>
-  <div class="m-kpi">
-    <div><b id="m-leads">0</b><br/>Lead mở</div>
-    <div><b id="m-orders">0</b><br/>Đơn hôm nay</div>
-  </div>
-  <h3>Lịch tuyến hôm nay</h3>
-  <div id="m-list"></div>
-</div>
-<script>
-(async () => {
-  const d = await HM.api("himedic_crm.api.mobile.my_day", {});
-  document.getElementById("m-user").textContent = d?.user || "";
-  document.getElementById("m-leads").textContent = d?.kpis?.open_leads || 0;
-  document.getElementById("m-orders").textContent = d?.kpis?.today_orders || 0;
-  const root = document.getElementById("m-list");
-  (d?.orders || []).forEach(o => {
-    root.insertAdjacentHTML("beforeend", `
-      <div class="m-card" onclick="location.href='/m/order?name=${o.name}'">
-        <div style="display:flex;justify-content:space-between"><b>${o.appointment_time||""}</b>
-          <span class="m-pill">${o.status}</span></div>
-        <div>📌 ${o.address || ""}</div>
-        <div>👤 ${o.contact}</div>
-      </div>`);
-  });
-})();
-</script>
-{% endblock %}
+  <main id="m-main" class="flex-1 overflow-y-auto scroll-thin p-4"></main>
+</div>{% endraw %}
+<script type="module" src="/assets/himedic_crm/js/m/app.js"></script>
+</body>
+</html>
